@@ -1,0 +1,78 @@
+import { Link } from "@tanstack/react-router";
+import { Phone, Mail, MapPin } from "lucide-react";
+import { FaFacebookF, FaLinkedinIn, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
+import logo from "@/assets/struzon-logo.png";
+
+export function SiteFooter() {
+  return (
+    <footer className="bg-white text-navy border-t border-slate-100">
+      <div className="mx-auto grid max-w-7xl gap-10 px-6 py-20 md:grid-cols-4">
+        <div className="md:col-span-1">
+          <div className="bg-white inline-block mb-4">
+            <img src={logo} alt="Struzon Technologies Inc." className="h-12 w-auto" />
+          </div>
+          <p className="text-sm leading-relaxed text-navy hover:text-brand-red transition-colors duration-300 transition-all">
+            A trusted structural steel detailing and engineering service partner to the construction industry worldwide.
+          </p>
+          <div className="mt-8 flex gap-4">
+            {[FaFacebookF, FaLinkedinIn, FaTwitter, FaInstagram, FaYoutube].map((Icon, i) => (
+              <a key={i} href="#" className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-50 text-navy hover:bg-brand-red hover:text-white transition-all transform hover:-translate-y-1 shadow-sm">
+                <Icon className="h-4 w-4" />
+              </a>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <h4 className="text-navy font-display font-bold uppercase tracking-widest text-sm mb-6 pb-2 border-b-2 border-brand-red w-fit">Quick Links</h4>
+          <ul className="space-y-4 text-sm font-bold">
+            <li><Link to="/about" className="text-brand-red hover:text-navy transition-colors">About Us</Link></li>
+            <li><Link to="/services" className="text-brand-red hover:text-navy transition-colors">Services</Link></li>
+            <li><Link to="/projects" className="text-brand-red hover:text-navy transition-colors">Projects</Link></li>
+            <li><Link to="/careers" className="text-brand-red hover:text-navy transition-colors">Careers</Link></li>
+            <li><Link to="/contact" className="text-brand-red hover:text-navy transition-colors">Contact</Link></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 className="text-navy font-display font-bold uppercase tracking-widest text-sm mb-6 pb-2 border-b-2 border-brand-red w-fit">Services</h4>
+          <ul className="space-y-3 text-sm font-medium">
+            <li className="hover:text-brand-red transition-colors cursor-default">Structural Steel Detailing</li>
+            <li className="hover:text-brand-red transition-colors cursor-default">Connection Design</li>
+            <li className="hover:text-brand-red transition-colors cursor-default">Miscellaneous Detailing</li>
+            <li className="hover:text-brand-red transition-colors cursor-default">BIM Services</li>
+            <li className="hover:text-brand-red transition-colors cursor-default">Engineering & Stamping</li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 className="text-navy font-display font-bold uppercase tracking-widest text-sm mb-6 pb-2 border-b-2 border-brand-red w-fit">Contact</h4>
+          <ul className="space-y-4 text-sm font-medium">
+            <li className="flex items-start gap-3 hover:text-brand-red transition-colors group cursor-default">
+              <MapPin className="h-4 w-4 mt-0.5 text-brand-red group-hover:scale-110 transition-transform" />
+              Offices in USA, UK, India & Canada
+            </li>
+            <li className="flex items-center gap-3 hover:text-brand-red transition-colors group cursor-default">
+              <Phone className="h-4 w-4 text-brand-red group-hover:scale-110 transition-transform" />
+              +1 (646) 992-3825
+            </li>
+            <li className="flex items-center gap-3 hover:text-brand-red transition-colors group cursor-default">
+              <Mail className="h-4 w-4 text-brand-red group-hover:scale-110 transition-transform" />
+              info@struzon.example
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div className="border-t border-slate-100 bg-slate-50/50">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 py-8 text-[10px] font-bold text-slate-400 uppercase tracking-widest md:flex-row">
+          <p>© {new Date().getFullYear()} Struzon Technologies Inc. All rights reserved.</p>
+          <div className="flex gap-6">
+            <span className="hover:text-brand-red transition-colors cursor-pointer">Privacy Policy</span>
+            <span className="hover:text-brand-red transition-colors cursor-pointer">Terms of Service</span>
+          </div>
+          <p className="text-brand-red">Stands For Trust</p>
+        </div>
+      </div>
+    </footer>
+  );
+}
