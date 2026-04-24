@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import { Menu, X, Phone, Mail } from "lucide-react";
-import { FaFacebookF, FaLinkedinIn, FaInstagram, FaXTwitter, FaYoutube } from "react-icons/fa6";
+import { FaFacebookF, FaLinkedinIn, FaInstagram, FaYoutube } from "react-icons/fa6";
 import logo from "@/assets/struzon-logo.png";
 
 const links = [
@@ -30,20 +30,24 @@ export function SiteHeader() {
       <div className={`bg-navy/80 border-b border-white/10 ${scrolled ? 'hidden' : 'block'}`}>
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 py-2">
           <div className="flex items-center gap-6 text-sm font-medium text-white uppercase tracking-wider">
-            <a href="tel:+16469923825" className="flex items-center gap-2 hover:text-white transition-colors">
-              <Phone size={14} className="text-brand-red" /> +1 (646) 992-3825
-            </a>
+            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6">
+              <a href="tel:+16469923825" className="flex items-center gap-2 hover:text-white transition-colors whitespace-nowrap">
+                <Phone size={14} className="text-brand-red" /> +1 (646) 992-3825
+              </a>
+              <a href="tel:+916385828777" className="flex items-center gap-2 hover:text-white transition-colors whitespace-nowrap border-t sm:border-t-0 sm:border-l border-white/10 sm:pl-6 pt-1 sm:pt-0">
+                <Phone size={14} className="text-brand-red" /> +91 6385828777
+              </a>
+            </div>
             <a href="mailto:info@struzon.example" className="hidden sm:flex items-center gap-2 hover:text-white transition-colors">
-              <Mail size={14} className="text-brand-red" /> info@struzon.example
+              <Mail size={14} className="text-brand-red" /> info@struzon.com
             </a>
           </div>
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-3 text-white">
-              <a href="#" aria-label="Facebook" className="hover:text-white transition-colors"><FaFacebookF size={14} /></a>
-              <a href="#" aria-label="LinkedIn" className="hover:text-white transition-colors"><FaLinkedinIn size={14} /></a>
-              <a href="#" aria-label="Instagram" className="hover:text-white transition-colors"><FaInstagram size={14} /></a>
-              <a href="#" aria-label="X" className="hover:text-white transition-colors"><FaXTwitter size={14} /></a>
-              <a href="#" aria-label="YouTube" className="hover:text-white transition-colors"><FaYoutube size={14} /></a>
+              <a href="https://www.facebook.com/p/Struzon-Technologies-100057060415643/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="hover:text-white transition-colors"><FaFacebookF size={14} /></a>
+              <a href="https://www.linkedin.com/company/struzon-technologies" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="hover:text-white transition-colors"><FaLinkedinIn size={14} /></a>
+              <a href="https://www.instagram.com/struzontechnologies/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="hover:text-white transition-colors"><FaInstagram size={14} /></a>
+              <a href="https://www.youtube.com/@struzontechnologiespvtltd3935" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="hover:text-white transition-colors"><FaYoutube size={14} /></a>
             </div>
           </div>
         </div>

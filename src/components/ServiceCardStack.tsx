@@ -1,315 +1,247 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown } from 'lucide-react';
+import { ChevronRight, ChevronLeft, ArrowUpRight } from 'lucide-react';
 
-// Import Service Images
-import imgStructural from '@/assets/services/Structural Steel Detailing.png';
-import imgMisc from '@/assets/services/MISC Steel Detailing.png';
-import imgSpecial from '@/assets/services/Special Metal Detailing.png';
-import imgConnection from '@/assets/services/Connection Design & PE Stamping.png';
-import imgBim from '@/assets/services/BIM & ABM.png';
-import imgTakeoff from '@/assets/services/Material Takeoff & Estimation.png';
-import imgRD from '@/assets/services/R & D.png';
+import imgStructural from "@/assets/services/Structural Steel Detailing.png";
+import imgMisc from "@/assets/services/MISC Steel Detailing.png";
+import imgSpecial from "@/assets/services/Special Metal Detailing.png";
+import imgConnection from "@/assets/services/Connection Design & PE Stamping.png";
+import imgBim from "@/assets/services/BIM & ABM.png";
+import imgTakeoff from "@/assets/services/Material Takeoff & Estimation.png";
+import imgRD from "@/assets/services/R & D.png";
 
-interface ServiceProject {
+interface ServiceData {
   title: string;
-  description: string | string[];
+  subLabel?: string;
+  description: string[];
   image: string;
+  tags: string[];
 }
 
-// ─── Desktop horizontal accordion card ────────────────────────────────────────
-const DesktopServiceCard = ({
-  title,
-  description,
-  image,
-  isHovered,
-  onHover,
-}: ServiceProject & { index: number; isHovered: boolean; onHover: () => void }) => {
-  const paragraphs = Array.isArray(description) ? description : [description];
-  const [firstParagraph, ...remainingParagraphs] = paragraphs;
-
-  return (
-    <motion.div
-      layout
-      onMouseEnter={onHover}
-      initial={false}
-      animate={{
-        flex: isHovered ? 15 : 1,
-        backgroundColor: isHovered ? '#FFFFFF' : '#F1F5F9',
-      }}
-      transition={{ duration: 0.7, ease: [0.23, 1, 0.32, 1] }}
-      className={`relative h-full overflow-hidden cursor-pointer border-[1px] border-white/20 -ml-[2px] first:ml-0 rounded-[2.5rem]
-        ${isHovered ? 'z-20 shadow-[0_40px_100px_rgba(0,0,0,0.3)]' : 'z-0 shadow-lg hover:z-10'}`}
-    >
-      <AnimatePresence>
-        {!isHovered && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="absolute inset-0"
-          >
-            <img
-              src={image}
-              alt=""
-              className="w-full h-full object-cover grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
-            />
-            <div className="absolute inset-0 bg-navy/60 mix-blend-multiply" />
-            <div className="absolute inset-0 flex items-center justify-center p-4">
-              <h3 className="text-white/80 font-display font-bold uppercase tracking-[0.4em] whitespace-nowrap origin-center -rotate-90 text-[10px] md:text-sm">
-                {title}
-              </h3>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      <div className="relative w-full h-full p-4 md:p-8 flex flex-col pointer-events-none">
-        <AnimatePresence mode="wait">
-          {isHovered && (
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
-              transition={{ duration: 0.4 }}
-              className="w-full h-full flex flex-col pointer-events-auto"
-            >
-              <div className="mb-6 md:mb-8 border-b border-navy/10 pb-6 flex items-end justify-between">
-                <h2 className="text-3xl md:text-5xl font-display font-bold text-[#1F3A5F] uppercase tracking-tighter leading-none">
-                  {title}
-                </h2>
-                <div className="hidden lg:block text-right">
-                  <p className="text-[10px] text-brand-red font-black uppercase tracking-widest leading-tight">
-                    Struzon Engineering Division <br />
-                    <span className="text-navy/30">LOD 400 - Quality Verified</span>
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex-1 min-h-0 flex flex-col">
-                <div className="w-full">
-                  <div className="flex flex-col lg:flex-row gap-8 mb-8 items-start">
-                    <div className="w-full lg:w-[45%] shrink-0">
-                      <div className="relative aspect-video lg:aspect-[16/10] rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white">
-                        <img src={image} alt={title} className="w-full h-full object-cover" />
-                        <div className="absolute inset-0 bg-gradient-to-t from-navy/30 to-transparent" />
-                      </div>
-                    </div>
-                    <div className="flex-1 lg:pt-4">
-                      <div className="bg-brand-red/[0.04] border-l-8 border-brand-red p-8 rounded-r-[2.5rem]">
-                        <p className="text-navy text-xl lg:text-2xl font-display font-medium leading-relaxed italic">
-                          {firstParagraph}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  <div className="grid md:grid-cols-2 gap-x-12 gap-y-6 lg:gap-y-8">
-                    {remainingParagraphs.map((p, idx) => (
-                      <p key={idx} className="text-navy/70 text-sm lg:text-base leading-relaxed font-sans first:font-bold first:text-navy/90">
-                        {p}
-                      </p>
-                    ))}
-                  </div>
-                </div>
-              </div>
-
-              <div className="mt-auto pt-6 border-t border-navy/5 flex items-center justify-between">
-                <div className="flex gap-4">
-                  <div className="px-5 py-1.5 bg-navy text-white text-[9px] uppercase font-bold tracking-widest rounded-full">Automated QC</div>
-                  <div className="px-5 py-1.5 bg-brand-red/10 text-brand-red text-[9px] uppercase font-bold tracking-widest rounded-full border border-brand-red/20">3D Coordination</div>
-                </div>
-                <div className="text-[10px] font-mono text-navy/20 uppercase tracking-widest">Struzon_Spec_Detail_V8</div>
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
-      </div>
-    </motion.div>
-  );
-};
-
-// ─── Mobile vertical accordion card ───────────────────────────────────────────
-const MobileServiceCard = ({
-  title,
-  description,
-  image,
-  isOpen,
-  onToggle,
-}: ServiceProject & { isOpen: boolean; onToggle: () => void }) => {
-  const paragraphs = Array.isArray(description) ? description : [description];
-  const [firstParagraph, ...remainingParagraphs] = paragraphs;
-
-  return (
-    <div className="border border-navy/10 rounded-2xl overflow-hidden bg-white shadow-sm">
-      {/* Header (always visible) */}
-      <button
-        onClick={onToggle}
-        className="w-full flex items-center gap-4 p-4 text-left"
-      >
-        <div className="w-12 h-12 rounded-xl overflow-hidden shrink-0 border-2 border-navy/5">
-          <img src={image} alt={title} className="w-full h-full object-cover" />
-        </div>
-        <div className="flex-1 min-w-0">
-          <div className="text-[9px] uppercase tracking-widest text-brand-red font-black mb-0.5">Struzon Engineering</div>
-          <h3 className="text-sm font-display font-bold text-navy uppercase leading-tight truncate">{title}</h3>
-        </div>
-        <motion.div
-          animate={{ rotate: isOpen ? 180 : 0 }}
-          transition={{ duration: 0.3 }}
-          className="shrink-0"
-        >
-          <ChevronDown size={18} className={isOpen ? 'text-brand-red' : 'text-navy/40'} />
-        </motion.div>
-      </button>
-
-      {/* Expanded content */}
-      <AnimatePresence initial={false}>
-        {isOpen && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-            className="overflow-hidden"
-          >
-            <div className="px-4 pb-5 space-y-4 border-t border-navy/5 pt-4">
-              {/* Image */}
-              <div className="relative aspect-video rounded-xl overflow-hidden shadow-lg">
-                <img src={image} alt={title} className="w-full h-full object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-navy/30 to-transparent" />
-              </div>
-
-              {/* Primary description */}
-              <div className="border-l-4 border-brand-red pl-4 py-1 bg-brand-red/[0.03] rounded-r-xl">
-                <p className="text-navy text-sm font-display font-medium leading-relaxed italic">
-                  {firstParagraph}
-                </p>
-              </div>
-
-              {/* Secondary paragraphs */}
-              {remainingParagraphs.map((p, idx) => (
-                <p key={idx} className="text-navy/70 text-xs leading-relaxed">
-                  {p}
-                </p>
-              ))}
-
-              {/* Footer badges */}
-              <div className="flex gap-3 pt-2 border-t border-navy/5">
-                <div className="px-3 py-1 bg-navy text-white text-[8px] uppercase font-bold tracking-wider rounded-full">Automated QC</div>
-                <div className="px-3 py-1 bg-brand-red/10 text-brand-red text-[8px] uppercase font-bold tracking-wider rounded-full border border-brand-red/20">3D Coordination</div>
-              </div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  );
-};
-
-// ─── Service data ──────────────────────────────────────────────────────────────
-const serviceData: ServiceProject[] = [
+const services: ServiceData[] = [
   {
-    title: 'Structural Steel Detailing',
+    title: 'STRUCTURAL STEEL DETAILING',
+    subLabel: 'STRUZON ENGINEERING DIVISION',
     description: [
-      'Structural steel detailing forms the backbone of any steel construction project, translating design intent into precise, fabrication-ready drawings. This includes beams, columns, braces, trusses, and all primary load-bearing components. Accuracy at this stage ensures seamless fabrication and smooth on-site erection, reducing costly rework and delays while maintaining structural integrity.',
-      'At Struzon, structural detailing is approached with a strong focus on precision, coordination, and constructability.',
-      'Every drawing is developed with a clear understanding of engineering intent and fabrication feasibility, ensuring that all components fit together perfectly during assembly. This reduces uncertainties and enhances overall project efficiency.',
+      'Structural steel detailing forms the backbone of any steel construction project, translating design intent into precise, fabrication-ready drawings. Accuracy at this stage ensures seamless fabrication and smooth on-site erection, reducing costly rework and delays while maintaining structural integrity.',
+      'At Struzon, structural detailing is approached with a strong focus on precision, coordination, and constructability. Every drawing is developed with a clear understanding of engineering intent and fabrication feasibility, ensures project efficiency.'
     ],
     image: imgStructural,
+    tags: ['AUTOMATED QC', '3D DETAILING']
   },
   {
-    title: 'MISC Steel Detailing',
+    title: 'MISC STEEL DETAILING',
+    subLabel: 'STRUZON ENGINEERING DIVISION',
     description: [
       'Miscellaneous steel detailing covers secondary components such as staircases, handrails, ladders, platforms, and other non-structural elements that complete a project. Though often considered minor, these elements require careful coordination to ensure functionality, safety, and aesthetic consistency within the overall structure.',
-      'Struzon brings a meticulous approach to miscellaneous detailing, ensuring that each component is clearly defined and seamlessly integrated into the broader project. Attention to detail in these elements helps eliminate installation challenges and ensures compliance with safety standards.',
-      'By combining practical knowledge with detailed modeling, Struzon delivers drawings that are easy to interpret and execute. This allows fabricators and contractors to handle even intricate components efficiently, ensuring that no part of the project is overlooked.',
+      'Struzon brings a meticulous approach to miscellaneous detailing, ensuring that each component is clearly defined and seamlessly integrated into the broader project. Attention to detail in these elements helps eliminate installation challenges and ensures compliance with safety standards.'
     ],
     image: imgMisc,
+    tags: ['AUTOMATED QC', '3D COORDINATION']
   },
   {
-    title: 'Special Metal Detailing',
+    title: 'SPECIAL METAL DETAILING',
+    subLabel: 'STRUZON ARCHITECTURAL DIVISION',
     description: [
-      'Special metal detailing involves customized and architecturally driven elements that demand both creativity and technical expertise. These include decorative facades, complex geometries, feature staircases, and unique metal installations that define the visual appeal of a structure.',
-      'Struzon specializes in transforming complex design concepts into practical, buildable solutions. Each project is handled with a balance of innovation and engineering discipline, ensuring that aesthetic goals are achieved without compromising structural feasibility.',
-      'Through advanced tools and a deep understanding of fabrication processes, Struzon is able to execute highly intricate designs with confidence. This capability allows clients to push creative boundaries while still maintaining efficiency and precision in execution.',
+      'Special metal detailing involves customized and architecturally driven elements that demand both creativity and technical expertise. From unique metal installations to complex facades, these elements define the visual appeal of a structure.',
+      'Struzon specializes in transforming complex architectural concepts into practical, buildable solutions. Each project is handled with a balance of innovation and engineering discipline, ensuring aesthetic goals are met without compromising structural requirements.'
     ],
     image: imgSpecial,
+    tags: ['CUSTOM FABRICATION', 'ARCHITECTURAL DESIGN']
   },
   {
-    title: 'Connection Design & PE Stamping',
+    title: 'CONNECTION DESIGN & PE STAMPING',
+    subLabel: 'STRUZON ENGINEERING DIVISION',
     description: [
-      'Connection design plays a crucial role in ensuring the stability and performance of a steel structure. It defines how different members interact, transfer loads, and maintain overall integrity under various conditions. Each connection must be carefully engineered to meet safety and compliance standards.',
-      'At Struzon, connection design is handled with a strong emphasis on accuracy and reliability. From simple shear connections to complex moment connections, each design is developed through detailed analysis and adherence to recognized industry codes.',
-      'With the inclusion of Professional Engineer (PE) stamping, Struzon provides an added layer of assurance and credibility. This ensures that all designs meet regulatory requirements, making them suitable for a wide range of projects across different regions.',
+      'Connection design plays a crucial role in ensuring the stability and performance of a steel structure. It defines how different members interact, transfer loads, and maintain overall integrity under various conditions.',
+      'At Struzon, connection design is handled with a strong emphasis on accuracy and reliability. With the inclusion of Professional Engineer (PE) stamping, Struzon provides an added layer of assurance and credibility for every fabricator and contractor.'
     ],
     image: imgConnection,
+    tags: ['PE STAMPING', 'LOAD ANALYSIS']
   },
   {
     title: 'BIM & ABM',
+    subLabel: 'STRUZON DIGITAL DIVISION',
     description: [
-      'Building Information Modeling (BIM) and Advanced Bill of Materials (ABM) play a vital role in modern construction by improving coordination and decision-making. BIM creates a detailed 3D environment that allows teams to visualize the entire project and identify potential conflicts before construction begins.',
-      'Struzon leverages BIM to enhance collaboration between architects, engineers, and contractors. This proactive approach minimizes errors, reduces rework, and ensures that all disciplines are aligned throughout the project lifecycle.',
-      "In addition, Struzon's ABM outputs provide highly accurate material data, enabling better planning and procurement. This not only reduces waste but also helps clients maintain control over project costs and timelines with greater confidence.",
+      'Building Information Modeling (BIM) and Advanced Bill of Materials (ABM) play a vital role in modern construction by improving coordination and decision-making. BIM creates a detailed 3D environment for visualization.',
+      'Struzon leverages BIM to enhance collaboration between architects, engineers, and contractors. This proactive approach minimizes errors and ensures disciplines are aligned throughout the project lifecycle, leading to smarter construction.'
     ],
     image: imgBim,
+    tags: ['VDC MANAGEMENT', 'CLASH DETECTION']
   },
   {
-    title: 'Material Takeoff & Estimation',
+    title: 'MATERIAL TAKEOFF & ESTIMATION',
+    subLabel: 'STRUZON ESTIMATION DIVISION',
     description: [
-      'Material takeoff and estimation are critical for effective project planning, offering a detailed breakdown of required materials and associated costs. Accurate estimation ensures better budgeting and prevents unexpected financial challenges during execution.',
-      'Struzon delivers comprehensive and precise material takeoffs that support informed decision-making. Each quantity is carefully calculated to reflect actual project needs, reducing the risk of over-ordering or material shortages.',
-      'Struzon delivers comprehensive and precise material takeoffs that support informed decision-making. Each quantity is carefully calculated to reflect actual project needs, reducing the risk of over-ordering or material shortages.',
+      'Material takeoff and estimation are critical for effective project planning, offering a detailed breakdown of required materials and costs. Accurate estimation ensures better budgeting and prevents financial challenges.',
+      'Struzon delivers comprehensive and precise material takeoffs that support informed decision-making. Each quantity is carefully calculated to reflect actual project needs, reducing the risk of over-ordering and waste.'
     ],
     image: imgTakeoff,
+    tags: ['COST ESTIMATION', 'MATERIAL PLANNING']
   },
   {
-    title: 'Research and Development',
+    title: 'RESEARCH AND DEVELOPMENT (R&D)',
+    subLabel: 'STRUZON INNOVATION DIVISION',
     description: [
-      'Research and Development is essential for staying competitive in an ever-evolving engineering and construction landscape. It involves exploring new technologies, refining workflows, and adopting innovative methods to improve efficiency and quality.',
-      'Struzon places a strong emphasis on R&D to continuously enhance its capabilities and service offerings. By staying updated with the latest industry trends and tools, the company ensures that its processes remain relevant and effective.',
-      'Through ongoing innovation and process improvement, Struzon is able to deliver smarter, faster, and more efficient solutions. This forward-thinking approach allows clients to benefit from modern practices while maintaining high standards of quality and performance.',
+      'Research and Development is essential for staying competitive in an ever-evolving engineering and construction landscape. Adoption of innovative methods improves efficiency and quality across the board.',
+      'Struzon places a strong emphasis on R&D to continuously enhance its capabilities and service offerings. By staying updated with industry trends and software advancements, the company ensures processes remain relevant and effective.'
     ],
     image: imgRD,
-  },
+    tags: ['INNOVATION', 'TECH ADOPTION']
+  }
 ];
 
-// ─── Main export ───────────────────────────────────────────────────────────────
 export default function ServiceCardStack() {
-  const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
-  const [openMobileIndex, setOpenMobileIndex] = useState<number | null>(0); // first one open by default
+  const [activeIndex, setActiveIndex] = useState(1);
 
   return (
-    <>
-      {/* ── DESKTOP: horizontal accordion (lg and above) ── */}
-      <section className="hidden lg:flex w-full h-[100vh] min-h-[700px] overflow-hidden px-12 py-12 bg-slate-100 font-sans">
-        <div className="flex w-full h-full gap-2 items-stretch" onMouseLeave={() => setHoveredIndex(null)}>
-          {serviceData.map((service, i) => (
-            <DesktopServiceCard
-              key={i}
-              {...service}
-              index={i}
-              isHovered={hoveredIndex === i}
-              onHover={() => setHoveredIndex(i)}
-            />
-          ))}
-        </div>
-      </section>
+    <section className="bg-[#f0f4f8] py-20 px-4 md:px-10">
+      <div className="mx-auto max-w-[1800px]">
+        {/* Horizontal Accordion Container */}
+        <div className="hidden lg:flex flex-row h-[850px] gap-4">
+          {services.map((service, index) => {
+            const isActive = activeIndex === index;
+            
+            return (
+              <motion.div
+                key={index}
+                onMouseEnter={() => setActiveIndex(index)}
+                layout
+                initial={false}
+                animate={{ 
+                  flex: isActive ? 18 : 1,
+                  backgroundColor: isActive ? '#ffffff' : '#2b415f'
+                }}
+                transition={{ duration: 0.6, ease: [0.32, 0.72, 0, 1] }}
+                className={`relative cursor-pointer rounded-[3.5rem] overflow-hidden shadow-2xl group`}
+              >
+                {/* Background Tint for Slices */}
+                <AnimatePresence>
+                  {!isActive && (
+                    <motion.div 
+                      className="absolute inset-0 bg-cover bg-center grayscale group-hover:grayscale-0 transition-opacity opacity-40 duration-500" 
+                      style={{ backgroundImage: `url(${service.image})` }} 
+                    />
+                  )}
+                </AnimatePresence>
 
-      {/* ── MOBILE / TABLET: vertical accordion (below lg) ── */}
-      <section className="lg:hidden w-full bg-slate-50 px-4 py-8 font-sans space-y-3">
-        <div className="text-center mb-6">
-          <div className="text-[10px] uppercase tracking-[0.4em] text-brand-red font-bold mb-1">Our Capabilities</div>
-          <h2 className="text-2xl font-display font-bold text-navy uppercase tracking-tight">Our Services</h2>
+                {/* Vertical Label */}
+                <AnimatePresence>
+                  {!isActive && (
+                    <motion.div
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      exit={{ opacity: 0 }}
+                      className="absolute inset-0 flex items-center justify-center"
+                    >
+                      <span 
+                        className="text-white/90 font-display font-black text-xs tracking-[0.4em] uppercase rotate-180"
+                        style={{ writingMode: 'vertical-rl' }}
+                      >
+                        {service.title}
+                      </span>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+
+                {/* Active Card Content */}
+                <motion.div 
+                  className={`h-full w-full flex flex-col p-12 xl:p-20 overflow-hidden transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                >
+                   {/* 1. Header Bar */}
+                   <div className="flex justify-between items-center mb-6 shrink-0">
+                      <div className="flex items-center gap-4">
+                         <div className="h-[2px] w-12 bg-brand-red" />
+                         <div className="text-[11px] font-black text-brand-red uppercase tracking-[0.2em]">{service.subLabel}</div>
+                      </div>
+                      <div className="text-right">
+                         <div className="text-[9px] font-bold text-navy/30 uppercase tracking-widest">LOD 400 • QUALITY VERIFIED</div>
+                      </div>
+                   </div>
+
+                   {/* 2. Main Large Title */}
+                   <div className="mb-10 shrink-0">
+                      <h2 className="text-4xl xl:text-6xl font-display font-black text-navy leading-[0.9] tracking-tighter uppercase max-w-4xl">
+                         {service.title}
+                      </h2>
+                   </div>
+
+                   {/* 3. Balanced Grid (Image & Text) */}
+                   <div className="flex flex-row gap-16 items-start flex-1 min-h-0">
+                      {/* Image Frame */}
+                      <div className="w-[48%] h-full relative rounded-[3rem] overflow-hidden shadow-2xl shrink-0 group/img">
+                         <img 
+                           src={service.image} 
+                           alt={service.title} 
+                           className="w-full h-full object-cover transition-transform duration-700 group-hover/img:scale-110"
+                         />
+                         <div className="absolute inset-0 bg-navy/5" />
+                      </div>
+
+                      {/* Content Area */}
+                      <div className="flex-1 flex flex-col h-full">
+                         <div className="flex-1 space-y-8 pr-6 overflow-y-auto custom-scrollbar">
+                            <div className="border-l-[6px] border-brand-red pl-10">
+                               <p className="text-navy text-lg xl:text-2xl font-display font-bold leading-tight italic">
+                                  "{service.description[0].substring(0, 200)}..."
+                               </p>
+                            </div>
+                            <p className="text-navy/60 text-base xl:text-lg leading-relaxed font-medium">
+                               {service.description[1]}
+                            </p>
+                         </div>
+                         
+                         {/* Integrated Buttons Tier */}
+                         <div className="flex flex-wrap items-center gap-6 mt-10 shrink-0">
+                            {service.tags.map((tag, tIndex) => (
+                              <button 
+                                key={tIndex} 
+                                className={`px-10 py-4 rounded-xl text-xs font-display font-black uppercase tracking-widest transition-all
+                                  ${tIndex === 0 ? 'bg-navy text-white shadow-xl hover:-translate-y-1' : 'bg-brand-red text-white shadow-xl hover:-translate-y-1'}`}
+                              >
+                                {tag}
+                              </button>
+                            ))}
+                            <button className="flex items-center gap-2 text-navy/50 font-black text-xs uppercase tracking-widest hover:text-navy transition-colors ml-4">
+                               Learn More <ArrowUpRight size={16} />
+                            </button>
+                         </div>
+                      </div>
+                   </div>
+
+                   {/* 4. Bottom Footer Decoration */}
+                   <div className="mt-12 pt-10 border-t border-navy/10 flex justify-between items-center opacity-30 shrink-0">
+                      <div className="text-[9px] font-black uppercase tracking-[0.5em] text-navy">STRUZON_{service.title.split(' ')[0]}_DESIGN_VR_24</div>
+                      <div className="flex items-center gap-12">
+                         <ChevronLeft size={28} className="cursor-pointer hover:text-brand-red" />
+                         <div className="w-12 h-[1px] bg-navy/40" />
+                         <ChevronRight size={28} className="cursor-pointer hover:text-brand-red" />
+                      </div>
+                   </div>
+                </motion.div>
+              </motion.div>
+            );
+          })}
         </div>
-        {serviceData.map((service, i) => (
-          <MobileServiceCard
-            key={i}
-            {...service}
-            isOpen={openMobileIndex === i}
-            onToggle={() => setOpenMobileIndex(openMobileIndex === i ? null : i)}
-          />
-        ))}
-      </section>
-    </>
+
+        {/* Mobile View */}
+        <div className="lg:hidden flex flex-col gap-8 py-10">
+           {services.map((service, i) => (
+             <div key={i} className="bg-white p-8 rounded-[3rem] shadow-xl border border-navy/5">
+                <div className="flex items-center gap-3 mb-6">
+                   <div className="h-[2px] w-8 bg-brand-red" />
+                   <div className="text-[9px] font-black text-brand-red uppercase tracking-widest">{service.subLabel}</div>
+                </div>
+                <h3 className="text-3xl font-display font-black text-navy uppercase leading-tight mb-6">{service.title}</h3>
+                <img src={service.image} className="w-full h-64 object-cover rounded-[2rem] mb-8 shadow-lg" alt="" />
+                <p className="text-navy/70 text-lg font-medium leading-relaxed mb-8">{service.description[0]}</p>
+                <div className="flex gap-4">
+                   <div className="bg-navy text-white px-6 py-3 rounded-xl text-[10px] font-black uppercase">{service.tags[0]}</div>
+                </div>
+             </div>
+           ))}
+        </div>
+      </div>
+    </section>
   );
 }

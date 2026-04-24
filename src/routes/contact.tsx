@@ -16,10 +16,20 @@ export const Route = createFileRoute("/contact")({
 });
 
 const offices = [
-  { c: "USA", flag: "🇺🇸", phones: ["+1 (646) 992-3825", "+1 (404) 902-6781"] },
-  { c: "INDIA", flag: "🇮🇳", phones: ["0422-4530403"] },
-  { c: "UK & EUROPE", flag: "🇬🇧", phones: ["+44 20 7946 0014"] },
-  { c: "CANADA", flag: "🇨🇦", phones: ["+1 (555) 902-6781"] },
+  { 
+    c: "USA", 
+    flag: "🇺🇸",
+    name: "STRUZON TECHNOLOGIES INC.",
+    address: "98, Cuttermill Road, Suite 466 S, Great Neck, NY 11021",
+    phones: ["+1 (646) 992-3825", "+1 (404) 902-6781"] 
+  },
+  { 
+    c: "INDIA", 
+    flag: "🇮🇳",
+    name: "STRUZON TECHNOLOGIES PVT LTD.",
+    address: "2/370/A3, Muthuram Garden, Krishna Gounder Nagar, Irugur Road, Chinniampalayam, Coimbatore- 641062.",
+    phones: ["0422 2307777", "0422 2367777", "+91 6385828777"] 
+  },
 ];
 
 function Contact() {
@@ -27,87 +37,94 @@ function Contact() {
 
   return (
     <PageShell>
-      <PageHero eyebrow="Let's Talk" title="Contact Us" subtitle="Give us a call or fill in the form below and we'll contact you." />
+      <PageHero 
+        eyebrow="Let's Talk" 
+        title="Let's get in touch." 
+        subtitle="Every enquiry is an opportunity to create value, and at Struzon, we approach it with the attention it deserves." 
+      />
 
       <section className="py-20 bg-background">
-        <div className="mx-auto max-w-7xl px-6 grid gap-12 lg:grid-cols-2">
+        <div className="mx-auto max-w-7xl px-6 grid gap-16 lg:grid-cols-2">
           <div>
-            <div className="text-sm uppercase tracking-[0.3em] text-brand-red font-semibold">Get In Touch</div>
-            <h2 className="mt-3 text-3xl md:text-4xl uppercase">Reach our team</h2>
-            <p className="mt-4 text-muted-foreground">For more sample drawings or to reach our Director of Business Development.</p>
-
-            <div className="mt-8 space-y-5">
-              <a href="mailto:anand@struzon.example" className="flex items-start gap-4 group">
-                <Mail className="mt-1 h-5 w-5 text-brand-red" />
-                <div>
-                  <div className="text-xs uppercase tracking-widest text-muted-foreground">Sample Drawings</div>
-                  <div className="text-lg text-navy group-hover:text-brand-red transition-colors">anand@struzon.example</div>
-                </div>
-              </a>
-              <a href="mailto:info@struzon.example" className="flex items-start gap-4 group">
-                <Mail className="mt-1 h-5 w-5 text-brand-red" />
-                <div>
-                  <div className="text-xs uppercase tracking-widest text-muted-foreground">General</div>
-                  <div className="text-lg text-navy group-hover:text-brand-red transition-colors">info@struzon.example</div>
-                </div>
-              </a>
-              <div className="flex items-start gap-4">
-                <MapPin className="mt-1 h-5 w-5 text-brand-red" />
-                <div>
-                  <div className="text-xs uppercase tracking-widest text-muted-foreground">Headquarters</div>
-                  <div className="text-lg text-navy">Coimbatore, India</div>
-                </div>
-              </div>
+            <div className="text-sm uppercase tracking-[0.3em] text-brand-red font-semibold mb-6">Reach Our Team</div>
+            <div className="prose prose-slate max-w-none text-navy/80 space-y-6 text-lg leading-relaxed mb-12">
+              <p>Every enquiry is an opportunity to create value, and at Struzon, we approach it with the attention it deserves. Our team carefully evaluates each requirement to provide well-structured, competitive quotations that align with your project goals. We strongly believe that <span className="text-brand-red font-bold">"a competitive quote will make our customer competitive among others."</span></p>
+              <p>Whether you are planning a new project, require detailing support, or are exploring our range of services, we are here to assist you at every step. Simply share your requirements through the contact form, and our team will respond with clarity, precision, and promptness.</p>
+              <p>For immediate assistance, feel free to connect with us directly. At Struzon, we are always ready to support your needs and build lasting partnerships through reliable service and professional excellence.</p>
             </div>
 
-            <div className="mt-12">
-              <div className="text-xs uppercase tracking-[0.3em] text-brand-red font-semibold">Global Offices</div>
-              <div className="mt-5 grid gap-px bg-border sm:grid-cols-2">
-                {offices.map((o) => (
-                  <div key={o.c} className="bg-muted p-5">
-                    <div className="flex items-center gap-3">
-                      <span className="text-2xl">{o.flag}</span>
-                      <div className="text-lg uppercase font-display font-bold text-navy">{o.c}</div>
+            <div className="space-y-10">
+              {offices.map((o) => (
+                <div key={o.c} className="border-l-4 border-brand-red pl-6 py-2">
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="text-3xl">{o.flag}</span>
+                    <div className="text-xl uppercase font-display font-black text-navy tracking-tight">{o.c}</div>
+                  </div>
+                  <div className="space-y-4">
+                    <div>
+                      <div className="text-sm font-bold text-navy uppercase mb-1">{o.name}</div>
+                      <div className="flex items-start gap-3 text-muted-foreground">
+                        <MapPin className="h-5 w-5 text-brand-red shrink-0 mt-0.5" />
+                        <span className="text-base leading-snug">{o.address}</span>
+                      </div>
                     </div>
-                    <div className="mt-3 space-y-1">
+                    <div className="grid gap-3 sm:grid-cols-2">
                       {o.phones.map((p) => (
-                        <a key={p} href={`tel:${p.replace(/\s/g, "")}`} className="flex items-center gap-2 text-sm text-navy hover:text-brand-red">
-                          <Phone className="h-3.5 w-3.5" /> {p}
+                        <a key={p} href={`tel:${p.replace(/\s/g, "")}`} className="flex items-center gap-3 text-base text-navy font-semibold hover:text-brand-red transition-colors group">
+                          <div className="h-8 w-8 rounded-full bg-muted flex items-center justify-center group-hover:bg-brand-red/10">
+                            <Phone className="h-4 w-4 text-brand-red" />
+                          </div>
+                          {p}
                         </a>
                       ))}
                     </div>
                   </div>
-                ))}
+                </div>
+              ))}
+
+              <div className="pt-6 border-t border-navy/10">
+                <a href="mailto:info@struzon.com" className="flex items-center gap-4 group w-fit">
+                  <div className="h-12 w-12 rounded-full bg-navy flex items-center justify-center group-hover:bg-brand-red transition-all shadow-lg">
+                    <Mail className="h-6 w-6 text-white" />
+                  </div>
+                  <div>
+                    <div className="text-xs uppercase tracking-widest text-muted-foreground font-bold">Email Address</div>
+                    <div className="text-xl font-display font-bold text-navy group-hover:text-brand-red transition-colors">info@struzon.com</div>
+                  </div>
+                </a>
               </div>
             </div>
           </div>
 
-          <div className="bg-muted p-8 md:p-10 border-t-4 border-brand-red">
-            <h2 className="text-3xl uppercase">Project Enquiry</h2>
+          <div className="bg-muted p-8 md:p-12 border-t-8 border-brand-red shadow-2xl relative">
+            <div className="absolute top-0 right-0 w-24 h-24 bg-brand-red/5 -m-4 rounded-full blur-3xl" />
+            <h2 className="text-3xl font-display font-black uppercase text-navy border-b-2 border-brand-red pb-4 mb-8">Project Enquiry</h2>
             {sent ? (
-              <div className="mt-8 border border-brand-red/40 bg-brand-red/10 p-6">
-                <div className="text-2xl uppercase text-brand-red">Message Received</div>
-                <p className="mt-2 text-muted-foreground">A senior engineer will respond within one business day.</p>
+              <div className="mt-8 border-2 border-brand-red bg-white p-8 text-center rounded-xl shadow-inner">
+                <div className="text-3xl font-display font-black uppercase text-brand-red mb-2">Message Received</div>
+                <p className="text-navy font-medium">A senior engineer will respond with clarity and precision within one business day.</p>
               </div>
             ) : (
-              <form onSubmit={(e) => { e.preventDefault(); setSent(true); }} className="mt-8 space-y-5">
-                {[
-                  { n: "name", l: "Name", t: "text" },
-                  { n: "email", l: "Email", t: "email" },
-                  { n: "company", l: "Company", t: "text" },
-                  { n: "phone", l: "Phone — Format: (000) 000-0000", t: "tel" },
-                ].map((f) => (
-                  <div key={f.n}>
-                    <label className="text-xs uppercase tracking-widest text-muted-foreground font-semibold">{f.l} *</label>
-                    <input required type={f.t} name={f.n} className="mt-2 w-full border border-border bg-background px-4 py-3 outline-none transition-colors focus:border-brand-red" />
-                  </div>
-                ))}
-                <div>
-                  <label className="text-xs uppercase tracking-widest text-muted-foreground font-semibold">Message *</label>
-                  <textarea required rows={5} className="mt-2 w-full resize-none border border-border bg-background px-4 py-3 outline-none focus:border-brand-red" />
+              <form onSubmit={(e) => { e.preventDefault(); setSent(true); }} className="space-y-6">
+                <div className="grid sm:grid-cols-2 gap-6">
+                  {[
+                    { n: "name", l: "Name", t: "text" },
+                    { n: "email", l: "Email", t: "email" },
+                    { n: "company", l: "Company", t: "text" },
+                    { n: "phone", l: "Phone Number", t: "tel" },
+                  ].map((f) => (
+                    <div key={f.n}>
+                      <label className="text-[10px] uppercase tracking-[0.2em] text-navy font-black mb-2 block">{f.l} *</label>
+                      <input required type={f.t} name={f.n} className="w-full border-b-2 border-navy/10 bg-transparent px-0 py-3 outline-none transition-all focus:border-brand-red focus:bg-white/50" />
+                    </div>
+                  ))}
                 </div>
-                <button type="submit" className="w-full bg-brand-red py-4 font-display uppercase tracking-wide text-white hover:bg-brand-red-dark transition-colors">
-                  Submit
+                <div>
+                  <label className="text-[10px] uppercase tracking-[0.2em] text-navy font-black mb-2 block">Tell us about your project *</label>
+                  <textarea required rows={5} className="w-full resize-none border-b-2 border-navy/10 bg-transparent px-0 py-3 outline-none transition-all focus:border-brand-red focus:bg-white/50" />
+                </div>
+                <button type="submit" className="w-full bg-brand-red py-5 px-8 font-display uppercase tracking-widest text-white font-black text-sm hover:bg-brand-red-dark transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 active:translate-y-0">
+                  Submit Enquiry →
                 </button>
               </form>
             )}

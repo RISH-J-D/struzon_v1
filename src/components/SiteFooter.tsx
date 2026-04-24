@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Phone, Mail, MapPin } from "lucide-react";
-import { FaFacebookF, FaLinkedinIn, FaTwitter, FaInstagram, FaYoutube } from "react-icons/fa";
+import { FaFacebookF, FaLinkedinIn, FaInstagram, FaYoutube } from "react-icons/fa";
 import logo from "@/assets/struzon-logo.png";
 
 export function SiteFooter() {
@@ -15,9 +15,14 @@ export function SiteFooter() {
             A trusted structural steel detailing and engineering service partner to the construction industry worldwide.
           </p>
           <div className="mt-8 flex gap-4">
-            {[FaFacebookF, FaLinkedinIn, FaTwitter, FaInstagram, FaYoutube].map((Icon, i) => (
-              <a key={i} href="#" className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-50 text-navy hover:bg-brand-red hover:text-white transition-all transform hover:-translate-y-1 shadow-sm">
-                <Icon className="h-4 w-4" />
+            {[
+              { Icon: FaFacebookF, href: "https://www.facebook.com/p/Struzon-Technologies-100057060415643/" },
+              { Icon: FaLinkedinIn, href: "https://www.linkedin.com/company/struzon-technologies" },
+              { Icon: FaInstagram, href: "https://www.instagram.com/struzontechnologies/" },
+              { Icon: FaYoutube, href: "https://www.youtube.com/@struzontechnologiespvtltd3935" },
+            ].map((social, i) => (
+              <a key={i} href={social.href} target="_blank" rel="noopener noreferrer" className="flex h-10 w-10 items-center justify-center rounded-full bg-slate-50 text-navy hover:bg-brand-red hover:text-white transition-all transform hover:-translate-y-1 shadow-sm">
+                <social.Icon className="h-4 w-4" />
               </a>
             ))}
           </div>
@@ -50,15 +55,21 @@ export function SiteFooter() {
           <ul className="space-y-4 text-sm font-medium">
             <li className="flex items-start gap-3 hover:text-brand-red transition-colors group cursor-default">
               <MapPin className="h-4 w-4 mt-0.5 text-brand-red group-hover:scale-110 transition-transform" />
-              Offices in USA, UK, India & Canada
+              Offices in USA & India
             </li>
-            <li className="flex items-center gap-3 hover:text-brand-red transition-colors group cursor-default">
-              <Phone className="h-4 w-4 text-brand-red group-hover:scale-110 transition-transform" />
-              +1 (646) 992-3825
+            <li className="flex flex-col gap-3">
+              <a href="tel:+16469923825" className="flex items-center gap-3 hover:text-brand-red transition-colors group cursor-pointer">
+                <Phone className="h-4 w-4 text-brand-red group-hover:scale-110 transition-transform" />
+                +1 (646) 992-3825
+              </a>
+              <a href="tel:+14049026781" className="flex items-center gap-3 hover:text-brand-red transition-colors group cursor-pointer">
+                <Phone className="h-4 w-4 text-brand-red group-hover:scale-110 transition-transform" />
+                +91 6385828777
+              </a>
             </li>
             <li className="flex items-center gap-3 hover:text-brand-red transition-colors group cursor-default">
               <Mail className="h-4 w-4 text-brand-red group-hover:scale-110 transition-transform" />
-              info@struzon.example
+              info@struzon.com
             </li>
           </ul>
         </div>

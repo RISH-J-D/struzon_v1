@@ -5,6 +5,10 @@ import { Mail, ArrowRight } from "lucide-react";
 import { FaLinkedinIn } from "react-icons/fa";
 import { useState, useRef, useEffect } from "react";
 
+// ASSETS
+import imgPlaceholder from "@/assets/hero-steel.jpg";
+import imgWorkplace from "@/assets/blueprint.jpg";
+
 export const Route = createFileRoute("/team")({
   component: TeamPage,
 });
@@ -15,7 +19,7 @@ const teamMembers = [
     role: "CEO",
     email: "rajadurai@struzon.com",
     linkedin: "https://www.linkedin.com/in/rajadurai-nallasamy-253543133/",
-    image: "https://struzon.com/wp-content/uploads/2023/02/RAJADURAI.png",
+    image: imgPlaceholder,
     bio: [
       "A visionary by nature and passionate about structures, Rajadurai has 15+ years experience in construction industries with a specialization in steel detailing.",
       "His undergraduate degree in engineering is from Anna University and he also has a Master’s degree in Business Management. He is NPCIL-trained in weld techniques and is NDT qualified, which plays a vital and dynamic role in his career, along with his profound knowledge on the steel fabrication and erection process.",
@@ -28,7 +32,7 @@ const teamMembers = [
     role: "President",
     email: "balasaravana@struzon.com",
     linkedin: "https://www.linkedin.com/in/balasaravana-kumar-t-826248172/",
-    image: "https://struzon.com/wp-content/uploads/2023/02/BALASARVANA.png",
+    image: imgPlaceholder,
     bio: [
       "Balasaravana is a recognized expert with more than 15+ years of experience centered around Steel Detailing, Engineering, Business Management, Technology, and Digital Project Delivery, along with being a Mechanical Engineer with an honors B.E. from Anna University.",
       "His vast experience, ability to meet and exceed his steadily increasing responsibilities, and client-centric viewpoint have made him the right person to lead engineering at Struzon and achieve our goals of technical excellence across multiple engineering skills and disciplines.",
@@ -40,7 +44,7 @@ const teamMembers = [
     role: "COO",
     email: "saravanan@struzon.com",
     linkedin: "https://www.linkedin.com/in/saravanan-soundara-rajan-206a7a67/",
-    image: "https://struzon.com/wp-content/uploads/2023/02/SARAVANAN.png",
+    image: imgPlaceholder,
     bio: [
       "An entrepreneur and emerging business leader with 15+ years of progressive experience in the structural steel detailing industry, Saravanan is the visionary behind the company’s strategies and operations.",
       "Saravanan is excellent at analyzing team strengths and leveraging individual employee traits to reach business goals efficiently.",
@@ -53,7 +57,7 @@ const teamMembers = [
     role: "Vice President-Business Development",
     email: "anand@struzon.com",
     linkedin: "https://www.linkedin.com/in/anand-m-s-671390154/",
-    image: "https://struzon.com/wp-content/uploads/2023/02/ANAND.png",
+    image: imgPlaceholder,
     bio: [
       "Bringing over 16 years of diverse experience from the construction and IT fields, along with excellent socialization skills and charisma, Anand specializes in establishing a personal connection with clients.",
       "He completed his CS graduation in 2004 at Bharathiyar University and then enhanced his career by joining hands with Struzon.",
@@ -66,7 +70,7 @@ const teamMembers = [
     role: "Vice President - USA Operations",
     email: "alan@struzon.com",
     linkedin: "https://www.linkedin.com/in/alan-bagatourian-pe-29391059/",
-    image: "https://struzon.com/wp-content/uploads/2023/02/ALAN.png",
+    image: imgPlaceholder,
     bio: [
       "A California-Licensed Professional Civil Engineer with over 10 years of experience in the field, including owning his Structural Engineering company and co-owning a Commercial Steel Fabrication and Erection company, Alan is the perfect fit to run the US operations of Struzon.",
       "As the VP of US operations, Alan is the initial point of contact with US Clients, discussing client's ideas and visions; consolidating them into practical solutions; and bringing them to reality.",
@@ -160,8 +164,6 @@ function TeamPage() {
               <div key={member.name} className="contents">
                 <div
                   ref={(el) => { cardRefs.current[idx] = el; }}
-                  onMouseEnter={() => window.innerWidth >= 1024 && handleInteraction(idx)}
-                  onMouseLeave={() => window.innerWidth >= 1024 && handleInteraction(null)}
                   onClick={() => handleInteraction(activeIndex === idx ? null : idx)}
                   className={`flex flex-col bg-white border border-border/50 shadow-sm transition-all duration-300 overflow-hidden group cursor-pointer h-full ${activeIndex === idx ? 'shadow-lg border-brand-red/30' : 'hover:shadow-lg'}`}
                 >
@@ -243,7 +245,7 @@ function TeamPage() {
       </section>
 
       <motion.section layout className="relative bg-navy text-white py-16 md:py-24">
-        <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: "url(https://images.unsplash.com/photo-1497366216548-37526070297c?w=1600&q=80)" }} />
+        <div className="absolute inset-0 bg-cover bg-center opacity-10" style={{ backgroundImage: `url(${imgWorkplace})` }} />
         <div className="relative mx-auto max-w-4xl px-6 text-center">
           <h2 className="text-white text-2xl md:text-4xl uppercase">Want to work with our experts?</h2>
           <p className="mt-4 text-white/70">Our leadership team ensures every project meets Struzon's high standards of accuracy and efficiency.</p>
