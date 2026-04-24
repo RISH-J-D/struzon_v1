@@ -35,14 +35,14 @@ const timelineData = [
 
 function SuccessTimeline() {
   return (
-    <div className="relative w-full max-w-lg mx-auto py-20 font-display">
-      {/* Central Arrow/Spine Architecture */}
-      <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-8 z-10 flex flex-col items-center">
+    <div className="relative w-full max-w-lg mx-auto py-10 md:py-20 font-display">
+      {/* Central Arrow/Spine Architecture — Hidden on Extra Small Screens if needed, but we'll try to keep it */}
+      <div className="absolute left-4 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-8 z-10 flex flex-col items-center">
         {/* Infinite Pulse Glow Spine */}
         <motion.div 
           animate={{ top: ["100%", "-20%"] }}
           transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
-          className="absolute left-1/2 -translate-x-1/2 w-16 h-40 bg-white/30 blur-2xl z-40"
+          className="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-16 h-40 bg-white/30 blur-2xl z-40"
         />
 
         {/* 2026 Top Pill */}
@@ -91,9 +91,9 @@ function SuccessTimeline() {
                whileInView={{ opacity: 1, x: 0 }}
                viewport={{ once: true, margin: "-50px" }}
                transition={{ duration: 0.6, delay: i * 0.05 }}
-               className={`flex items-center w-full min-h-[120px] ${isLeft ? 'flex-row-reverse' : 'flex-row'}`}
+               className={`flex items-center w-full min-h-[120px] ${isLeft ? 'flex-row-reverse md:flex-row-reverse' : 'flex-row'} pl-12 md:pl-0`}
              >
-                <div className={`w-1/2 flex items-center ${isLeft ? 'justify-start' : 'justify-end'}`}>
+                <div className={`w-full md:w-1/2 flex items-center ${isLeft ? 'justify-start' : 'justify-end md:justify-end'}`}>
                    {/* Highlight Loop Container */}
                    <motion.div 
                      animate={{ 
@@ -133,7 +133,7 @@ function SuccessTimeline() {
                       </div>
                    </motion.div>
                 </div>
-                <div className="w-1/2" /> 
+                <div className="hidden md:block md:w-1/2" /> 
              </motion.div>
            );
          })}
@@ -237,7 +237,7 @@ function About() {
             <h2 className="text-4xl md:text-6xl font-display font-black text-navy uppercase tracking-tighter">Visualizing Success</h2>
             <div className="mt-6 h-2 w-32 bg-brand-red mx-auto shadow-sm" />
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 h-[500px]">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:h-[500px]">
              <div className="relative group overflow-hidden bg-background shadow-2xl">
               <img src={imgP1} alt="Engineering" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
               <div className="absolute inset-0 bg-navy/20 group-hover:bg-transparent transition-colors" />

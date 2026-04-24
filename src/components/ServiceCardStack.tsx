@@ -224,21 +224,62 @@ export default function ServiceCardStack() {
           })}
         </div>
 
-        {/* Mobile View */}
-        <div className="lg:hidden flex flex-col gap-8 py-10">
+        {/* Mobile View — Premium Card List */}
+        <div className="lg:hidden flex flex-col gap-12 py-10">
            {services.map((service, i) => (
-             <div key={i} className="bg-white p-8 rounded-[3rem] shadow-xl border border-navy/5">
-                <div className="flex items-center gap-3 mb-6">
-                   <div className="h-[2px] w-8 bg-brand-red" />
-                   <div className="text-[9px] font-black text-brand-red uppercase tracking-widest">{service.subLabel}</div>
+             <motion.div 
+               key={i} 
+               initial={{ opacity: 0, y: 30 }}
+               whileInView={{ opacity: 1, y: 0 }}
+               viewport={{ once: true, margin: "-50px" }}
+               className="bg-white rounded-[2.5rem] shadow-[0_20px_50px_rgba(31,58,95,0.08)] border border-navy/5 overflow-hidden flex flex-col"
+             >
+                {/* Image Section */}
+                <div className="relative h-72 w-full overflow-hidden">
+                   <img 
+                     src={service.image} 
+                     alt={service.title} 
+                     className="w-full h-full object-cover" 
+                   />
+                   <div className="absolute inset-0 bg-navy/10" />
+                   <div className="absolute top-6 left-6 flex items-center gap-3">
+                      <div className="h-[2px] w-8 bg-brand-red shadow-[0_0_10px_rgba(200,32,46,0.5)]" />
+                      <div className="text-[10px] font-black text-white uppercase tracking-widest drop-shadow-md">{service.subLabel}</div>
+                   </div>
                 </div>
-                <h3 className="text-3xl font-display font-black text-navy uppercase leading-tight mb-6">{service.title}</h3>
-                <img src={service.image} className="w-full h-64 object-cover rounded-[2rem] mb-8 shadow-lg" alt="" />
-                <p className="text-navy/70 text-lg font-medium leading-relaxed mb-8">{service.description[0]}</p>
-                <div className="flex gap-4">
-                   <div className="bg-navy text-white px-6 py-3 rounded-xl text-[10px] font-black uppercase">{service.tags[0]}</div>
+
+                {/* Content Section */}
+                <div className="p-8 sm:p-10 flex flex-col">
+                   <h3 className="text-3xl font-display font-black text-navy uppercase leading-tight mb-6 tracking-tighter">
+                      {service.title}
+                   </h3>
+                   
+                   <div className="border-l-4 border-brand-red pl-6 mb-8">
+                      <p className="text-navy/80 text-lg font-bold leading-snug italic tracking-tight">
+                         "{service.description[0].substring(0, 150)}..."
+                      </p>
+                   </div>
+                   
+                   <p className="text-navy/60 text-sm leading-relaxed font-medium mb-10">
+                      {service.description[1]}
+                   </p>
+
+                   <div className="flex flex-wrap gap-3 mt-auto">
+                      {service.tags.map((tag, tIndex) => (
+                        <div 
+                           key={tIndex} 
+                           className="bg-slate-50 border border-navy/5 text-navy px-5 py-2.5 rounded-xl text-[9px] font-black uppercase tracking-widest"
+                        >
+                           {tag}
+                        </div>
+                      ))}
+                   </div>
+
+                   <button className="mt-10 flex items-center justify-center gap-3 w-full bg-navy text-white py-4 rounded-full text-xs font-black uppercase tracking-widest hover:bg-brand-red transition-colors shadow-lg shadow-navy/20">
+                      Learn More <ArrowUpRight size={16} />
+                   </button>
                 </div>
-             </div>
+             </motion.div>
            ))}
         </div>
       </div>

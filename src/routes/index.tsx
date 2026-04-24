@@ -61,7 +61,7 @@ function Home() {
               transition={{ duration: 0.8 }}
             >
               <div className="text-xs md:text-sm uppercase tracking-[0.4em] text-brand-red font-black mb-4 drop-shadow">Struzon Technologies Inc.</div>
-              <h1 className="text-white text-3xl md:text-7xl font-display font-black shadow-white uppercase tracking-tightest leading-[0.9] mb-6">
+              <h1 className="text-white text-3xl sm:text-4xl md:text-7xl font-display font-black shadow-white uppercase tracking-tightest leading-[1.1] md:leading-[0.9] mb-6">
                 Structural <br />
                 Steel <br />
                 Detailing & <br />
@@ -69,7 +69,7 @@ function Home() {
                 <span className="text-brand-red">Service <br /> Partner</span>
               </h1>
 
-              <p className="mt-6 text-white/70 text-sm md:text-base max-w-lg leading-relaxed font-medium mb-10">
+              <p className="mt-6 text-white/70 text-sm md:text-base max-w-lg leading-relaxed font-medium mb-10 mx-auto lg:mx-0">
                 A trusted partner to the construction industry — pioneers of structural detailing, engineering, design and research, delivering complex, time-sensitive projects worldwide.
               </p>
 
@@ -85,12 +85,12 @@ function Home() {
           </div>
         </div>
 
-        {/* Floating Video Card on Hero */}
+        {/* Floating Video Card on Hero — Hidden on mobile, visible on LG+ */}
         <motion.div
           initial={{ opacity: 0, scale: 0.9, x: 50 }}
           animate={{ opacity: 1, scale: 1, x: 0 }}
           transition={{ delay: 1, duration: 1 }}
-          className="absolute right-8 md:right-16 bottom-120 translate-y-1/2 w-[450px] md:w-[750px] aspect-video z-50 rounded-[2rem] overflow-hidden border-4 border-white/20 shadow-[0_0_40px_rgba(255,255,255,0.15)] bg-navy"
+          className="hidden lg:block absolute right-8 md:right-16 bottom-0 translate-y-1/2 w-[450px] md:w-[750px] aspect-video z-50 rounded-[2rem] overflow-hidden border-4 border-white/20 shadow-[0_0_40px_rgba(255,255,255,0.15)] bg-navy"
         >
           <video
             src={vdoHome}
@@ -206,7 +206,7 @@ function Home() {
           <p className="mt-4 text-base md:text-lg text-white/70 max-w-xl mx-auto font-medium">
             Contact the experts at Struzon to explore how we can help you deliver your next project on schedule, with quality and absolute efficiency.
           </p>
-          <Link to="/contact" className="mt-12 inline-flex items-center gap-2 bg-brand-red px-12 py-6 rounded-full text-white font-display font-black uppercase tracking-widest hover:bg-white hover:text-navy transition-all shadow-2xl active:scale-95">
+          <Link to="/contact" className="mt-12 inline-flex items-center gap-2 bg-brand-red px-10 py-5 rounded-full text-white font-display font-black uppercase tracking-widest hover:bg-white hover:text-navy transition-all shadow-2xl active:scale-95">
             Let's Talk <ArrowRight className="h-5 w-5" />
           </Link>
         </div>

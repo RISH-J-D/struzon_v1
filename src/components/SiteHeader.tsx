@@ -25,20 +25,20 @@ export function SiteHeader() {
   }, []);
 
   return (
-    <header className={`absolute top-0 left-0 right-0 z-50 transition-all duration-500 ${scrolled ? 'bg-navy shadow-lg' : 'bg-transparent'}`}>
-      {/* Top bar — always dark, white text */}
-      <div className={`bg-navy/80 border-b border-white/10 ${scrolled ? 'hidden' : 'block'}`}>
+    <header className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${scrolled ? 'bg-navy/90 backdrop-blur-md shadow-lg' : 'bg-transparent'}`}>
+      {/* Top bar — hidden when scrolled or on mobile */}
+      <div className={`bg-navy/80 border-b border-white/10 ${scrolled ? 'hidden' : 'hidden md:block'}`}>
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 py-2">
           <div className="flex items-center gap-6 text-sm font-medium text-white uppercase tracking-wider">
-            <div className="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-6">
+            <div className="flex flex-row items-center gap-6">
               <a href="tel:+16469923825" className="flex items-center gap-2 hover:text-white transition-colors whitespace-nowrap">
                 <Phone size={14} className="text-brand-red" /> +1 (646) 992-3825
               </a>
-              <a href="tel:+916385828777" className="flex items-center gap-2 hover:text-white transition-colors whitespace-nowrap border-t sm:border-t-0 sm:border-l border-white/10 sm:pl-6 pt-1 sm:pt-0">
+              <a href="tel:+916385828777" className="flex items-center gap-2 hover:text-white transition-colors whitespace-nowrap border-l border-white/10 pl-6 pt-0">
                 <Phone size={14} className="text-brand-red" /> +91 6385828777
               </a>
             </div>
-            <a href="mailto:info@struzon.example" className="hidden sm:flex items-center gap-2 hover:text-white transition-colors">
+            <a href="mailto:info@struzon.com" className="hidden lg:flex items-center gap-2 hover:text-white transition-colors">
               <Mail size={14} className="text-brand-red" /> info@struzon.com
             </a>
           </div>
@@ -65,15 +65,15 @@ export function SiteHeader() {
             <Link
               key={link.to}
               to={link.to}
-              className="text-xs xl:text-sm uppercase tracking-widest font-bold text-white/80 hover:text-white transition-colors"
-              activeProps={{ className: "text-white border-b-2 border-brand-red pb-1" }}
+              className="text-xs xl:text-sm uppercase tracking-widest font-bold text-white/80 hover:text-white transition-colors py-2 border-b-2 border-transparent transition-all"
+              activeProps={{ className: "!text-white border-brand-red" }}
             >
               {link.label}
             </Link>
           ))}
           <Link
             to="/contact"
-            className="ml-2 bg-brand-red px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest text-white hover:bg-brand-red-dark transition-all shadow-lg"
+            className="ml-2 bg-brand-red px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest text-white hover:bg-white hover:text-navy transition-all shadow-lg active:scale-95"
           >
             Get a Quote
           </Link>
@@ -82,35 +82,66 @@ export function SiteHeader() {
         {/* Mobile menu button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="lg:hidden p-2 text-white"
+          className="lg:hidden p-2 text-white relative z-[110]"
         >
-          {isOpen ? <X size={24} /> : <Menu size={24} />}
+          {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
       </div>
 
       {/* Mobile nav drawer */}
-      <div className={`lg:hidden absolute top-full left-0 right-0 bg-navy border-t border-white/10 transition-all duration-500 overflow-hidden ${isOpen ? 'max-h-screen opacity-100 visible' : 'max-h-0 opacity-0 invisible'}`}>
-        <nav className="flex flex-col p-6 gap-5">
-          {links.map((link) => (
-            <Link
-              key={link.to}
-              to={link.to}
+      <AnimatePresence>
+        {isOpen && (
+          <>
+            <motion.div 
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
               onClick={() => setIsOpen(false)}
-              className="text-sm uppercase tracking-[0.2em] font-bold text-white/70 hover:text-white transition-colors"
-              activeProps={{ className: "text-white border-b border-brand-red pb-1" }}
+              className="fixed inset-0 bg-navy/90 backdrop-blur-sm z-[100]"
+            />
+            <motion.div
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="fixed top-0 right-0 bottom-0 w-[80%] max-w-sm bg-navy z-[105] shadow-2xl border-l border-white/5 flex flex-col"
             >
-              {link.label}
-            </Link>
-          ))}
-          <Link
-            to="/contact"
-            onClick={() => setIsOpen(false)}
-            className="mt-2 bg-brand-red rounded-full text-center py-4 text-xs font-bold uppercase tracking-[0.2em] text-white"
-          >
-            Get a Quote
-          </Link>
-        </nav>
-      </div>
+              <div className="p-8 pb-4">
+                <img src={logo} alt="Struzon" className="h-8 w-auto grayscale brightness-200" />
+              </div>
+              <nav className="flex flex-col p-8 gap-6 overflow-y-auto flex-1">
+                {links.map((link) => (
+                  <Link
+                    key={link.to}
+                    to={link.to}
+                    onClick={() => setIsOpen(false)}
+                    className="text-xl uppercase tracking-[0.2em] font-black text-white/60 hover:text-white transition-colors"
+                    activeProps={{ className: "!text-brand-red" }}
+                  >
+                    {link.label}
+                  </Link>
+                ))}
+                <Link
+                  to="/contact"
+                  onClick={() => setIsOpen(false)}
+                  className="mt-4 bg-brand-red rounded-full text-center py-5 text-sm font-black uppercase tracking-[0.2em] text-white shadow-xl"
+                >
+                  Get a Quote
+                </Link>
+                
+                <div className="mt-auto pt-10 grid grid-cols-2 gap-4 border-t border-white/5">
+                  <div className="text-[10px] uppercase font-black tracking-widest text-white/30">Connect</div>
+                  <div className="flex gap-4">
+                    <FaFacebookF className="text-white/40 hover:text-brand-red" />
+                    <FaLinkedinIn className="text-white/40 hover:text-brand-red" />
+                    <FaInstagram className="text-white/40 hover:text-brand-red" />
+                  </div>
+                </div>
+              </nav>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </header>
   );
 }

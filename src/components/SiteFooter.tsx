@@ -6,12 +6,12 @@ import logo from "@/assets/struzon-logo.png";
 export function SiteFooter() {
   return (
     <footer className="bg-white text-navy border-t border-slate-100">
-      <div className="mx-auto grid max-w-7xl gap-10 px-6 py-20 md:grid-cols-4">
-        <div className="md:col-span-1">
+      <div className="mx-auto grid max-w-7xl gap-12 px-8 py-20 md:grid-cols-4 md:text-left text-center">
+        <div className="md:col-span-1 flex flex-col items-center md:items-start">
           <div className="bg-white inline-block mb-4">
-            <img src={logo} alt="Struzon Technologies Inc." className="h-12 w-auto" />
+            <img src={logo} alt="Struzon Technologies Inc." className="h-10 sm:h-12 w-auto" />
           </div>
-          <p className="text-sm leading-relaxed text-navy hover:text-brand-red transition-colors duration-300 transition-all">
+          <p className="text-sm leading-relaxed text-navy max-w-xs md:max-w-none">
             A trusted structural steel detailing and engineering service partner to the construction industry worldwide.
           </p>
           <div className="mt-8 flex gap-4">
@@ -28,7 +28,7 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div>
+        <div className="flex flex-col items-center md:items-start">
           <h4 className="text-navy font-display font-bold uppercase tracking-widest text-sm mb-6 pb-2 border-b-2 border-brand-red w-fit">Quick Links</h4>
           <ul className="space-y-4 text-sm font-bold">
             <li><Link to="/about" className="text-brand-red hover:text-navy transition-colors">About Us</Link></li>
@@ -39,7 +39,7 @@ export function SiteFooter() {
           </ul>
         </div>
 
-        <div>
+        <div className="flex flex-col items-center md:items-start">
           <h4 className="text-navy font-display font-bold uppercase tracking-widest text-sm mb-6 pb-2 border-b-2 border-brand-red w-fit">Services</h4>
           <ul className="space-y-3 text-sm font-medium">
             <li className="hover:text-brand-red transition-colors cursor-default">Structural Steel Detailing</li>
@@ -50,7 +50,7 @@ export function SiteFooter() {
           </ul>
         </div>
 
-        <div>
+        <div className="flex flex-col items-center md:items-start">
           <h4 className="text-navy font-display font-bold uppercase tracking-widest text-sm mb-6 pb-2 border-b-2 border-brand-red w-fit">Contact</h4>
           <ul className="space-y-4 text-sm font-medium">
             <li className="flex items-start gap-3 hover:text-brand-red transition-colors group cursor-default">
@@ -62,7 +62,7 @@ export function SiteFooter() {
                 <Phone className="h-4 w-4 text-brand-red group-hover:scale-110 transition-transform" />
                 +1 (646) 992-3825
               </a>
-              <a href="tel:+14049026781" className="flex items-center gap-3 hover:text-brand-red transition-colors group cursor-pointer">
+              <a href="tel:+916385828777" className="flex items-center gap-3 hover:text-brand-red transition-colors group cursor-pointer justify-center md:justify-start">
                 <Phone className="h-4 w-4 text-brand-red group-hover:scale-110 transition-transform" />
                 +91 6385828777
               </a>
