@@ -102,11 +102,11 @@ export default function ServiceCardStack() {
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   return (
-    <section className="bg-[#f0f4f8] py-20 px-3 md:px-10">
-      <div className="mx-auto max-w-[1800px]">
+    <section className="bg-[#f0f4f8] py-12 md:py-24 px-4 md:px-10 overflow-hidden">
+      <div className="mx-auto max-w-[1700px] w-full">
         {/* Horizontal Accordion Container */}
         <div
-          className="hidden lg:flex flex-row h-[750px] gap-4"
+          className="hidden lg:flex flex-row h-[clamp(600px,70vh,850px)] gap-4"
           onMouseLeave={() => setActiveIndex(null)}
         >
           {services.map((service, index) => {
@@ -147,10 +147,10 @@ export default function ServiceCardStack() {
                     >
                       <span
                         className="text-white font-black text-[15px] tracking-[0.2em] uppercase scale-x-200 inline-block"
-                        style={{ 
+                        style={{
                           fontFamily: 'Arial, sans-serif',
                           fontWeight: 900,
-                          writingMode: 'vertical-rl', 
+                          writingMode: 'vertical-rl',
                           textOrientation: 'upright',
                           wordSpacing: '1.2em'
                         }}

@@ -128,6 +128,21 @@
     color: var(--color-foreground);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  img, video {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Optimized Grid & Container Sizing */
+  .container-adaptive {
+    width: 100%;
+    max-width: min(100% - 2rem, 1400px);
+    margin-inline: auto;
   }
 
   h1,

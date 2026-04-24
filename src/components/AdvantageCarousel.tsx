@@ -51,7 +51,7 @@ export default function AdvantageCarousel({ items }: AdvantageCarouselProps) {
   };
 
   return (
-    <div 
+    <div
       className="relative w-full h-[500px] md:h-[600px] flex items-center justify-center overflow-hidden"
       onMouseEnter={() => setIsAutoPlaying(false)}
       onMouseLeave={() => setIsAutoPlaying(true)}
@@ -69,17 +69,17 @@ export default function AdvantageCarousel({ items }: AdvantageCarouselProps) {
                 animate={{
                   opacity: status === "center" ? 1 : status.includes("far") ? 0.15 : 0.4,
                   scale: status === "center" ? 1 : status.includes("far") ? 0.65 : 0.8,
-                  x: status === "center" ? 0 : 
-                     status === "right" ? "70%" : 
-                     status === "far-right" ? "120%" :
-                     status === "left" ? "-70%" : "-120%",
+                  x: status === "center" ? 0 :
+                    status === "right" ? "70%" :
+                      status === "far-right" ? "120%" :
+                        status === "left" ? "-70%" : "-120%",
                   z: status === "center" ? 0 : status.includes("far") ? -600 : -300,
                   rotateY: status === "center" ? 0 : status.includes("right") ? -30 : 30,
                   filter: status === "center" ? "blur(0px)" : status.includes("far") ? "blur(16px)" : "blur(8px)",
                   zIndex: status === "center" ? 40 : status.includes("far") ? 10 : 20,
                 }}
                 exit={{ opacity: 0, scale: 0.5, z: -100 }}
-                transition={{ 
+                transition={{
                   duration: 0.8,
                   ease: [0.16, 1, 0.3, 1], // Custom spring-like cubic-bezier for maximum smoothness
                   opacity: { duration: 0.4 }
@@ -95,9 +95,9 @@ export default function AdvantageCarousel({ items }: AdvantageCarouselProps) {
               >
                 {/* Background Image */}
                 <div className="absolute inset-0">
-                  <img 
-                    src={item.image} 
-                    alt={item.text} 
+                  <img
+                    src={item.image}
+                    alt={item.text}
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-navy via-navy/40 to-transparent" />
@@ -124,14 +124,14 @@ export default function AdvantageCarousel({ items }: AdvantageCarouselProps) {
       </div>
 
       {/* Navigation Controls */}
-      <button 
+      <button
         onClick={prev}
         className="absolute left-4 md:left-8 z-30 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-md transition-all border border-white/10"
         aria-label="Previous slide"
       >
         <ChevronLeft className="w-6 h-6" />
       </button>
-      <button 
+      <button
         onClick={next}
         className="absolute right-4 md:right-8 z-30 p-3 rounded-full bg-white/10 hover:bg-white/20 text-white backdrop-blur-md transition-all border border-white/10"
         aria-label="Next slide"

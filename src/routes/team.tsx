@@ -162,7 +162,7 @@ function TeamPage() {
       />
 
       <section className="py-16 md:py-32 bg-white flex flex-col items-center overflow-hidden">
-        <div 
+        <div
           className="mx-auto max-w-7xl px-6 w-full relative"
           onMouseLeave={() => window.innerWidth >= 1024 && setActiveIndex(null)}
         >
@@ -173,34 +173,32 @@ function TeamPage() {
                 <div
                   ref={(el) => { cardRefs.current[idx] = el; }}
                   onMouseEnter={() => window.innerWidth >= 1024 && handleInteraction(idx)}
-                  className={`flex flex-col bg-white border border-border/50 shadow-sm transition-all duration-300 overflow-hidden group cursor-pointer h-full ${activeIndex === idx ? 'shadow-lg border-brand-red/30' : 'hover:shadow-lg'}`}
+                  className={`flex flex-col bg-white border border-border/50 shadow-sm transition-all duration-300 overflow-hidden group cursor-pointer h-full ${activeIndex === idx ? 'shadow-xl border-brand-red/30 -translate-y-1' : 'hover:shadow-lg hover:-translate-y-1'}`}
                 >
-                  <div className="relative aspect-square overflow-hidden bg-muted">
+                  <div className="relative aspect-[4/5] overflow-hidden bg-muted">
                     <img
                       src={member.image}
                       alt={member.name}
-                      className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110"
                     />
                     {/* Active Indicator for Mobile */}
                     <div className={`absolute bottom-0 left-0 w-full h-1 bg-brand-red transition-transform duration-300 ${activeIndex === idx ? 'scale-x-100' : 'scale-x-0'}`} />
                   </div>
-                  <div className="p-4 bg-white text-center flex flex-col items-center">
-                    <h3 className={`font-display text-lg font-bold text-navy leading-tight transition-colors ${activeIndex === idx ? 'text-brand-red' : 'group-hover:text-brand-red'}`}>
+                  <div className="p-5 bg-white text-center flex flex-col items-center">
+                    <h3 className={`font-display text-[clamp(1.1rem,2vw,1.35rem)] font-bold text-navy leading-tight transition-colors ${activeIndex === idx ? 'text-brand-red' : 'group-hover:text-brand-red'}`}>
                       {member.name}
                     </h3>
-                    <p className="font-sans text-[10px] uppercase tracking-widest text-brand-red mt-1 mb-3">
+                    <p className="font-sans text-[10px] uppercase tracking-widest text-brand-red mt-1 mb-4">
                       {member.role}
                     </p>
 
                     {/* Social Links in Card */}
-                    <div className="flex items-center justify-center gap-6 border-t border-border/50 pt-4 w-full text-navy/60">
-                      <a href={`mailto:${member.email}`} className="hover:text-brand-red transition-colors flex items-center gap-2" title="Email">
+                    <div className="flex items-center justify-center gap-6 border-t border-border/50 pt-5 w-full text-navy/60">
+                      <a href={`mailto:${member.email}`} className="hover:text-brand-red transition-all flex items-center gap-2 transform hover:scale-110" title="Email">
                         <Mail size={18} />
-                        <span className="text-[10px] font-bold hidden sm:group-hover:inline uppercase tracking-wider">Email</span>
                       </a>
-                      <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-brand-red transition-colors flex items-center gap-2" title="LinkedIn">
+                      <a href={member.linkedin} target="_blank" rel="noopener noreferrer" className="hover:text-brand-red transition-all flex items-center gap-2 transform hover:scale-110" title="LinkedIn">
                         <FaLinkedinIn size={18} />
-                        <span className="text-[10px] font-bold hidden sm:group-hover:inline uppercase tracking-wider">LinkedIn</span>
                       </a>
                     </div>
                   </div>
@@ -208,14 +206,14 @@ function TeamPage() {
 
                 {/* Bio Display for Mobile/Tablet (Inside Grid) */}
                 <div className="col-span-full lg:hidden block w-full">
-                  <AnimatePresence>
+                  <AnimatePresence mode="wait">
                     {activeIndex === idx && (
                       <motion.div
                         initial={{ opacity: 0, height: 0 }}
                         animate={{ opacity: 1, height: "auto" }}
                         exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-                        className="relative bg-navy text-white overflow-hidden shadow-inner my-4"
+                        transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
+                        className="relative bg-navy text-white overflow-hidden shadow-2xl my-6 rounded-2xl"
                       >
                         <BioContent member={member} onClose={() => setActiveIndex(null)} />
                       </motion.div>
@@ -227,22 +225,22 @@ function TeamPage() {
           </div>
 
           {/* Bio Display for Desktop (Below Grid) */}
-          <div className="hidden lg:block relative mt-8">
-            <AnimatePresence>
+          <div className="hidden lg:block relative mt-12">
+            <AnimatePresence mode="wait">
               {activeIndex !== null && (
                 <motion.div
                   key="desktop-bio"
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: "auto" }}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.4, ease: [0.23, 1, 0.32, 1] }}
-                  className="relative bg-navy text-white overflow-hidden shadow-2xl"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0, y: 20 }}
+                  transition={{ duration: 0.5, ease: [0.23, 1, 0.32, 1] }}
+                  className="relative bg-navy text-white overflow-hidden shadow-2xl rounded-[3rem]"
                 >
                   <motion.div
                     initial={false}
                     animate={{ left: notchPosition }}
-                    transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                    className="absolute -top-3 h-0 w-0 border-l-[12px] border-r-[12px] border-b-[12px] border-l-transparent border-r-transparent border-b-navy -translate-x-1/2"
+                    transition={{ type: "spring", stiffness: 400, damping: 40 }}
+                    className="absolute -top-3 h-0 w-0 border-l-[15px] border-r-[15px] border-b-[15px] border-l-transparent border-r-transparent border-b-navy -translate-x-1/2"
                   />
                   <BioContent member={teamMembers[activeIndex]} />
                 </motion.div>
@@ -252,13 +250,13 @@ function TeamPage() {
         </div>
       </section>
 
-      <motion.section layout className="relative bg-navy text-white py-16 md:py-24">
-        <div className="absolute inset-0 bg-cover bg-center opacity-10" style={{ backgroundImage: `url(${imgWorkplace})` }} />
-        <div className="relative mx-auto max-w-4xl px-6 text-center">
-          <h2 className="text-white text-2xl md:text-4xl uppercase">Want to work with our experts?</h2>
-          <p className="mt-4 text-white/70">Our leadership team ensures every project meets Struzon's high standards of accuracy and efficiency.</p>
-          <Link to="/contact" className="mt-8 inline-flex items-center gap-2 bg-brand-red px-8 py-3 md:py-4 font-display uppercase tracking-wide text-xs font-bold hover:bg-brand-red-dark transition-colors shadow-lg">
-            Contact Us <ArrowRight className="h-4 w-4 md:h-5 md:w-5" />
+      <motion.section layout className="relative bg-navy text-white py-20 lg:py-32 overflow-hidden">
+        <div className="absolute inset-0 bg-cover bg-center opacity-10 grayscale" style={{ backgroundImage: `url(${imgWorkplace})` }} />
+        <div className="relative mx-auto max-w-4xl px-8 text-center z-10">
+          <h2 className="text-white text-[clamp(1.5rem,5vw,3.5rem)] uppercase font-display font-black leading-none italic mb-6">Want to work with our experts?</h2>
+          <p className="mt-4 text-white/70 text-base md:text-lg max-w-2xl mx-auto font-medium">Our leadership team ensures every project meets Struzon's high standards of accuracy and efficiency.</p>
+          <Link to="/contact" className="mt-10 inline-flex items-center gap-2 bg-brand-red px-10 py-5 rounded-full font-display uppercase tracking-widest text-xs font-black hover:bg-white hover:text-navy transition-all shadow-2xl active:scale-95">
+            Contact Us <ArrowRight className="h-5 w-5" />
           </Link>
         </div>
       </motion.section>

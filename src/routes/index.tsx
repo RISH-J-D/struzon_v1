@@ -44,25 +44,26 @@ const projectImgs = [
 function Home() {
   return (
     <PageShell>
-      {/* HERO SECTION */}
+      {/* HERO SECTION — Adaptive Grid with Zero Collision */}
       <section className="relative min-h-screen flex items-center overflow-hidden bg-navy pt-20">
         {/* Background Image Layer */}
         <div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat grayscale-[0.2]"
           style={{ backgroundImage: `url(${imgHero})` }}
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-navy/80 via-white/40 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-r from-navy/90 via-navy/40 to-transparent" />
 
-        <div className="relative mx-auto max-w-7xl px-6 w-full pt-32 pb-40 lg:py-20 z-10">
-          <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="relative mx-auto max-w-7xl px-6 w-full py-24 md:py-32 lg:py-40 z-10">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* Text Content Area */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-center lg:text-left"
+              className="text-center lg:text-left z-20"
             >
               <div className="text-xs md:text-sm uppercase tracking-[0.4em] text-brand-red font-black mb-4 drop-shadow">Struzon Technologies Inc.</div>
-              <h1 className="text-white text-3xl sm:text-4xl md:text-7xl font-display font-black shadow-white uppercase tracking-tightest leading-[1.1] md:leading-[0.9] mb-6">
+              <h1 className="text-white text-[clamp(2.5rem,7vw,5.5rem)] font-display font-black shadow-white uppercase tracking-tightest leading-[0.9] mb-6">
                 Structural <br className="hidden sm:block" />
                 Steel <br className="hidden sm:block" />
                 Detailing & <br className="hidden sm:block" />
@@ -70,7 +71,7 @@ function Home() {
                 <span className="text-brand-red">Service <br className="hidden sm:block" /> Partner</span>
               </h1>
 
-              <p className="mt-6 text-white/70 text-sm md:text-base max-w-lg leading-relaxed font-medium mb-10 mx-auto lg:mx-0">
+              <p className="mt-6 text-white/80 text-base md:text-lg max-w-xl leading-relaxed font-medium mb-10 mx-auto lg:mx-0">
                 A trusted partner to the construction industry — pioneers of structural detailing, engineering, design and research, delivering complex, time-sensitive projects worldwide.
               </p>
 
@@ -83,34 +84,35 @@ function Home() {
                 </Link>
               </div>
             </motion.div>
+
+            {/* Video Content Area — Integrated into Grid to prevent overlap */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, x: 50 }}
+              animate={{ opacity: 1, scale: 1, x: 0 }}
+              transition={{ delay: 0.3, duration: 1 }}
+              className="relative w-full aspect-video z-20 rounded-2xl md:rounded-[2.5rem] overflow-hidden border-4 border-white/20 shadow-[0_0_80px_rgba(31,58,95,0.4)] bg-navy"
+            >
+              <video
+                src={vdoHome}
+                autoPlay
+                muted
+                loop
+                playsInline
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute inset-0 bg-navy/10 pointer-events-none" />
+              <div className="absolute inset-0 border border-white/10 rounded-2xl md:rounded-[2.5rem] pointer-events-none" />
+            </motion.div>
           </div>
         </div>
 
-        {/* Floating Video Card on Hero — Responsive Positioning */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9, y: 50 }}
-          animate={{ opacity: 1, scale: 1, y: 0 }}
-          transition={{ delay: 1, duration: 1 }}
-          className="absolute left-6 right-6 lg:left-auto lg:right-16 bottom-100 translate-y-1/2 lg:w-[750px] aspect-video z-50 rounded-2xl md:rounded-[2rem] overflow-hidden border-4 border-white/20 shadow-[0_0_40px_rgba(255,255,255,0.15)] bg-navy"
-        >
-          <video
-            src={vdoHome}
-            autoPlay
-            muted
-            loop
-            playsInline
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-navy/10 pointer-events-none" />
-        </motion.div>
-
         {/* Diagonal Section Divider */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 h-0 w-0 border-l-[28px] border-r-[28px] border-t-[22px] border-l-transparent border-r-transparent border-t-background" />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 h-0 w-0 border-l-[28px] border-r-[28px] border-t-[22px] border-l-transparent border-r-transparent border-t-background z-20" />
       </section>
 
       {/* Stats/Info Grid Section */}
-      <section className="py-12 bg-background">
-        <div className="mx-auto max-w-7xl px-6 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
+      <section className="py-16 md:py-24 bg-background">
+        <div className="mx-auto max-w-7xl px-8 grid gap-8 grid-cols-[repeat(auto-fit,minmax(280px,1fr))]">
           {[
             { h: "Where + What", p: "With offices across the globe, Struzon offers complete structural steel, connection design and BIM detailing services." },
             { h: "Mission", p: "To add value to your project team — helping you meet fast construction schedules while delivering quality structural detailing." },
@@ -132,7 +134,7 @@ function Home() {
           <h2 className="text-3xl md:text-6xl font-display font-black text-navy uppercase tracking-tightest leading-none mb-12">
             Who <span className="text-brand-red">We Are</span>
           </h2>
-          
+
           <div className="space-y-12">
             {/* Massive Lead Text */}
             <p className="text-navy text-2xl md:text-5xl font-display font-black uppercase leading-[1.1] italic max-w-5xl">
