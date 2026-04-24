@@ -46,7 +46,7 @@ function Services() {
             <Link to="/contact" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-brand-red px-10 py-5 rounded-sm font-display font-black uppercase tracking-widest hover:bg-brand-red-dark transition-all shadow-xl hover:shadow-brand-red/20 active:scale-95">
               Get a Quote <ArrowRight className="h-5 w-5" />
             </Link>
-            <Link to="/projects" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border border-white/20 bg-white/5 backdrop-blur-sm px-10 py-5 rounded-sm font-display font-black uppercase tracking-widest hover:bg-white/10 transition-all active:scale-95">
+            <Link to="/projects" className="w-full sm:w-auto inline-flex items-center justify-center gap-2 border-2 border-white bg-white/5 backdrop-blur-sm px-10 py-5 rounded-sm font-display font-black uppercase tracking-widest text-white hover:bg-white hover:text-navy transition-all active:scale-95">
               View Projects
             </Link>
           </div>

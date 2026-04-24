@@ -43,8 +43,10 @@ export default function AdvantageCarousel({ items }: AdvantageCarouselProps) {
   const getCardStatus = (index: number) => {
     const diff = (index - currentIndex + items.length) % items.length;
     if (diff === 0) return "center";
-    if (diff === 1 || diff === -(items.length - 1)) return "right";
-    if (diff === items.length - 1 || diff === -1) return "left";
+    if (diff === 1) return "right";
+    if (diff === 2) return "far-right";
+    if (diff === items.length - 1) return "left";
+    if (diff === items.length - 2) return "far-left";
     return "hidden";
   };
 
@@ -55,7 +57,7 @@ export default function AdvantageCarousel({ items }: AdvantageCarouselProps) {
       onMouseLeave={() => setIsAutoPlaying(true)}
     >
       <div className="relative w-full max-w-5xl h-full flex items-center justify-center perspective-1000">
-        <AnimatePresence initial={false}>
+        <AnimatePresence initial={false} mode="popLayout">
           {items.map((item, index) => {
             const status = getCardStatus(index);
             if (status === "hidden") return null;
@@ -65,23 +67,30 @@ export default function AdvantageCarousel({ items }: AdvantageCarouselProps) {
                 key={item.text}
                 initial={{ opacity: 0, scale: 0.8, x: 0 }}
                 animate={{
-                  opacity: status === "center" ? 1 : 0.6,
-                  scale: status === "center" ? 1 : 0.85,
-                  x: status === "center" ? 0 : status === "right" ? "60%" : "-60%",
-                  z: status === "center" ? 0 : -200,
-                  rotateY: status === "center" ? 0 : status === "right" ? -15 : 15,
-                  filter: status === "center" ? "blur(0px)" : "blur(4px)",
-                  zIndex: status === "center" ? 20 : 10,
+                  opacity: status === "center" ? 1 : status.includes("far") ? 0.15 : 0.4,
+                  scale: status === "center" ? 1 : status.includes("far") ? 0.65 : 0.8,
+                  x: status === "center" ? 0 : 
+                     status === "right" ? "70%" : 
+                     status === "far-right" ? "120%" :
+                     status === "left" ? "-70%" : "-120%",
+                  z: status === "center" ? 0 : status.includes("far") ? -600 : -300,
+                  rotateY: status === "center" ? 0 : status.includes("right") ? -30 : 30,
+                  filter: status === "center" ? "blur(0px)" : status.includes("far") ? "blur(16px)" : "blur(8px)",
+                  zIndex: status === "center" ? 40 : status.includes("far") ? 10 : 20,
                 }}
-                exit={{ opacity: 0, scale: 0.5 }}
-                transition={{ type: "spring", stiffness: 300, damping: 30 }}
+                exit={{ opacity: 0, scale: 0.5, z: -100 }}
+                transition={{ 
+                  duration: 0.8,
+                  ease: [0.16, 1, 0.3, 1], // Custom spring-like cubic-bezier for maximum smoothness
+                  opacity: { duration: 0.4 }
+                }}
                 className={cn(
-                  "absolute w-[280px] sm:w-[320px] md:w-[400px] aspect-[4/5] md:aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl",
+                  "absolute w-[280px] sm:w-[320px] md:w-[400px] aspect-[4/5] md:aspect-[3/4] rounded-2xl overflow-hidden shadow-2xl transition-shadow duration-500",
                   status === "center" ? "cursor-default" : "cursor-pointer"
                 )}
                 onClick={() => {
-                  if (status === "right") next();
-                  if (status === "left") prev();
+                  if (status.includes("right")) next();
+                  if (status.includes("left")) prev();
                 }}
               >
                 {/* Background Image */}
@@ -95,11 +104,11 @@ export default function AdvantageCarousel({ items }: AdvantageCarouselProps) {
                 </div>
 
                 {/* Content */}
-                <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end text-white">
-                  <h3 className="text-xl md:text-2xl font-display font-bold uppercase mb-3 leading-tight tracking-tight">
+                <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end">
+                  <h3 className="text-xl md:text-2xl font-display font-bold uppercase mb-3 leading-tight tracking-tight text-white drop-shadow-lg">
                     {item.text}
                   </h3>
-                  <p className="text-sm md:text-base text-gray-200 leading-relaxed font-medium">
+                  <p className="text-sm md:text-base text-white/80 leading-relaxed font-medium drop-shadow-md">
                     {item.desc}
                   </p>
                 </div>

@@ -35,18 +35,18 @@ const timelineData = [
 
 function SuccessTimeline() {
   return (
-    <div className="relative w-full max-w-lg mx-auto py-10 md:py-20 font-display">
-      {/* Central Arrow/Spine Architecture — Hidden on Extra Small Screens if needed, but we'll try to keep it */}
+    <div className="relative w-full max-w-lg mx-auto py-20 font-display">
+      {/* Central Arrow/Spine Architecture — Shifted on mobile */}
       <div className="absolute left-4 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-8 z-10 flex flex-col items-center">
         {/* Infinite Pulse Glow Spine */}
-        <motion.div 
+        <motion.div
           animate={{ top: ["100%", "-20%"] }}
           transition={{ duration: 4, repeat: Infinity, ease: "linear" }}
           className="absolute left-0 md:left-1/2 md:-translate-x-1/2 w-16 h-40 bg-white/30 blur-2xl z-40"
         />
 
         {/* 2026 Top Pill */}
-        <motion.div 
+        <motion.div
           animate={{ boxShadow: ["0 0 0px rgba(255,255,255,0)", "0 0 20px rgba(255,255,255,0.4)", "0 0 0px rgba(255,255,255,0)"] }}
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
           className="relative w-28 h-8 bg-[#1e1b4b] rounded-lg flex items-center justify-center text-white font-black text-lg shadow-2xl z-50 mb-1"
@@ -56,87 +56,87 @@ function SuccessTimeline() {
 
         {/* Vertical Arrow Segments */}
         <div className="flex flex-col flex-1 w-full mt-[2px]">
-           {[...timelineData].reverse().slice(1).map((item, i) => (
-             <div key={item.year} className="relative flex-1 min-h-[120px] w-full flex flex-col items-center">
-                <div 
-                  className="w-full flex-1"
-                  style={{ 
-                    background: i % 2 === 0 ? `linear-gradient(to bottom, #1e1b4b, ${item.color})` : `linear-gradient(to bottom, ${timelineData[timelineData.length - 1 - i]?.color || '#1e1b4b'}, ${item.color})`,
-                    clipPath: 'polygon(0% 0%, 50% 15%, 100% 0%, 100% 85%, 50% 100%, 0% 85%)',
-                    marginTop: '-12px'
-                  }}
-                />
-             </div>
-           ))}
-           <div 
-             className="w-8 h-20 mt-[-12px]" 
-             style={{ 
-                background: timelineData[0].color,
-                clipPath: 'polygon(0% 0%, 50% 15%, 100% 0%, 100% 100%, 50% 90%, 0% 100%)'
-             }}
-           />
+          {[...timelineData].reverse().slice(1).map((item, i) => (
+            <div key={item.year} className="relative flex-1 min-h-[120px] w-full flex flex-col items-center">
+              <div
+                className="w-full flex-1"
+                style={{
+                  background: i % 2 === 0 ? `linear-gradient(to bottom, #1e1b4b, ${item.color})` : `linear-gradient(to bottom, ${timelineData[timelineData.length - 1 - i]?.color || '#1e1b4b'}, ${item.color})`,
+                  clipPath: 'polygon(0% 0%, 50% 15%, 100% 0%, 100% 85%, 50% 100%, 0% 85%)',
+                  marginTop: '-12px'
+                }}
+              />
+            </div>
+          ))}
+          <div
+            className="w-8 h-20 mt-[-12px]"
+            style={{
+              background: timelineData[0].color,
+              clipPath: 'polygon(0% 0%, 50% 15%, 100% 0%, 100% 100%, 50% 90%, 0% 100%)'
+            }}
+          />
         </div>
       </div>
 
       {/* Branched Content Layers */}
       <div className="relative z-20 flex flex-col-reverse w-full">
-         {timelineData.map((item, i) => {
-           if (i === 9) return null; // 2026 handled by top pill
-           const isLeft = i % 2 !== 0; 
-           
-           return (
-             <motion.div 
-               key={item.year}
-               initial={{ opacity: 0, x: isLeft ? -30 : 30 }}
-               whileInView={{ opacity: 1, x: 0 }}
-               viewport={{ once: true, margin: "-50px" }}
-               transition={{ duration: 0.6, delay: i * 0.05 }}
-               className={`flex items-center w-full min-h-[120px] ${isLeft ? 'flex-row-reverse md:flex-row-reverse' : 'flex-row'} pl-12 md:pl-0`}
-             >
-                <div className={`w-full md:w-1/2 flex items-center ${isLeft ? 'justify-start' : 'justify-end md:justify-end'}`}>
-                   {/* Highlight Loop Container */}
-                   <motion.div 
-                     animate={{ 
-                       scale: [1, 1.03, 1],
-                       filter: ["brightness(1)", "brightness(1.25)", "brightness(1)"]
-                     }}
-                     transition={{ 
-                       duration: 2.5, 
-                       repeat: Infinity, 
-                       repeatDelay: 6,
-                       delay: i * 0.6 // Sequence the highlight through the items
-                     }}
-                     className={`flex items-center px-1 ${isLeft ? 'flex-row' : 'flex-row-reverse'}`}
-                   >
-                      <div 
-                        className="w-4 h-6 -mx-0.5" 
-                        style={{ 
-                          backgroundColor: item.color, 
-                          opacity: 0.8,
-                          clipPath: isLeft ? 'polygon(0 0, 100% 20%, 100% 80%, 0 100%)' : 'polygon(100% 0, 0 20%, 0 80%, 100% 100%)'
-                        }} 
-                      />
-                      <div 
-                        className="px-4 py-1.5 shadow-xl z-30"
-                        style={{ backgroundColor: item.color }}
-                      >
-                         <span className="text-white font-black text-xl tracking-tighter">{item.year}</span>
-                      </div>
-                      
-                      <div className={`px-2 max-w-[140px] md:max-w-[180px] ${isLeft ? 'text-right' : 'text-left'}`}>
-                         <h4 className="font-black text-navy uppercase text-[10px] md:text-xs leading-tight mb-1">{item.title}</h4>
-                         {item.desc && (
-                           <p className="text-[8px] font-bold text-brand-red opacity-80 leading-none truncate md:whitespace-normal">
-                              {item.desc}
-                           </p>
-                         )}
-                      </div>
-                   </motion.div>
-                </div>
-                <div className="hidden md:block md:w-1/2" /> 
-             </motion.div>
-           );
-         })}
+        {timelineData.map((item, i) => {
+          if (i === 9) return null; // 2026 handled by top pill
+          const isLeft = i % 2 !== 0;
+
+          return (
+            <motion.div
+              key={item.year}
+              initial={{ opacity: 0, x: isLeft ? -30 : 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: i * 0.05 }}
+              className={`flex items-center w-full min-h-[120px] ${isLeft ? 'flex-row-reverse' : 'flex-row'} pl-12 md:pl-0`}
+            >
+              <div className={`w-full md:w-1/2 flex items-center ${isLeft ? 'justify-start' : 'justify-end md:justify-end'}`}>
+                {/* Highlight Loop Container */}
+                <motion.div
+                  animate={{
+                    scale: [1, 1.03, 1],
+                    filter: ["brightness(1)", "brightness(1.25)", "brightness(1)"]
+                  }}
+                  transition={{
+                    duration: 2.5,
+                    repeat: Infinity,
+                    repeatDelay: 6,
+                    delay: i * 0.6 // Sequence the highlight through the items
+                  }}
+                  className={`flex items-center px-1 ${isLeft ? 'flex-row' : 'flex-row-reverse'}`}
+                >
+                  <div
+                    className="w-4 h-6 -mx-0.5"
+                    style={{
+                      backgroundColor: item.color,
+                      opacity: 0.8,
+                      clipPath: isLeft ? 'polygon(0 0, 100% 20%, 100% 80%, 0 100%)' : 'polygon(100% 0, 0 20%, 0 80%, 100% 100%)'
+                    }}
+                  />
+                  <div
+                    className="px-4 py-1.5 shadow-xl z-30"
+                    style={{ backgroundColor: item.color }}
+                  >
+                    <span className="text-white font-black text-xl tracking-tighter">{item.year}</span>
+                  </div>
+
+                  <div className={`px-2 max-w-[140px] md:max-w-[180px] ${isLeft ? 'text-right' : 'text-left'}`}>
+                    <h4 className="font-black text-navy uppercase text-[10px] md:text-xs leading-tight mb-1">{item.title}</h4>
+                    {item.desc && (
+                      <p className="text-[8px] font-bold text-brand-red opacity-80 leading-none truncate md:whitespace-normal">
+                        {item.desc}
+                      </p>
+                    )}
+                  </div>
+                </motion.div>
+              </div>
+              <div className="hidden md:block md:w-1/2" />
+            </motion.div>
+          );
+        })}
       </div>
     </div>
   );
@@ -154,7 +154,7 @@ function About() {
       <section className="py-20 md:py-32 bg-background overflow-hidden">
         <div className="mx-auto max-w-7xl px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
-            
+
             <div className="lg:col-span-12">
               <div className="text-[10px] uppercase tracking-[0.4em] text-brand-red font-black mb-4">Who We Are</div>
               <h2 className="text-4xl md:text-7xl font-display font-black text-navy uppercase tracking-tightest leading-[0.8] mb-16">
@@ -203,7 +203,7 @@ function About() {
                       </p>
                     </div>
                   </div>
-                  
+
                   <div className="mt-12 p-10 bg-navy text-white rounded-sm relative overflow-hidden flex flex-col md:flex-row gap-8 items-center">
                     <div className="flex-1 z-10">
                       <h3 className="text-xl font-display font-black uppercase mb-3 tracking-wider">Peace of Mind Partnership</h3>
@@ -216,14 +216,14 @@ function About() {
                 </div>
 
                 <div className="lg:col-span-5 h-full relative">
-                   <div className="sticky top-32">
-                     <div className="absolute top-0 left-0 p-4 -translate-y-full opacity-60">
-                        <p className="text-navy font-black text-xs leading-none uppercase tracking-widest">
-                           Visions into Reality
-                        </p>
-                     </div>
-                     <SuccessTimeline />
-                   </div>
+                  <div className="sticky top-32">
+                    <div className="absolute top-0 left-0 p-4 -translate-y-full opacity-60">
+                      <p className="text-navy font-black text-xs leading-none uppercase tracking-widest">
+                        Visions into Reality
+                      </p>
+                    </div>
+                    <SuccessTimeline />
+                  </div>
                 </div>
               </div>
             </div>
@@ -238,15 +238,15 @@ function About() {
             <div className="mt-6 h-2 w-32 bg-brand-red mx-auto shadow-sm" />
           </div>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:h-[500px]">
-             <div className="relative group overflow-hidden bg-background shadow-2xl">
+            <div className="relative group overflow-hidden bg-background shadow-2xl h-64 md:h-full">
               <img src={imgP1} alt="Engineering" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
               <div className="absolute inset-0 bg-navy/20 group-hover:bg-transparent transition-colors" />
             </div>
-            <div className="relative group overflow-hidden bg-background shadow-2xl">
+            <div className="relative group overflow-hidden bg-background shadow-2xl h-64 md:h-full">
               <img src={imgP2} alt="Steel" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
               <div className="absolute inset-0 bg-navy/20 group-hover:bg-transparent transition-colors" />
             </div>
-            <div className="relative group overflow-hidden bg-background shadow-2xl">
+            <div className="relative group overflow-hidden bg-background shadow-2xl h-64 md:h-full">
               <img src={imgP3} alt="BIM" className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
               <div className="absolute inset-0 bg-navy/20 group-hover:bg-transparent transition-colors" />
             </div>

@@ -8,6 +8,11 @@ import { useState, useRef, useEffect } from "react";
 // ASSETS
 import imgPlaceholder from "@/assets/hero-steel.jpg";
 import imgWorkplace from "@/assets/blueprint.jpg";
+import imgRajadurai from "@/assets/rajadurai.png";
+import imgBalasaravana from "@/assets/balasaravanan.png";
+import imgSaravanan from "@/assets/saravanan.png";
+import imgAnand from "@/assets/anand.png";
+import imgAlan from "@/assets/alan.png";
 
 export const Route = createFileRoute("/team")({
   component: TeamPage,
@@ -19,7 +24,7 @@ const teamMembers = [
     role: "CEO",
     email: "rajadurai@struzon.com",
     linkedin: "https://www.linkedin.com/in/rajadurai-nallasamy-253543133/",
-    image: imgPlaceholder,
+    image: imgRajadurai,
     bio: [
       "A visionary by nature and passionate about structures, Rajadurai has 15+ years experience in construction industries with a specialization in steel detailing.",
       "His undergraduate degree in engineering is from Anna University and he also has a Master’s degree in Business Management. He is NPCIL-trained in weld techniques and is NDT qualified, which plays a vital and dynamic role in his career, along with his profound knowledge on the steel fabrication and erection process.",
@@ -32,7 +37,7 @@ const teamMembers = [
     role: "President",
     email: "balasaravana@struzon.com",
     linkedin: "https://www.linkedin.com/in/balasaravana-kumar-t-826248172/",
-    image: imgPlaceholder,
+    image: imgBalasaravana,
     bio: [
       "Balasaravana is a recognized expert with more than 15+ years of experience centered around Steel Detailing, Engineering, Business Management, Technology, and Digital Project Delivery, along with being a Mechanical Engineer with an honors B.E. from Anna University.",
       "His vast experience, ability to meet and exceed his steadily increasing responsibilities, and client-centric viewpoint have made him the right person to lead engineering at Struzon and achieve our goals of technical excellence across multiple engineering skills and disciplines.",
@@ -44,7 +49,7 @@ const teamMembers = [
     role: "COO",
     email: "saravanan@struzon.com",
     linkedin: "https://www.linkedin.com/in/saravanan-soundara-rajan-206a7a67/",
-    image: imgPlaceholder,
+    image: imgSaravanan,
     bio: [
       "An entrepreneur and emerging business leader with 15+ years of progressive experience in the structural steel detailing industry, Saravanan is the visionary behind the company’s strategies and operations.",
       "Saravanan is excellent at analyzing team strengths and leveraging individual employee traits to reach business goals efficiently.",
@@ -57,7 +62,7 @@ const teamMembers = [
     role: "Vice President-Business Development",
     email: "anand@struzon.com",
     linkedin: "https://www.linkedin.com/in/anand-m-s-671390154/",
-    image: imgPlaceholder,
+    image: imgAnand,
     bio: [
       "Bringing over 16 years of diverse experience from the construction and IT fields, along with excellent socialization skills and charisma, Anand specializes in establishing a personal connection with clients.",
       "He completed his CS graduation in 2004 at Bharathiyar University and then enhanced his career by joining hands with Struzon.",
@@ -70,7 +75,7 @@ const teamMembers = [
     role: "Vice President - USA Operations",
     email: "alan@struzon.com",
     linkedin: "https://www.linkedin.com/in/alan-bagatourian-pe-29391059/",
-    image: imgPlaceholder,
+    image: imgAlan,
     bio: [
       "A California-Licensed Professional Civil Engineer with over 10 years of experience in the field, including owning his Structural Engineering company and co-owning a Commercial Steel Fabrication and Erection company, Alan is the perfect fit to run the US operations of Struzon.",
       "As the VP of US operations, Alan is the initial point of contact with US Clients, discussing client's ideas and visions; consolidating them into practical solutions; and bringing them to reality.",
@@ -157,14 +162,17 @@ function TeamPage() {
       />
 
       <section className="py-16 md:py-32 bg-white flex flex-col items-center overflow-hidden">
-        <div className="mx-auto max-w-7xl px-6 w-full relative">
+        <div 
+          className="mx-auto max-w-7xl px-6 w-full relative"
+          onMouseLeave={() => window.innerWidth >= 1024 && setActiveIndex(null)}
+        >
           {/* Grid of Cards - Responsive Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 lg:gap-4 items-start relative z-10">
             {teamMembers.map((member, idx) => (
               <div key={member.name} className="contents">
                 <div
                   ref={(el) => { cardRefs.current[idx] = el; }}
-                  onClick={() => handleInteraction(activeIndex === idx ? null : idx)}
+                  onMouseEnter={() => window.innerWidth >= 1024 && handleInteraction(idx)}
                   className={`flex flex-col bg-white border border-border/50 shadow-sm transition-all duration-300 overflow-hidden group cursor-pointer h-full ${activeIndex === idx ? 'shadow-lg border-brand-red/30' : 'hover:shadow-lg'}`}
                 >
                   <div className="relative aspect-square overflow-hidden bg-muted">

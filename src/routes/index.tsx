@@ -53,27 +53,28 @@ function Home() {
         />
         <div className="absolute inset-0 bg-gradient-to-r from-navy/80 via-white/40 to-transparent" />
 
-        <div className="relative mx-auto max-w-7xl px-6 w-full py-20 z-10">
+        <div className="relative mx-auto max-w-7xl px-6 w-full pt-32 pb-40 lg:py-20 z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
+              className="text-center lg:text-left"
             >
               <div className="text-xs md:text-sm uppercase tracking-[0.4em] text-brand-red font-black mb-4 drop-shadow">Struzon Technologies Inc.</div>
               <h1 className="text-white text-3xl sm:text-4xl md:text-7xl font-display font-black shadow-white uppercase tracking-tightest leading-[1.1] md:leading-[0.9] mb-6">
-                Structural <br />
-                Steel <br />
-                Detailing & <br />
-                Engineering <br />
-                <span className="text-brand-red">Service <br /> Partner</span>
+                Structural <br className="hidden sm:block" />
+                Steel <br className="hidden sm:block" />
+                Detailing & <br className="hidden sm:block" />
+                Engineering <br className="hidden sm:block" />
+                <span className="text-brand-red">Service <br className="hidden sm:block" /> Partner</span>
               </h1>
 
               <p className="mt-6 text-white/70 text-sm md:text-base max-w-lg leading-relaxed font-medium mb-10 mx-auto lg:mx-0">
                 A trusted partner to the construction industry — pioneers of structural detailing, engineering, design and research, delivering complex, time-sensitive projects worldwide.
               </p>
 
-              <div className="flex flex-wrap gap-4 pt-2">
+              <div className="flex flex-wrap justify-center lg:justify-start gap-4 pt-2">
                 <Link to="/contact" className="inline-flex items-center gap-2 bg-brand-red text-white px-8 py-4 font-display font-black uppercase tracking-widest hover:bg-white hover:text-navy transition-all shadow-2xl active:scale-95 text-sm">
                   Get a Quote <ArrowRight className="h-4 w-4" />
                 </Link>
@@ -85,12 +86,12 @@ function Home() {
           </div>
         </div>
 
-        {/* Floating Video Card on Hero — Hidden on mobile, visible on LG+ */}
+        {/* Floating Video Card on Hero — Responsive Positioning */}
         <motion.div
-          initial={{ opacity: 0, scale: 0.9, x: 50 }}
-          animate={{ opacity: 1, scale: 1, x: 0 }}
+          initial={{ opacity: 0, scale: 0.9, y: 50 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ delay: 1, duration: 1 }}
-          className="hidden lg:block absolute right-8 md:right-16 bottom-0 translate-y-1/2 w-[450px] md:w-[750px] aspect-video z-50 rounded-[2rem] overflow-hidden border-4 border-white/20 shadow-[0_0_40px_rgba(255,255,255,0.15)] bg-navy"
+          className="absolute left-6 right-6 lg:left-auto lg:right-16 bottom-100 translate-y-1/2 lg:w-[750px] aspect-video z-50 rounded-2xl md:rounded-[2rem] overflow-hidden border-4 border-white/20 shadow-[0_0_40px_rgba(255,255,255,0.15)] bg-navy"
         >
           <video
             src={vdoHome}
@@ -108,7 +109,7 @@ function Home() {
       </section>
 
       {/* Stats/Info Grid Section */}
-      <section className="py-16 md:py-24 bg-background pt-24">
+      <section className="py-12 bg-background">
         <div className="mx-auto max-w-7xl px-6 grid gap-10 md:grid-cols-2 lg:grid-cols-4">
           {[
             { h: "Where + What", p: "With offices across the globe, Struzon offers complete structural steel, connection design and BIM detailing services." },
@@ -125,21 +126,27 @@ function Home() {
       </section>
 
       {/* Who We Are SECTION */}
-      <section className="py-16 md:py-24 bg-white overflow-hidden">
+      <section className="py-12 md:py-16 bg-white overflow-hidden text-spacing-tight">
         <div className="mx-auto max-w-7xl px-6">
           <div className="text-xs uppercase tracking-[0.4em] text-brand-red font-black mb-4">Struzon Technologies Inc.</div>
-          <h2 className="text-3xl md:text-6xl font-display font-black text-navy uppercase tracking-tightest leading-none mb-10">
+          <h2 className="text-3xl md:text-6xl font-display font-black text-navy uppercase tracking-tightest leading-none mb-12">
             Who <span className="text-brand-red">We Are</span>
           </h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-16 gap-y-10 text-navy/70 text-base md:text-lg leading-relaxed font-medium">
-            <p className="col-span-1 md:col-span-2 text-navy text-2xl md:text-3xl font-display font-black uppercase leading-tight italic">
+          
+          <div className="space-y-12">
+            {/* Massive Lead Text */}
+            <p className="text-navy text-2xl md:text-5xl font-display font-black uppercase leading-[1.1] italic max-w-5xl">
               Struzon, a trusted structural steel detailing/engineering service partner to the construction industry — market pioneers of engineering, design, and research.
             </p>
-            <p>Our work integrates with steel detailing, connection design/stamping for structural, miscellaneous detailing, and BIM (Building Information Modeling) services. We help with the structure, expansion, alteration, and revamp of new and existing constructions.</p>
-            <p>Our team of fully qualified engineers has a wealth of experience in all aspects of structural design, detailing, and steelwork fabrication requirements. With an ongoing commitment to invest in our staff, we are well positioned to detail every project.</p>
-            <p>With our strong international presence in key sectors, Struzon drives the evolution of digital information modeling. Our brand is recognized as a global leader within the structural steel detailing industry.</p>
-            <p>A diverse company with an outstanding reputation for detailing complex, time-sensitive projects while delivering superior quality and a cost-effective solution.</p>
-            <p>We have been increasing current standards in the matter of transmission of impeccable building structures. Our simple, and very solid administrations have figured out how to win numerous hearts.</p>
+
+            {/* Supporting Detail Grid */}
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-8 text-navy/70 text-sm md:text-base leading-relaxed font-medium">
+              <p>Our work integrates with steel detailing, connection design/stamping for structural, miscellaneous detailing, and BIM (Building Information Modeling) services. We help with the structure, expansion, alteration, and revamp of new and existing constructions.</p>
+              <p>Our team of fully qualified engineers has a wealth of experience in all aspects of structural design, detailing, and steelwork fabrication requirements. With an ongoing commitment to invest in our staff, we are well positioned to detail every project.</p>
+              <p>With our strong international presence in key sectors, Struzon drives the evolution of digital information modeling. Our brand is recognized as a global leader within the structural steel detailing industry.</p>
+              <p>A diverse company with an outstanding reputation for detailing complex, time-sensitive projects while delivering superior quality and a cost-effective solution.</p>
+              <p>We have been increasing current standards in the matter of transmission of impeccable building structures. Our simple, and very solid administrations have figured out how to win numerous hearts.</p>
+            </div>
           </div>
 
           <LicensedPartners />
@@ -147,7 +154,7 @@ function Home() {
       </section>
 
       {/* Advantage Carousel Section */}
-      <section className="py-24 bg-muted overflow-hidden relative">
+      <section className="py-16 bg-muted overflow-hidden relative">
         <div className="mx-auto max-w-7xl px-6 relative z-10">
           <div className="text-center mb-12">
             <div className="text-xs uppercase tracking-[0.4em] text-brand-red font-black mb-3">Precision First</div>
@@ -198,15 +205,15 @@ function Home() {
       </section>
 
       {/* CTA SECTION */}
-      <section className="relative bg-navy text-white py-32 overflow-hidden">
+      <section className="relative bg-navy text-white py-20 lg:py-32 overflow-hidden">
         <div className="absolute inset-0 opacity-10 grayscale" style={{ backgroundImage: `url(${imgP4})` }} />
         <div className="relative mx-auto max-w-4xl px-6 text-center">
           <div className="text-xs uppercase tracking-[0.4em] text-brand-red font-black mb-6">Ready to Build?</div>
-          <h2 className="text-white text-3xl md:text-5xl font-display font-black uppercase leading-[0.9] tracking-tighter mb-8">Seeking a better <br /> detailing solution?</h2>
-          <p className="mt-4 text-base md:text-lg text-white/70 max-w-xl mx-auto font-medium">
+          <h2 className="text-white text-2xl sm:text-3xl md:text-5xl font-display font-black uppercase leading-[1.1] md:leading-[0.9] tracking-tighter mb-8">Seeking a better <br /> detailing solution?</h2>
+          <p className="mt-4 text-sm md:text-lg text-white/70 max-w-xl mx-auto font-medium">
             Contact the experts at Struzon to explore how we can help you deliver your next project on schedule, with quality and absolute efficiency.
           </p>
-          <Link to="/contact" className="mt-12 inline-flex items-center gap-2 bg-brand-red px-10 py-5 rounded-full text-white font-display font-black uppercase tracking-widest hover:bg-white hover:text-navy transition-all shadow-2xl active:scale-95">
+          <Link to="/contact" className="mt-12 inline-flex items-center gap-2 bg-brand-red px-10 lg:px-12 py-5 lg:py-6 rounded-full text-white font-display font-black uppercase tracking-widest hover:bg-white hover:text-navy transition-all shadow-2xl active:scale-95 text-xs sm:text-sm lg:text-base">
             Let's Talk <ArrowRight className="h-5 w-5" />
           </Link>
         </div>

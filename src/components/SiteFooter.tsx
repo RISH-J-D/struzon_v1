@@ -53,12 +53,12 @@ export function SiteFooter() {
         <div className="flex flex-col items-center md:items-start">
           <h4 className="text-navy font-display font-bold uppercase tracking-widest text-sm mb-6 pb-2 border-b-2 border-brand-red w-fit">Contact</h4>
           <ul className="space-y-4 text-sm font-medium">
-            <li className="flex items-start gap-3 hover:text-brand-red transition-colors group cursor-default">
+            <li className="flex items-start gap-3 hover:text-brand-red transition-colors group cursor-default justify-center md:justify-start">
               <MapPin className="h-4 w-4 mt-0.5 text-brand-red group-hover:scale-110 transition-transform" />
               Offices in USA & India
             </li>
             <li className="flex flex-col gap-3">
-              <a href="tel:+16469923825" className="flex items-center gap-3 hover:text-brand-red transition-colors group cursor-pointer">
+              <a href="tel:+16469923825" className="flex items-center gap-3 hover:text-brand-red transition-colors group cursor-pointer justify-center md:justify-start">
                 <Phone className="h-4 w-4 text-brand-red group-hover:scale-110 transition-transform" />
                 +1 (646) 992-3825
               </a>
@@ -67,7 +67,7 @@ export function SiteFooter() {
                 +91 6385828777
               </a>
             </li>
-            <li className="flex items-center gap-3 hover:text-brand-red transition-colors group cursor-default">
+            <li className="flex items-center gap-3 hover:text-brand-red transition-colors group cursor-default justify-center md:justify-start">
               <Mail className="h-4 w-4 text-brand-red group-hover:scale-110 transition-transform" />
               info@struzon.com
             </li>

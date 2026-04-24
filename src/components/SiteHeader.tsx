@@ -2,7 +2,11 @@ import { Link } from "@tanstack/react-router";
 import { useState, useEffect } from "react";
 import { Menu, X, Phone, Mail } from "lucide-react";
 import { FaFacebookF, FaLinkedinIn, FaInstagram, FaYoutube } from "react-icons/fa6";
+import { motion, AnimatePresence } from "framer-motion";
 import logo from "@/assets/struzon-logo.png";
+import badge1 from "@/assets/icons/badge1.png";
+import badge2 from "@/assets/icons/badge2.png";
+import badge3 from "@/assets/icons/badge3.png";
 
 const links = [
   { to: "/", label: "Home" },
@@ -25,20 +29,20 @@ export function SiteHeader() {
   }, []);
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${scrolled ? 'bg-navy/90 backdrop-blur-md shadow-lg' : 'bg-transparent'}`}>
-      {/* Top bar — hidden when scrolled or on mobile */}
-      <div className={`bg-navy/80 border-b border-white/10 ${scrolled ? 'hidden' : 'hidden md:block'}`}>
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 py-2">
-          <div className="flex items-center gap-6 text-sm font-medium text-white uppercase tracking-wider">
+    <header className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-500 ${scrolled ? 'bg-navy/90 backdrop-blur-md shadow-lg border-b border-white/5' : 'bg-transparent'}`}>
+      {/* Top bar — hidden on mobile for better space utility */}
+      <div className={`relative z-10 bg-navy/80 border-b border-white/10 ${scrolled ? 'hidden' : 'hidden md:block'}`}>
+        <div className="flex w-full items-center justify-between px-4 md:px-8 lg:px-12 py-2">
+          <div className="flex items-center gap-6 text-sm font-medium uppercase tracking-wider">
             <div className="flex flex-row items-center gap-6">
-              <a href="tel:+16469923825" className="flex items-center gap-2 hover:text-white transition-colors whitespace-nowrap">
+              <a href="tel:+16469923825" className="flex items-center gap-2 text-white hover:text-brand-red transition-colors whitespace-nowrap">
                 <Phone size={14} className="text-brand-red" /> +1 (646) 992-3825
               </a>
-              <a href="tel:+916385828777" className="flex items-center gap-2 hover:text-white transition-colors whitespace-nowrap border-l border-white/10 pl-6 pt-0">
+              <a href="tel:+916385828777" className="flex items-center gap-2 text-white hover:text-brand-red transition-colors whitespace-nowrap border-l border-white/10 pl-6 pt-0">
                 <Phone size={14} className="text-brand-red" /> +91 6385828777
               </a>
             </div>
-            <a href="mailto:info@struzon.com" className="hidden lg:flex items-center gap-2 hover:text-white transition-colors">
+            <a href="mailto:info@struzon.com" className="hidden lg:flex items-center gap-2 text-white hover:text-brand-red transition-colors">
               <Mail size={14} className="text-brand-red" /> info@struzon.com
             </a>
           </div>
@@ -54,38 +58,62 @@ export function SiteHeader() {
       </div>
 
       {/* Main nav — white links on dark */}
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-4 sm:px-6 py-3 sm:py-4">
-        <Link to="/" className="flex items-center">
-          <img src={logo} alt="Struzon Technologies Inc." className="h-8 sm:h-10 md:h-12 w-auto object-contain" />
-        </Link>
-
-        {/* Desktop Nav */}
-        <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
-          {links.map((link) => (
-            <Link
-              key={link.to}
-              to={link.to}
-              className="text-xs xl:text-sm uppercase tracking-widest font-bold text-white/80 hover:text-white transition-colors py-2 border-b-2 border-transparent transition-all"
-              activeProps={{ className: "!text-white border-brand-red" }}
-            >
-              {link.label}
+      <div className="relative flex w-full items-center justify-between py-0">
+        {/* Branding Area with White Curve Background */}
+        <div className="relative group bg-white h-full flex items-center pl-4 md:pl-8 lg:pl-12 pr-12 lg:pr-16 py-4 lg:py-6 shadow-2xl">
+          {/* S-Curve End */}
+          <div className="absolute top-0 right-0 h-full w-[100px] translate-x-full pointer-events-none">
+            <svg className="h-full w-full" viewBox="0 0 100 100" preserveAspectRatio="none">
+              <path d="M0,0 C50,0 50,100 100,100 L0,100 Z" fill="white" />
+            </svg>
+          </div>
+          
+          <div className="flex items-center gap-4 md:gap-8 relative z-10">
+            <Link to="/" className="flex items-center">
+              <img src={logo} alt="Struzon Technologies Inc." className="h-8 sm:h-10 md:h-12 w-auto object-contain" />
             </Link>
-          ))}
-          <Link
-            to="/contact"
-            className="ml-2 bg-brand-red px-6 py-3 rounded-full text-xs font-bold uppercase tracking-widest text-white hover:bg-white hover:text-navy transition-all shadow-lg active:scale-95"
-          >
-            Get a Quote
-          </Link>
-        </nav>
+            
+            <div className="hidden sm:flex items-center gap-4 md:gap-8 border-l border-navy/10 pl-4 md:pl-10">
+              <img src={badge1} alt="AISC" className="h-10 md:h-16 w-auto object-contain transition-transform hover:scale-110 duration-300" />
+              <img src={badge2} alt="NISD" className="h-10 md:h-16 w-auto object-contain transition-transform hover:scale-110 duration-300" />
+              <img src={badge3} alt="ISO" className="h-10 md:h-16 w-auto object-contain transition-transform hover:scale-110 duration-300" />
+            </div>
+          </div>
+        </div>
 
-        {/* Mobile menu button */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="lg:hidden p-2 text-white relative z-[110]"
-        >
-          {isOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
+        <div className="flex items-center flex-1 justify-end pr-4 md:pr-8 lg:pr-12 gap-8 h-full">
+
+          {/* Desktop Nav */}
+          <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
+            {links.map((link) => (
+              <Link
+                key={link.to}
+                to={link.to}
+                className="text-xs xl:text-sm uppercase tracking-widest font-bold text-white/80 hover:text-white transition-colors py-2 border-b-2 border-transparent transition-all"
+                activeProps={{ className: "!text-white border-brand-red" }}
+              >
+                {link.label}
+              </Link>
+            ))}
+          </nav>
+
+          <div className="hidden lg:flex items-center">
+            <Link
+              to="/contact"
+              className="bg-brand-red px-6 py-4 rounded-full text-xs font-bold uppercase tracking-widest text-white hover:bg-white hover:text-navy transition-all shadow-lg active:scale-95"
+            >
+              Get a Quote
+            </Link>
+          </div>
+
+          {/* Mobile menu button */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="lg:hidden p-2 text-white relative z-[110]"
+          >
+            {isOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile nav drawer */}
