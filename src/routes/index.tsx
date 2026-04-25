@@ -7,14 +7,14 @@ import LicensedPartners from "@/components/LicensedPartners";
 import CyberMap from "@/components/CyberMap";
 
 // ASSETS
-import imgHero from "@/assets/hero-structure.png";
-import vdoHome from "@/assets/home-vdo.mp4";
-import imgP1 from "@/assets/project-1.jpg";
-import imgP2 from "@/assets/project-2.jpg";
-import imgP3 from "@/assets/project-3.jpg";
-import imgP4 from "@/assets/project-4.jpg";
-import imgP5 from "@/assets/hero-steel.jpg";
-import imgP6 from "@/assets/blueprint.jpg";
+import imgHero from "../assets/hero-structure.png";
+import vdoHome from "../assets/home-vdo.mp4";
+import imgP1 from "../assets/project-1.jpg";
+import imgP2 from "../assets/project-2.jpg";
+import imgP3 from "../assets/project-3.jpg";
+import imgP4 from "../assets/project-4.jpg";
+import imgP5 from "../assets/hero-steel.jpg";
+import imgP6 from "../assets/blueprint.jpg";
 
 export const Route = createFileRoute("/")({
   head: () => ({

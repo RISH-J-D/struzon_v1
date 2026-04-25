@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "@tanstack/react-router";
-import logo from "@/assets/struzon-logo.png";
-import icon1 from "@/assets/icons/accurate-designs.png";
-import icon2 from "@/assets/icons/engineered-accuracy.png";
-import icon3 from "@/assets/icons/fabrication-ready.png";
-import icon4 from "@/assets/icons/smart-detailing.png";
-import icon5 from "@/assets/icons/steel-excellence.png";
+import logo from "../assets/struzon-logo.png";
+import icon1 from "../assets/icons/accurate-designs.png";
+import icon2 from "../assets/icons/engineered-accuracy.png";
+import icon3 from "../assets/icons/fabrication-ready.png";
+import icon4 from "../assets/icons/smart-detailing.png";
+import icon5 from "../assets/icons/steel-excellence.png";
 
 const INTRO_ICONS = [
   { img: icon1, label: "Accurate Designs" },
