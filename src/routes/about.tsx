@@ -48,9 +48,10 @@ function SuccessTimeline() {
         {/* 2026 Top Pill */}
         <motion.div
           animate={{ boxShadow: ["0 0 0px rgba(199,31,36,0)", "0 0 20px rgba(199,31,36,0.4)", "0 0 0px rgba(199,31,36,0)"] }}
+          whileHover={{ scale: 1.15, boxShadow: "0 0 40px rgba(199,31,36,0.6)", zIndex: 100 }}
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
           style={{ backgroundColor: "#c71f24" }}
-          className="relative w-28 h-8 rounded-lg flex items-center justify-center text-white font-black text-lg shadow-2xl z-50 mb-0 -ml-1"
+          className="relative w-28 h-8 rounded-lg flex items-center justify-center text-white font-black text-lg shadow-2xl z-50 mb-0 -ml-1 cursor-pointer transition-shadow"
         >
           2026
         </motion.div>
@@ -81,46 +82,52 @@ function SuccessTimeline() {
           return (
             <motion.div
               key={item.year}
-              initial={{ opacity: 0, x: isLeft ? -30 : 30 }}
+              initial={{ opacity: 0, x: isLeft ? -40 : 40 }}
               whileInView={{ opacity: 1, x: 0 }}
+              whileHover={{
+                scale: 1.08,
+                x: isLeft ? -15 : 15,
+                zIndex: 50,
+                transition: { type: "spring", stiffness: 400, damping: 10 }
+              }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: i * 0.05 }}
-              className={`flex items-center w-full min-h-[120px] ${isLeft ? 'flex-row-reverse' : 'flex-row'}`}
+              className={`flex items-center w-full min-h-[120px] cursor-pointer ${isLeft ? 'flex-row-reverse' : 'flex-row'}`}
             >
               <div className={`w-1/2 flex items-center ${isLeft ? 'justify-start' : 'justify-end'}`}>
                 {/* Highlight Loop Container */}
                 <motion.div
                   animate={{
                     scale: [1, 1.03, 1],
-                    filter: ["brightness(1)", "brightness(1.25)", "brightness(1)"]
+                    filter: ["brightness(1)", "brightness(1.1)", "brightness(1)"]
                   }}
                   transition={{
-                    duration: 2.5,
+                    duration: 3,
                     repeat: Infinity,
-                    repeatDelay: 6,
-                    delay: i * 0.6 // Sequence the highlight through the items
+                    repeatDelay: 5,
+                    delay: i * 0.3
                   }}
                   className={`flex items-center px-1 ${isLeft ? 'flex-row' : 'flex-row-reverse'}`}
                 >
                   <div
-                    className="w-4 h-6 -mx-0.5"
+                    className="w-4 h-8 -mx-0.5 shadow-2xl"
                     style={{
                       backgroundColor: item.color,
-                      opacity: 0.8,
+                      opacity: 0.9,
                       clipPath: isLeft ? 'polygon(0 0, 100% 20%, 100% 80%, 0 100%)' : 'polygon(100% 0, 0 20%, 0 80%, 100% 100%)'
                     }}
                   />
                   <div
-                    className="px-4 py-1.5 shadow-xl z-30"
+                    className="px-6 py-2 shadow-[0_10px_30px_rgba(0,0,0,0.2)] z-30 rounded-sm"
                     style={{ backgroundColor: item.color }}
                   >
-                    <span className="text-white font-black text-xl tracking-tighter">{item.year}</span>
+                    <span className="text-white font-black text-2xl tracking-tighter">{item.year}</span>
                   </div>
 
-                  <div className={`px-2 max-w-[160px] md:max-w-[180px] ${isLeft ? 'md:text-right text-left' : 'text-left'}`}>
-                    <h4 className="font-black text-navy uppercase text-[10px] md:text-xs leading-tight mb-1">{item.title}</h4>
+                  <div className={`px-4 max-w-[200px] md:max-w-[220px] ${isLeft ? 'md:text-right text-left' : 'text-left'}`}>
+                    <h4 className="font-black text-navy uppercase text-xs md:text-sm leading-tight mb-1 group-hover:text-brand-red transition-colors">{item.title}</h4>
                     {item.desc && (
-                      <p className="text-[8px] font-bold text-brand-red opacity-80 leading-tight">
+                      <p className="text-[10px] font-bold text-brand-red opacity-90 leading-tight">
                         {item.desc}
                       </p>
                     )}
@@ -152,56 +159,52 @@ function About() {
             <div className="lg:col-span-12">
               <div className="text-[10px] uppercase tracking-[0.4em] text-brand-red font-black mb-4">Who We Are</div>
               <h2 className="text-4xl md:text-7xl font-display font-black text-navy uppercase tracking-tightest leading-[0.8] mb-16">
-                Specialized Engineering <br />
+                Specialized Detailing <br />
                 <span className="text-brand-red">Excellence</span>
               </h2>
 
               <div className="grid lg:grid-cols-12 gap-x-16 gap-y-20 items-start">
                 <div className="lg:col-span-7">
-                  <div className="grid md:grid-cols-2 gap-10 text-muted-foreground text-lg leading-relaxed font-medium mb-16">
-                    <div className="space-y-6">
-                      <p>
-                        We are a team of highly qualified engineers and detailers specializing in Structural Steel Detailing, Connection Design, Piping Detailing, and Miscellaneous Steel Detailing, including stairs, ladders, and handrails. We also deliver expertise in specialty metal works such as aluminum and stainless steel, positioning us as a prominent service provider for clients across the US, Canada, and India.
-                      </p>
-                      <p>
-                        We are driven by a commitment to excellence, consistently meeting and exceeding customer expectations. Our focus on delivering high-quality project outcomes, combined with fast turnaround times and exceptional accuracy, has made Struzon a trusted choice for fabricators and industry professionals.
-                      </p>
-                    </div>
-                    <div className="space-y-6">
-                      <p>
-                        Our strength lies in our ability to identify the core of any project challenge and provide practical, reliable solutions. We are committed to being a dependable partner in the construction industry by delivering accurate, timely, and cost-effective structural services. Simply put, we bring your steel structures to life—guided by our belief: <span className="text-navy font-black">“We build what you envision.”</span>
-                      </p>
-                    </div>
+                  <div className="space-y-10 text-navy/70 text-lg md:text-2xl leading-relaxed font-medium mb-16 max-w-4xl">
+                    <p>
+                      We are a team of highly qualified engineers and detailers specializing in Structural Steel Detailing, Connection Design, Piping Detailing, and Miscellaneous Steel Detailing, including stairs, ladders, and handrails. We also deliver expertise in specialty metal works such as aluminum and stainless steel, positioning us as a prominent service provider for clients across the US, Canada, and India.
+                    </p>
+                    <p>
+                      We are driven by a commitment to excellence, consistently meeting and exceeding customer expectations. Our focus on delivering high-quality project outcomes, combined with fast turnaround times and exceptional accuracy, has made Struzon a trusted choice for fabricators and industry professionals.
+                    </p>
+                    <p>
+                      Our strength lies in our ability to identify the core of any project challenge and provide practical, reliable solutions. We are committed to being a dependable partner in the construction industry by delivering accurate, timely, and cost-effective structural services. Simply put, we bring your steel structures to life—guided by our belief: <span className="text-navy font-extrabold italic">“We build what you envision.”</span>
+                    </p>
                   </div>
 
                   <div className="grid md:grid-cols-3 gap-6">
                     <div className="bg-white p-6 border-t-4 border-brand-red shadow-xl rounded-sm">
                       <ShieldCheck className="h-8 w-8 text-brand-red mb-6" />
                       <h3 className="text-lg font-display font-black uppercase text-navy mb-4">Balanced Growth</h3>
-                      <p className="text-muted-foreground text-xs leading-relaxed">
+                      <p className="text-muted-foreground text-sm leading-relaxed">
                         Ethical foundation, positive thinking, and social responsibility guide our consistent precision.
                       </p>
                     </div>
                     <div className="bg-white p-6 border-t-4 border-navy shadow-xl rounded-sm">
                       <Target className="h-8 w-8 text-navy mb-6" />
                       <h3 className="text-lg font-display font-black uppercase text-navy mb-4">Standardized Practice</h3>
-                      <p className="text-muted-foreground text-xs leading-relaxed">
+                      <p className="text-muted-foreground text-sm leading-relaxed">
                         Excellence through disciplined approach of thorough checking and counter-checking.
                       </p>
                     </div>
                     <div className="bg-white p-6 border-t-4 border-brand-red shadow-xl rounded-sm">
                       <TrendingUp className="h-8 w-8 text-brand-red mb-6" />
                       <h3 className="text-lg font-display font-black uppercase text-navy mb-4">Global Standards</h3>
-                      <p className="text-muted-foreground text-xs leading-relaxed">
-                        Well-versed in international standards including OSHA, AISC, CISC, and Eurocodes.
+                      <p className="text-muted-foreground text-sm leading-relaxed">
+                        Well-versed in international standards including <span className="text-brand-red font-bold">OSHA, AISC, CISC, and Eurocodes.</span>
                       </p>
                     </div>
                   </div>
 
                   <div className="mt-12 p-10 bg-navy text-white rounded-sm relative overflow-hidden flex flex-col md:flex-row gap-8 items-center">
                     <div className="flex-1 z-10">
-                      <h3 className="text-xl font-display font-black uppercase mb-3 tracking-wider">Peace of Mind Partnership</h3>
-                      <p className="text-white/70 text-sm leading-relaxed">
+                      <h3 className="text-xl text-white font-display font-black uppercase mb-3 tracking-wider">Peace of Mind Partnership</h3>
+                      <p className="text-white/70 text-lg leading-relaxed">
                         We eliminate communication barriers with round-the-clock support, ensuring seamless collaboration regardless of time zones.
                       </p>
                     </div>

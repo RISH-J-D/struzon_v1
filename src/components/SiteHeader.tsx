@@ -30,7 +30,7 @@ export function SiteHeader() {
     const handleResize = () => {
       if (window.innerWidth >= 1024) setIsOpen(false);
     };
-    
+
     window.addEventListener("scroll", handleScroll);
     window.addEventListener("resize", handleResize);
     return () => {
@@ -45,7 +45,7 @@ export function SiteHeader() {
         {/* Top bar — hidden on mobile for better space utility */}
         <div className={`relative z-10 bg-navy/80 border-b border-white/10 ${scrolled ? 'hidden' : 'hidden md:block'}`}>
           <div className="flex w-full items-center justify-between px-4 md:px-8 lg:px-12 py-2">
-            <div className="flex items-center gap-6 text-sm font-medium uppercase tracking-wider">
+            <div className="flex items-center gap-6 text-sm font-bold uppercase tracking-wider">
               <div className="flex flex-row items-center gap-6">
                 <a href="tel:+16469923825" className="flex items-center gap-2 text-white hover:text-brand-red transition-colors whitespace-nowrap">
                   <Phone size={14} className="text-brand-red" /> +1 (646) 992-3825
@@ -71,7 +71,7 @@ export function SiteHeader() {
 
         {/* Main nav — Grid-based to prevent all overlaps */}
         <div className="relative w-full h-16 md:h-20 lg:h-24 grid grid-cols-[auto_clamp(40px,6vw,120px)_1fr] items-center">
-          
+
           {/* 1. Branding Column (White Tab) — Always includes badges now */}
           <div className="relative bg-white h-full flex items-center pl-3 md:pl-8 lg:pl-12 pr-6 lg:pr-16 shadow-2xl z-20 shrink-0">
             <div className="flex items-center gap-3 md:gap-8 shrink-0">
@@ -100,14 +100,14 @@ export function SiteHeader() {
 
           {/* 3. Navigation & Actions Column */}
           <div className="flex items-center justify-end h-full px-4 md:px-8 lg:px-12 gap-4 xl:gap-8 overflow-hidden">
-            
+
             {/* Desktop Nav — Full logic for wide screens */}
             <nav className="hidden xl:flex items-center gap-6 xl:gap-8 shrink-0">
               {links.map((link) => (
                 <Link
                   key={link.to}
                   to={link.to}
-                  className="text-[11px] xl:text-xs uppercase tracking-widest font-black text-white/70 hover:text-white transition-all whitespace-nowrap"
+                  className="text-base uppercase tracking-widest font-black text-white/90 hover:text-white transition-all whitespace-nowrap"
                   activeProps={{ className: "text-white border-b-2 border-brand-red pb-1" }}
                 >
                   {link.label}
@@ -121,7 +121,7 @@ export function SiteHeader() {
                 <Link
                   key={link.to}
                   to={link.to}
-                  className="text-[10px] uppercase tracking-widest font-bold text-white/60 hover:text-white transition-all whitespace-nowrap"
+                  className="text-xs uppercase tracking-widest font-black text-white/80 hover:text-white transition-all whitespace-nowrap"
                   activeProps={{ className: "text-brand-red" }}
                 >
                   {link.label}
@@ -132,7 +132,7 @@ export function SiteHeader() {
             <div className="hidden lg:flex items-center shrink-0">
               <Link
                 to="/contact"
-                className="bg-brand-red px-6 py-4 rounded-full text-[10px] font-black uppercase tracking-widest text-white hover:bg-white hover:text-navy transition-all shadow-xl active:scale-95"
+                className="bg-brand-red px-8 py-4 rounded-full text-sm font-black uppercase tracking-widest text-white hover:bg-white hover:text-navy transition-all shadow-xl active:scale-95"
               >
                 Get a Quote
               </Link>
@@ -178,7 +178,7 @@ export function SiteHeader() {
                       key={link.to}
                       to={link.to}
                       onClick={() => setIsOpen(false)}
-                      className="text-xl uppercase tracking-[0.2em] font-black text-white/60 hover:text-white transition-colors"
+                      className="text-2xl uppercase tracking-[0.2em] font-black text-white/90 hover:text-white transition-colors"
                       activeProps={{ className: "!text-brand-red" }}
                     >
                       {link.label}
@@ -187,7 +187,7 @@ export function SiteHeader() {
                   <Link
                     to="/contact"
                     onClick={() => setIsOpen(false)}
-                    className="mt-4 bg-brand-red rounded-full text-center py-5 text-sm font-black uppercase tracking-[0.2em] text-white shadow-xl"
+                    className="mt-4 bg-brand-red rounded-full text-center py-5 text-base font-black uppercase tracking-[0.2em] text-white shadow-xl"
                   >
                     Get a Quote
                   </Link>

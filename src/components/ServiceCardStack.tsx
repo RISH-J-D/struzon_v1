@@ -86,7 +86,7 @@ const services: ServiceData[] = [
     tags: ['COST ESTIMATION', 'MATERIAL PLANNING']
   },
   {
-    title: 'RESEARCH AND DEVELOPMENT (R&D)',
+    title: 'RESEARCH AND DEVELOPMENT(R&D)',
     subLabel: 'STRUZON INNOVATION DIVISION',
     description: [
       'Research and Development is essential for staying competitive in an ever-evolving engineering and construction landscape. It involves exploring new technologies, refining workflows, and adopting innovative methods to improve efficiency and quality.',
@@ -145,30 +145,37 @@ export default function ServiceCardStack() {
                       exit={{ opacity: 0 }}
                       className="absolute inset-0 flex items-center justify-center pointer-events-none"
                     >
-                      <span
-                        className="text-white font-display font-black text-[17px] xl:text-[18px] tracking-[0.1em] uppercase whitespace-nowrap text-center group-hover:text-brand-red transition-colors duration-300"
-                        style={{
-                          writingMode: 'vertical-rl',
-                          wordSpacing: '1.2em'
-                        }}
-                      >
-                        {service.title.split(/(\(.*\))/).map((part, i) => {
-                          const isParen = part.trim().startsWith('(');
-                          return (
-                            <span 
-                              key={i} 
-                              style={{ 
-                                textOrientation: isParen ? 'sideways' : 'upright',
-                                wordSpacing: isParen ? 'normal' : 'inherit',
-                                display: 'inline-block',
-                                ...(isParen ? { transform: 'rotate(-90deg)', margin: '1rem 0' } : {})
-                              }}
-                            >
-                              {part}
-                            </span>
-                          );
-                        })}
-                      </span>
+                      {/* Vertical Glass Stripe — Flush Edge-to-Edge with Red Fade */}
+                      <div className="h-full w-[55px] md:w-[65px] backdrop-blur-2xl bg-white/[0.05] flex items-center justify-center group-hover:bg-brand-red/[0.12] transition-all duration-700 shadow-[0_0_40px_rgba(199,31,36,0.3)] relative overflow-hidden">
+                        {/* More Intense Red Fade Edges */}
+                        <div className="absolute inset-y-0 left-0 w-[4px] bg-gradient-to-r from-brand-red/50 to-transparent" />
+                        <div className="absolute inset-y-0 right-0 w-[4px] bg-gradient-to-l from-brand-red/50 to-transparent" />
+
+                        <span
+                          className="text-white font-display font-black text-[13px] xl:text-[15px] tracking-[0.1em] uppercase whitespace-nowrap text-center group-hover:text-white transition-colors duration-300 drop-shadow-[0_0_12px_rgba(255,255,255,0.7)]"
+                          style={{
+                            writingMode: 'vertical-rl',
+                            wordSpacing: '0.4em'
+                          }}
+                        >
+                          {service.title.split(/(\(.*\))/).map((part, i) => {
+                            const isParen = part.trim().startsWith('(');
+                            return (
+                              <span
+                                key={i}
+                                style={{
+                                  textOrientation: isParen ? 'sideways' : 'upright',
+                                  wordSpacing: isParen ? 'normal' : 'inherit',
+                                  display: 'inline-block',
+                                  ...(isParen ? { transform: 'rotate(-90deg)', margin: '1rem 0' } : {})
+                                }}
+                              >
+                                {part}
+                              </span>
+                            );
+                          })}
+                        </span>
+                      </div>
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -260,7 +267,7 @@ export default function ServiceCardStack() {
               >
                 {/* Background Image — Visible when collapsed */}
                 {!isMobileActive && (
-                  <div 
+                  <div
                     className="absolute inset-0 bg-cover bg-center grayscale opacity-30"
                     style={{ backgroundImage: `url(${service.image})` }}
                   />

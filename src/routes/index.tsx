@@ -128,26 +128,38 @@ function Home() {
       </section>
 
       {/* Who We Are SECTION */}
-      <section className="py-12 md:py-16 bg-white overflow-hidden text-spacing-tight">
+      <section className="py-8 md:py-12 bg-white overflow-hidden">
         <div className="mx-auto max-w-7xl px-6">
-          <div className="text-xs uppercase tracking-[0.4em] text-brand-red font-black mb-4">Struzon Technologies Inc.</div>
-          <h2 className="text-3xl md:text-5xl font-display font-black text-navy uppercase tracking-tightest leading-none mb-12">
+          <div className="text-xs uppercase tracking-[0.4em] text-brand-red font-black mb-2">Struzon Technologies Inc.</div>
+          <h2 className="text-3xl md:text-5xl font-display font-black text-navy uppercase tracking-tightest leading-none mb-8">
             Who <span className="text-brand-red">We Are</span>
           </h2>
 
-          <div className="space-y-12">
-            {/* Massive Lead Text */}
-            <p className="text-navy text-2xl md:text-4xl font-display font-black uppercase leading-[1.1] italic max-w-5xl">
-              Struzon, a trusted structural steel detailing/engineering service partner to the construction industry — market pioneers of engineering, design, and research.
-            </p>
+          <div className="grid md:grid-cols-2 gap-8 lg:gap-16 border-t border-navy/10 pt-8">
+            {/* Left Column */}
+            <div className="space-y-6">
+              <p className="text-navy text-lg md:text-xl leading-relaxed font-bold uppercase tracking-tight">
+                Struzon, a trusted structural steel detailing/engineering service partner to the construction industry — market pioneers of engineering, design, and research.
+              </p>
+              <p className="text-navy/70 text-base md:text-lg leading-relaxed font-medium">
+                Our work integrates with steel detailing, connection design/stamping for structural, miscellaneous detailing, and BIM (Building Information Modeling) services. We help with the structure, expansion, alteration, and revamp of new and existing constructions.
+              </p>
+              <p className="text-navy/70 text-base md:text-lg leading-relaxed font-medium">
+                Our team of fully qualified engineers has a wealth of experience in all aspects of structural design, detailing, and steelwork fabrication requirements. With an ongoing commitment to invest in our staff, we are well positioned to detail every project.
+              </p>
+            </div>
 
-            {/* Supporting Detail Grid */}
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-8 text-navy/70 text-sm md:text-base leading-relaxed font-medium">
-              <p>Our work integrates with steel detailing, connection design/stamping for structural, miscellaneous detailing, and BIM (Building Information Modeling) services. We help with the structure, expansion, alteration, and revamp of new and existing constructions.</p>
-              <p>Our team of fully qualified engineers has a wealth of experience in all aspects of structural design, detailing, and steelwork fabrication requirements. With an ongoing commitment to invest in our staff, we are well positioned to detail every project.</p>
-              <p>With our strong international presence in key sectors, Struzon drives the evolution of digital information modeling. Our brand is recognized as a global leader within the structural steel detailing industry.</p>
-              <p>A diverse company with an outstanding reputation for detailing complex, time-sensitive projects while delivering superior quality and a cost-effective solution.</p>
-              <p>We have been increasing current standards in the matter of transmission of impeccable building structures. Our simple, and very solid administrations have figured out how to win numerous hearts.</p>
+            {/* Right Column */}
+            <div className="space-y-6">
+              <p className="text-navy/70 text-base md:text-lg leading-relaxed font-medium">
+                With our strong international presence in key sectors, Struzon drives the evolution of digital information modeling. Our brand is recognized as a global leader within the structural steel detailing industry.
+              </p>
+              <p className="text-navy/70 text-base md:text-lg leading-relaxed font-medium">
+                A diverse company with an outstanding reputation for detailing complex, time-sensitive projects while delivering superior quality and a cost-effective solution.
+              </p>
+              <p className="text-navy/70 text-base md:text-lg leading-relaxed font-medium">
+                We have been increasing current standards in the matter of transmission of impeccable building structures. Our simple, and very solid administrations have figured out how to win numerous hearts.
+              </p>
             </div>
           </div>
 
@@ -208,7 +220,7 @@ function Home() {
 
       {/* CTA SECTION */}
       <section className="relative bg-navy text-white py-20 lg:py-32 overflow-hidden">
-        <div className="absolute inset-0 opacity-10 grayscale" style={{ backgroundImage: `url(${imgP4})` }} />
+        <div className="absolute inset-0 opacity-10 grayscale bg-cover bg-center bg-no-repeat" style={{ backgroundImage: `url(${imgP4})` }} />
         <div className="relative mx-auto max-w-4xl px-6 text-center">
           <div className="text-xs uppercase tracking-[0.4em] text-brand-red font-black mb-6">Ready to Build?</div>
           <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-display font-black uppercase leading-[1.1] md:leading-[0.9] tracking-tighter mb-8">Seeking a better <br /> detailing solution?</h2>

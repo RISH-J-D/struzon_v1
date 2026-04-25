@@ -40,20 +40,20 @@ export default function LicensedPartners() {
   }, []);
 
   return (
-    <div ref={containerRef} className="mt-12 pt-12 border-t border-navy/5 px-4">
-      <div className="text-[10px] uppercase tracking-[0.4em] text-navy/40 font-black mb-12 text-center">Licensed Partners</div>
+    <div ref={containerRef} className="mt-8 pt-8 border-t border-navy/5 px-4 w-full">
+      <div className="text-xl md:text-2xl uppercase tracking-[0.5em] text-brand-red font-black mb-8 text-center">Licensed Partners</div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-3 md:flex md:flex-row md:flex-wrap justify-center items-center gap-x-8 gap-y-12 md:gap-20">
+      <div className="flex flex-col md:flex-row flex-nowrap justify-center items-center gap-12 md:gap-16 lg:gap-24 overflow-x-hidden md:overflow-visible">
         {partners.map((p) => (
-          <div key={p.name} className="partner-logo group flex flex-col items-center gap-3">
-            <div className="relative w-16 sm:w-20 md:w-24 aspect-video flex items-center justify-center">
+          <div key={p.name} className="partner-logo group flex flex-col items-center gap-4 flex-shrink-0">
+            <div className="relative w-44 sm:w-52 lg:w-60 aspect-video flex items-center justify-center">
               <img
                 src={p.img}
                 alt={p.name}
-                className="w-full h-full object-contain transition-all duration-500 drop-shadow-md group-hover:drop-shadow-xl group-hover:scale-110"
+                className="w-full h-full object-contain transition-all duration-700 drop-shadow-xl group-hover:drop-shadow-2xl group-hover:scale-110"
               />
             </div>
-            <span className="text-[10px] font-black uppercase tracking-widest text-navy/40 group-hover:text-navy transition-colors duration-500 text-center">
+            <span className="text-sm md:text-base font-black uppercase tracking-[0.2em] text-navy/50 group-hover:text-brand-red transition-colors duration-500 text-center whitespace-nowrap">
               {p.name}
             </span>
           </div>
