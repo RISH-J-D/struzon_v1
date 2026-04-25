@@ -1,0 +1,164 @@
+import { createLazyFileRoute } from "@tanstack/react-router";
+import { PageShell, PageHero } from "@/components/PageShell";
+import { useState } from "react";
+import { Mail, Phone, MapPin, Upload } from "lucide-react";
+import { toast } from "sonner";
+
+export const Route = createLazyFileRoute("/contact")({
+  component: Contact,
+});
+
+const offices = [
+  {
+    c: "USA",
+    flag: "🇺🇸",
+    name: "STRUZON TECHNOLOGIES INC.",
+    address: "98, Cuttermill Road, Suite 466 S, Great Neck, NY 11021",
+    phones: ["+1 (646) 992-3825", "+1 (404) 902-6781"]
+  },
+  {
+    c: "INDIA",
+    flag: "🇮🇳",
+    name: "STRUZON TECHNOLOGIES PVT LTD.",
+    address: "2/370/A3, Muthuram Garden, Krishna Gounder Nagar, Irugur Road, Chinniampalayam, Coimbatore- 641062.",
+    phones: ["0422 2307777", "0422 2367777", "+91 6385828777"]
+  },
+];
+
+function Contact() {
+  const [sent, setSent] = useState(false);
+
+  return (
+    <PageShell>
+      <PageHero
+        eyebrow="Let's Talk"
+        title="Let's get in touch."
+        subtitle="Every enquiry is an opportunity to create value, and at Struzon, we approach it with the attention it deserves."
+      />
+      <section className="py-20 bg-background">
+        <div className="mx-auto max-w-7xl px-6 grid gap-16 lg:grid-cols-2">
+          <div>
+            <div className="text-sm uppercase tracking-[0.3em] text-brand-red font-semibold mb-6">Reach Our Team</div>
+            <div className="prose prose-slate max-w-none text-navy/80 space-y-6 text-lg leading-relaxed mb-12">
+              <p>Every enquiry is an opportunity to create value, and at Struzon, we approach it with the attention it deserves. Our team carefully evaluates each requirement to provide well-structured, competitive quotations that align with your project goals. We strongly believe that <span className="text-brand-red font-bold">"a competitive quote will make our customer competitive among others."</span></p>
+              <p>Whether you are planning a new project, require detailing support, or are exploring our range of services, we are here to assist you at every step. Simply share your requirements through the contact form, and our team will respond with clarity, precision, and promptness.</p>
+              <p>For immediate assistance, feel free to connect with us directly. At Struzon, we are always ready to support your needs and build lasting partnerships through reliable service and professional excellence.</p>
+            </div>
+            <div className="space-y-10">
+              {offices.map((o) => (
+                <div key={o.c} className="border-l-4 border-brand-red pl-6 py-2">
+                  <div className="flex items-center gap-3 mb-4">
+                    <span className="text-3xl">{o.flag}</span>
+                    <div className="text-xl uppercase font-display font-black text-navy tracking-tight">{o.c}</div>
+                  </div>
+                  <div className="space-y-4">
+                    <div>
+                      <div className="text-sm font-bold text-navy uppercase mb-1">{o.name}</div>
+                      <div className="flex items-start gap-3 text-muted-foreground">
+                        <MapPin className="h-5 w-5 text-brand-red shrink-0 mt-0.5" />
+                        <span className="text-base leading-snug">{o.address}</span>
+                      </div>
+                    </div>
+                    <div className="grid gap-3 sm:grid-cols-2">
+                      {o.phones.map((p) => (
+                        <a key={p} href={`tel:${p.replace(/\s/g, "")}`} className="flex items-center gap-3 text-base text-navy font-semibold hover:text-brand-red transition-colors group">
+                          <div className="h-8 w-8 rounded-full bg-muted flex items-center justify-center group-hover:bg-brand-red/10">
+                            <Phone className="h-4 w-4 text-brand-red" />
+                          </div>
+                          {p}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+              ))}
+              <div className="pt-6 border-t border-navy/10">
+                <a href="mailto:info@struzon.com" className="flex items-center gap-4 group w-fit">
+                  <div className="h-12 w-12 rounded-full bg-navy flex items-center justify-center group-hover:bg-brand-red transition-all shadow-lg">
+                    <Mail className="h-6 w-6 text-white" />
+                  </div>
+                  <div>
+                    <div className="text-xs uppercase tracking-widest text-muted-foreground font-bold">Email Address</div>
+                    <div className="text-xl font-display font-bold text-navy group-hover:text-brand-red transition-colors">info@struzon.com</div>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
+          <div className="bg-muted p-8 md:p-12 border-t-8 border-brand-red shadow-2xl relative">
+            <div className="absolute top-0 right-0 w-24 h-24 bg-brand-red/5 -m-4 rounded-full blur-3xl" />
+            <h2 className="text-3xl font-display font-black uppercase text-navy border-b-2 border-brand-red pb-4 mb-8">Project Enquiry</h2>
+            {sent ? (
+              <div className="mt-8 border-2 border-brand-red bg-white p-8 text-center rounded-xl shadow-inner">
+                <div className="text-3xl font-display font-black uppercase text-brand-red mb-2">Enquiry Sent</div>
+                <p className="text-navy font-medium">Your request for a <strong>website quote</strong> has been transmitted. Srinath (srinath.v32197@gmail.com) will respond within one business day.</p>
+              </div>
+            ) : (
+              <form
+                onSubmit={async (e) => {
+                  e.preventDefault();
+                  const formData = new FormData(e.currentTarget);
+                  const data = Object.fromEntries(formData.entries());
+                  toast.loading("Sending your quote request...", { duration: 3000 });
+                  setTimeout(() => {
+                    toast.success("Quote request sent to Srinath!");
+                    setSent(true);
+                  }, 3000);
+                }}
+                className="space-y-6"
+              >
+                <div className="grid sm:grid-cols-2 gap-6">
+                  {[
+                    { n: "name", l: "Name", t: "text" },
+                    { n: "email", l: "Email", t: "email" },
+                    { n: "company", l: "Company", t: "text" },
+                    { n: "phone", l: "Phone Number", t: "tel" },
+                  ].map((f) => (
+                    <div key={f.n}>
+                      <label className="text-[10px] uppercase tracking-[0.2em] text-navy font-black mb-2 block">{f.l} *</label>
+                      <input required type={f.t} name={f.n} className="w-full border-b-2 border-navy/10 bg-transparent px-0 py-3 outline-none transition-all focus:border-brand-red focus:bg-white/50" />
+                    </div>
+                  ))}
+                </div>
+                <div>
+                  <label className="text-[10px] uppercase tracking-[0.2em] text-navy font-black mb-2 block">Tell us about your project *</label>
+                  <textarea required name="project" rows={5} className="w-full resize-none border-b-2 border-navy/10 bg-transparent px-0 py-3 outline-none transition-all focus:border-brand-red focus:bg-white/50" />
+                </div>
+                <div>
+                  <label className="text-[10px] uppercase tracking-[0.2em] text-navy font-black mb-2 block">Project Files (JPG, PNG, PDF)</label>
+                  <div className="relative group/file">
+                    <input
+                      type="file"
+                      multiple
+                      accept=".jpg,.jpeg,.png,.pdf"
+                      className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                      onChange={(e) => {
+                        const files = e.target.files;
+                        if (files && files.length > 0) {
+                          const label = document.getElementById('file-label');
+                          if (label) label.textContent = `${files.length} file(s) selected`;
+                        }
+                      }}
+                    />
+                    <div className="border-2 border-dashed border-navy/10 rounded-lg p-8 flex flex-col items-center justify-center gap-3 transition-all group-hover/file:border-brand-red group-hover/file:bg-brand-red/5 bg-white/50">
+                      <div className="h-12 w-12 rounded-full bg-navy/5 flex items-center justify-center group-hover/file:bg-brand-red/10 transition-colors">
+                        <Upload className="h-6 w-6 text-navy/30 group-hover/file:text-brand-red transition-colors" />
+                      </div>
+                      <div className="text-center">
+                        <span id="file-label" className="text-navy/60 text-sm font-medium block">Click or drag files to upload</span>
+                        <span className="text-navy/30 text-[10px] uppercase tracking-wider block mt-1">Maximum 10MB per file</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <button type="submit" className="w-full bg-brand-red py-5 px-8 font-display uppercase tracking-widest text-white font-black text-sm hover:bg-brand-red-dark transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 active:translate-y-0">
+                  Submit Enquiry →
+                </button>
+              </form>
+            )}
+          </div>
+        </div>
+      </section>
+    </PageShell>
+  );
+}

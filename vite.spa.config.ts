@@ -5,7 +5,7 @@ import tailwindcss from '@tailwindcss/vite'
 import path from 'path'
 
 export default defineConfig({
-  base: '/struzon_v1/',
+  base: '/',
   plugins: [
     react(), 
     tailwindcss(),
