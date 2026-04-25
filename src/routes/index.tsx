@@ -53,14 +53,14 @@ function Home() {
         />
         <div className="absolute inset-0 bg-gradient-to-r from-navy/90 via-navy/40 to-transparent" />
 
-        <div className="relative mx-auto max-w-7xl px-6 w-full py-24 md:py-32 lg:py-40 z-10">
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+        <div className="relative mx-auto max-w-[1800px] px-6 w-full py-24 md:py-32 lg:py-40 z-10">
+          <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-center">
             {/* Text Content Area */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="text-center lg:text-left z-20"
+              className="text-center lg:text-left z-20 lg:col-span-5"
             >
               <div className="text-xs md:text-sm uppercase tracking-[0.4em] text-brand-red font-black mb-4 drop-shadow">Struzon Technologies Inc.</div>
               <h1 className="text-white text-[clamp(2.2rem,6vw,4.5rem)] font-display font-black shadow-white uppercase tracking-tightest leading-[0.9] mb-6">
@@ -85,12 +85,12 @@ function Home() {
               </div>
             </motion.div>
 
-            {/* Video Content Area — Integrated into Grid to prevent overlap */}
+            {/* Video Content Area — Substantially Increased Size */}
             <motion.div
-              initial={{ opacity: 0, scale: 0.9, x: 50 }}
+              initial={{ opacity: 0, scale: 0.85, x: 80 }}
               animate={{ opacity: 1, scale: 1, x: 0 }}
-              transition={{ delay: 0.3, duration: 1 }}
-              className="relative w-full aspect-video z-20 rounded-2xl md:rounded-[2.5rem] overflow-hidden border-4 border-white/20 shadow-[0_0_80px_rgba(31,58,95,0.4)] bg-navy"
+              transition={{ delay: 0.3, duration: 1, ease: [0.22, 1, 0.36, 1] }}
+              className="relative w-full aspect-video z-30 lg:col-span-7 rounded-2xl md:rounded-[3rem] overflow-hidden border-[6px] border-white/10 shadow-[0_40px_100px_rgba(0,0,0,0.6)] bg-navy"
             >
               <video
                 src={vdoHome}
@@ -98,10 +98,10 @@ function Home() {
                 muted
                 loop
                 playsInline
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover scale-105"
               />
-              <div className="absolute inset-0 bg-navy/10 pointer-events-none" />
-              <div className="absolute inset-0 border border-white/10 rounded-2xl md:rounded-[2.5rem] pointer-events-none" />
+              <div className="absolute inset-0 bg-navy/5 pointer-events-none" />
+              <div className="absolute inset-0 border border-white/10 rounded-2xl md:rounded-[3rem] pointer-events-none" />
             </motion.div>
           </div>
         </div>

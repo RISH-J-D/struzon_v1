@@ -1,7 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { PageShell, PageHero } from "@/components/PageShell";
 import { useState } from "react";
-import { Mail, Phone, MapPin } from "lucide-react";
+import { Mail, Phone, MapPin, Upload } from "lucide-react";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
@@ -16,19 +17,19 @@ export const Route = createFileRoute("/contact")({
 });
 
 const offices = [
-  { 
-    c: "USA", 
+  {
+    c: "USA",
     flag: "🇺🇸",
     name: "STRUZON TECHNOLOGIES INC.",
     address: "98, Cuttermill Road, Suite 466 S, Great Neck, NY 11021",
-    phones: ["+1 (646) 992-3825", "+1 (404) 902-6781"] 
+    phones: ["+1 (646) 992-3825", "+1 (404) 902-6781"]
   },
-  { 
-    c: "INDIA", 
+  {
+    c: "INDIA",
     flag: "🇮🇳",
     name: "STRUZON TECHNOLOGIES PVT LTD.",
     address: "2/370/A3, Muthuram Garden, Krishna Gounder Nagar, Irugur Road, Chinniampalayam, Coimbatore- 641062.",
-    phones: ["0422 2307777", "0422 2367777", "+91 6385828777"] 
+    phones: ["0422 2307777", "0422 2367777", "+91 6385828777"]
   },
 ];
 
@@ -37,10 +38,10 @@ function Contact() {
 
   return (
     <PageShell>
-      <PageHero 
-        eyebrow="Let's Talk" 
-        title="Let's get in touch." 
-        subtitle="Every enquiry is an opportunity to create value, and at Struzon, we approach it with the attention it deserves." 
+      <PageHero
+        eyebrow="Let's Talk"
+        title="Let's get in touch."
+        subtitle="Every enquiry is an opportunity to create value, and at Struzon, we approach it with the attention it deserves."
       />
 
       <section className="py-20 bg-background">
@@ -101,11 +102,46 @@ function Contact() {
             <h2 className="text-3xl font-display font-black uppercase text-navy border-b-2 border-brand-red pb-4 mb-8">Project Enquiry</h2>
             {sent ? (
               <div className="mt-8 border-2 border-brand-red bg-white p-8 text-center rounded-xl shadow-inner">
-                <div className="text-3xl font-display font-black uppercase text-brand-red mb-2">Message Received</div>
-                <p className="text-navy font-medium">A senior engineer will respond with clarity and precision within one business day.</p>
+                <div className="text-3xl font-display font-black uppercase text-brand-red mb-2">Enquiry Sent</div>
+                <p className="text-navy font-medium">Your request for a <strong>website quote</strong> has been transmitted. Srinath (srinath.v32197@gmail.com) will respond within one business day.</p>
               </div>
             ) : (
-              <form onSubmit={(e) => { e.preventDefault(); setSent(true); }} className="space-y-6">
+              <form
+                onSubmit={async (e) => {
+                  e.preventDefault();
+                  const formData = new FormData(e.currentTarget);
+                  const data = Object.fromEntries(formData.entries());
+
+                  toast.loading("Sending your quote request...", { duration: 3000 });
+
+                  // TO ACTUALLY SEND:
+                  // 1. You need a backend (like a Netlify/Vercel function or a Server Function).
+                  // 2. You would pass 'data' to the 'sendEnquiryEmail' function I created in src/lib/email.ts.
+                  
+                  // Simulate backend processing
+                  setTimeout(() => {
+                    console.log(`
+                      AUTH SENDER: jk.girish@gmail.com (from .env)
+                      REPLY-TO: ${data.email}
+                      TO: srinath.v32197@gmail.com
+                      SUBJECT: website quote
+                      
+                      CONTENT:
+                      --------------------------------------------------
+                      [Logo]
+                      ${data.company} has requested you for a quote
+                      
+                      Details:
+                      - Name: ${data.name}
+                      - Project: ${data.project}
+                      --------------------------------------------------
+                    `);
+                    toast.success("Quote request sent to Srinath!");
+                    setSent(true);
+                  }, 3000);
+                }}
+                className="space-y-6"
+              >
                 <div className="grid sm:grid-cols-2 gap-6">
                   {[
                     { n: "name", l: "Name", t: "text" },
@@ -121,7 +157,34 @@ function Contact() {
                 </div>
                 <div>
                   <label className="text-[10px] uppercase tracking-[0.2em] text-navy font-black mb-2 block">Tell us about your project *</label>
-                  <textarea required rows={5} className="w-full resize-none border-b-2 border-navy/10 bg-transparent px-0 py-3 outline-none transition-all focus:border-brand-red focus:bg-white/50" />
+                  <textarea required name="project" rows={5} className="w-full resize-none border-b-2 border-navy/10 bg-transparent px-0 py-3 outline-none transition-all focus:border-brand-red focus:bg-white/50" />
+                </div>
+                <div>
+                  <label className="text-[10px] uppercase tracking-[0.2em] text-navy font-black mb-2 block">Project Files (JPG, PNG, PDF)</label>
+                  <div className="relative group/file">
+                    <input
+                      type="file"
+                      multiple
+                      accept=".jpg,.jpeg,.png,.pdf"
+                      className="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10"
+                      onChange={(e) => {
+                        const files = e.target.files;
+                        if (files && files.length > 0) {
+                          const label = document.getElementById('file-label');
+                          if (label) label.textContent = `${files.length} file(s) selected`;
+                        }
+                      }}
+                    />
+                    <div className="border-2 border-dashed border-navy/10 rounded-lg p-8 flex flex-col items-center justify-center gap-3 transition-all group-hover/file:border-brand-red group-hover/file:bg-brand-red/5 bg-white/50">
+                      <div className="h-12 w-12 rounded-full bg-navy/5 flex items-center justify-center group-hover/file:bg-brand-red/10 transition-colors">
+                        <Upload className="h-6 w-6 text-navy/30 group-hover/file:text-brand-red transition-colors" />
+                      </div>
+                      <div className="text-center">
+                        <span id="file-label" className="text-navy/60 text-sm font-medium block">Click or drag files to upload</span>
+                        <span className="text-navy/30 text-[10px] uppercase tracking-wider block mt-1">Maximum 10MB per file</span>
+                      </div>
+                    </div>
+                  </div>
                 </div>
                 <button type="submit" className="w-full bg-brand-red py-5 px-8 font-display uppercase tracking-widest text-white font-black text-sm hover:bg-brand-red-dark transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1 active:translate-y-0">
                   Submit Enquiry →

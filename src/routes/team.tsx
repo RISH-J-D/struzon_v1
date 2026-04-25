@@ -126,14 +126,14 @@ function TeamPage() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
           <div className="space-y-4">
             {member.bio.slice(0, Math.ceil(member.bio.length / 2)).map((para, i) => (
-              <p key={i} className="text-sm leading-relaxed text-white/80 font-sans">
+              <p key={i} className="text-lg leading-relaxed text-white/80 font-sans">
                 {para}
               </p>
             ))}
           </div>
           <div className="space-y-4">
             {member.bio.slice(Math.ceil(member.bio.length / 2)).map((para, i) => (
-              <p key={i} className="text-sm leading-relaxed text-white/80 font-sans md:border-l md:border-white/10 md:pl-6">
+              <p key={i} className="text-lg leading-relaxed text-white/80 font-sans md:border-l md:border-white/10 md:pl-6">
                 {para}
               </p>
             ))}

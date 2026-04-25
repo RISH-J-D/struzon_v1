@@ -157,8 +157,8 @@ function About() {
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-start">
 
             <div className="lg:col-span-12">
-              <div className="text-[10px] uppercase tracking-[0.4em] text-brand-red font-black mb-4">Who We Are</div>
-              <h2 className="text-4xl md:text-7xl font-display font-black text-navy uppercase tracking-tightest leading-[0.8] mb-16">
+              <div className="text-[50px] uppercase tracking-[0.1em] text-brand-red font-black mb-10">Who We Are</div>
+              <h2 className="text-4xl md:text-5xl font-display font-black text-navy uppercase tracking-tightest leading-[1.2] mb-12">
                 Specialized Detailing <br />
                 <span className="text-brand-red">Excellence</span>
               </h2>

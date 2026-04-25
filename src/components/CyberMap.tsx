@@ -136,8 +136,8 @@ const CyberMap: React.FC = () => {
         <div className="flex flex-wrap justify-center gap-4 md:gap-6 mt-6 md:mt-8">
           {[
             { value: '5', label: 'Global Offices' },
-            { value: '250+', label: 'Clients Served' },
-            { value: '1,200+', label: 'Projects Delivered' },
+            { value: '45+', label: 'Clients Served' },
+            { value: '1,500+', label: 'Projects Delivered' },
           ].map((s) => (
             <div key={s.label} className="text-center min-w-[100px] md:min-w-0">
               <div
