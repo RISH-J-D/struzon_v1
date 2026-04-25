@@ -106,7 +106,7 @@ export default function ServiceCardStack() {
       <div className="mx-auto max-w-[1700px] w-full">
         {/* Horizontal Accordion Container */}
         <div
-          className="hidden lg:flex flex-row h-[clamp(600px,70vh,850px)] gap-4"
+          className="hidden lg:flex flex-row h-[clamp(750px,85vh,1000px)] gap-4"
           onMouseLeave={() => setActiveIndex(null)}
         >
           {services.map((service, index) => {
@@ -143,19 +143,31 @@ export default function ServiceCardStack() {
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       exit={{ opacity: 0 }}
-                      className="absolute inset-0 flex items-center justify-center"
+                      className="absolute inset-0 flex items-center justify-center pointer-events-none"
                     >
                       <span
-                        className="text-white font-black text-[15px] tracking-[0.2em] uppercase scale-x-200 inline-block"
+                        className="text-white font-display font-black text-[17px] xl:text-[18px] tracking-[0.1em] uppercase whitespace-nowrap text-center group-hover:text-brand-red transition-colors duration-300"
                         style={{
-                          fontFamily: 'Arial, sans-serif',
-                          fontWeight: 900,
                           writingMode: 'vertical-rl',
-                          textOrientation: 'upright',
                           wordSpacing: '1.2em'
                         }}
                       >
-                        {service.title}
+                        {service.title.split(/(\(.*\))/).map((part, i) => {
+                          const isParen = part.trim().startsWith('(');
+                          return (
+                            <span 
+                              key={i} 
+                              style={{ 
+                                textOrientation: isParen ? 'sideways' : 'upright',
+                                wordSpacing: isParen ? 'normal' : 'inherit',
+                                display: 'inline-block',
+                                ...(isParen ? { transform: 'rotate(-90deg)', margin: '1rem 0' } : {})
+                              }}
+                            >
+                              {part}
+                            </span>
+                          );
+                        })}
                       </span>
                     </motion.div>
                   )}
@@ -163,13 +175,13 @@ export default function ServiceCardStack() {
 
                 {/* Active Card Content */}
                 <motion.div
-                  className={`h-full w-full flex flex-col p-8 xl:p-14 overflow-hidden transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
+                  className={`h-full w-full flex flex-col p-8 xl:p-10 overflow-hidden transition-opacity duration-300 ${isActive ? 'opacity-100' : 'opacity-0 pointer-events-none'}`}
                 >
                   {/* 1. Header Bar */}
-                  <div className="flex justify-between items-center mb-4 shrink-0">
+                  <div className="flex justify-between items-center mb-3 shrink-0">
                     <div className="flex items-center gap-4">
                       <div className="h-[2px] w-12 bg-brand-red" />
-                      <div className="text-[10px] font-black text-brand-red uppercase tracking-[0.2em]">{service.subLabel}</div>
+                      <div className="text-xs font-black text-brand-red uppercase tracking-[0.3em]">{service.subLabel}</div>
                     </div>
                     <div className="text-right">
                       <div className="text-[8px] font-bold text-navy/30 uppercase tracking-widest">LOD 400 • QUALITY VERIFIED</div>
@@ -177,7 +189,7 @@ export default function ServiceCardStack() {
                   </div>
 
                   {/* 2. Main Large Title */}
-                  <div className="mb-6 shrink-0">
+                  <div className="mb-4 shrink-0">
                     <h2 className="text-3xl xl:text-5xl font-display font-black text-navy leading-[0.9] tracking-tighter uppercase max-w-4xl">
                       {service.title}
                     </h2>
@@ -186,7 +198,7 @@ export default function ServiceCardStack() {
                   {/* 3. Balanced Grid (Image & Text) */}
                   <div className="flex flex-row gap-8 xl:gap-14 items-start flex-1 min-h-0">
                     {/* Image Frame */}
-                    <div className="w-[45%] h-full relative rounded-3xl overflow-hidden shadow-2xl shrink-0 group/img">
+                    <div className="w-[42%] h-full relative rounded-3xl overflow-hidden shadow-2xl shrink-0 group/img">
                       <img
                         src={service.image}
                         alt={service.title}
@@ -196,25 +208,26 @@ export default function ServiceCardStack() {
                     </div>
 
                     {/* Content Area */}
-                    <div className="flex-1 flex flex-col h-full py-1">
-                      <div className="flex-1 space-y-6 pr-4">
+                    <div className="flex-1 flex flex-col h-full">
+                      {/* Description Area with Scroll Support */}
+                      <div className="flex-1 space-y-6 pr-6 overflow-y-auto custom-scrollbar pt-1">
                         <div className="border-l-[6px] border-brand-red pl-8">
-                          <p className="text-navy text-lg xl:text-2xl font-display font-medium leading-[1.2] italic">
+                          <p className="text-navy text-lg xl:text-xl font-display font-medium leading-[1.2] italic">
                             "{service.description[0]}"
                           </p>
                         </div>
-                        <div className="space-y-4 text-navy/70 text-[13px] xl:text-lg leading-relaxed font-medium">
+                        <div className="space-y-4 text-navy/70 text-[13px] xl:text-base leading-relaxed font-medium">
                           <p>{service.description[1]}</p>
                           <p>{service.description[2]}</p>
                         </div>
                       </div>
 
                       {/* Integrated Buttons Tier */}
-                      <div className="flex flex-wrap items-center gap-4 mt-8 shrink-0">
+                      <div className="flex flex-wrap items-center gap-4 mt-6 pt-4 border-t border-navy/5 shrink-0">
                         {service.tags.map((tag, tIndex) => (
                           <button
                             key={tIndex}
-                            className={`px-10 py-4 rounded-xl text-[10px] font-display font-black uppercase tracking-widest transition-all
+                            className={`px-8 py-3.5 rounded-xl text-[9px] font-display font-black uppercase tracking-widest transition-all
                                   ${tIndex === 0 ? 'bg-navy text-white shadow-xl hover:-translate-y-1' : 'bg-brand-red text-white shadow-xl hover:-translate-y-1'}`}
                           >
                             {tag}
@@ -224,79 +237,105 @@ export default function ServiceCardStack() {
                     </div>
                   </div>
 
-                  {/* 4. Bottom Footer Decoration */}
-                  <div className="mt-10 pt-6 border-t border-navy/10 flex justify-between items-center opacity-30 shrink-0">
-                    <div className="text-[9px] font-black uppercase tracking-[0.5em] text-navy">STRUZON_{service.title.split(' ')[0]}_DESIGN_VR_24</div>
-                    <div className="flex items-center gap-12">
-                      <ChevronLeft size={28} className="cursor-pointer hover:text-brand-red" />
-                      <div className="w-12 h-[1px] bg-navy/40" />
-                      <ChevronRight size={28} className="cursor-pointer hover:text-brand-red" />
-                    </div>
-                  </div>
+                  {/* Footer removed per user request */}
                 </motion.div>
               </motion.div>
             );
           })}
         </div>
 
-        {/* Mobile View — Premium Card List */}
-        <div className="lg:hidden flex flex-col gap-12 py-10">
-          {services.map((service, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              className="bg-white rounded-[2.5rem] shadow-[0_20px_50px_rgba(31,58,95,0.08)] border border-navy/5 overflow-hidden flex flex-col"
-            >
-              {/* Image Section */}
-              <div className="relative h-64 sm:h-72 w-full overflow-hidden">
-                <img
-                  src={service.image}
-                  alt={service.title}
-                  className="w-full h-full object-cover"
-                />
-                <div className="absolute inset-0 bg-navy/10" />
-                <div className="absolute top-6 left-6 flex items-center gap-3">
-                  <div className="h-[2px] w-8 bg-brand-red shadow-[0_0_10px_rgba(200,32,46,0.5)]" />
-                  <div className="text-[10px] font-black text-white uppercase tracking-widest drop-shadow-md">{service.subLabel}</div>
-                </div>
-              </div>
+        {/* Mobile / Tablet View — Premium Vertical Accordion */}
+        <div className="lg:hidden flex flex-col gap-6 py-10">
+          {services.map((service, i) => {
+            const isMobileActive = activeIndex === i;
+            return (
+              <motion.div
+                key={i}
+                layout
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                onClick={() => setActiveIndex(isMobileActive ? null : i)}
+                className={`relative rounded-[2.5rem] overflow-hidden transition-all duration-500 ${isMobileActive ? 'bg-white shadow-2xl border-brand-red/20' : 'bg-navy shadow-lg'}`}
+              >
+                {/* Background Image — Visible when collapsed */}
+                {!isMobileActive && (
+                  <div 
+                    className="absolute inset-0 bg-cover bg-center grayscale opacity-30"
+                    style={{ backgroundImage: `url(${service.image})` }}
+                  />
+                )}
 
-              {/* Content Section */}
-              <div className="p-8 sm:p-10 flex flex-col">
-                <h3 className="text-2xl sm:text-3xl font-display font-black text-navy uppercase leading-tight mb-6 tracking-tighter">
-                  {service.title}
-                </h3>
-
-                <div className="border-l-4 border-brand-red pl-6 mb-6">
-                  <p className="text-navy text-base font-bold leading-snug italic tracking-tight">
-                    "{service.description[0]}"
-                  </p>
-                </div>
-
-                <div className="space-y-4 text-navy/60 text-xs sm:text-sm leading-relaxed font-medium mb-8">
-                  <p>{service.description[1]}</p>
-                  <p>{service.description[2]}</p>
-                </div>
-
-                <div className="flex flex-wrap gap-3 mt-auto">
-                  {service.tags.map((tag, tIndex) => (
-                    <div
-                      key={tIndex}
-                      className="bg-slate-50 border border-navy/5 text-navy px-5 py-2.5 rounded-xl text-[9px] font-black uppercase tracking-widest"
-                    >
-                      {tag}
+                {/* Header — Always Visible */}
+                <div className={`relative p-8 flex items-center justify-between cursor-pointer z-10 ${isMobileActive ? 'text-navy' : 'text-white'}`}>
+                  <div className="flex flex-col gap-1">
+                    <div className="flex items-center gap-3">
+                      <div className="h-[1.5px] w-6 bg-brand-red" />
+                      <div className={`text-[9px] font-black uppercase tracking-widest ${isMobileActive ? 'text-navy/40' : 'text-white/60'}`}>{service.subLabel}</div>
                     </div>
-                  ))}
+                    <h3 className={`text-xl sm:text-2xl font-display font-black uppercase leading-tight tracking-tighter ${isMobileActive ? 'text-navy' : 'text-white'}`}>
+                      {service.title}
+                    </h3>
+                  </div>
+                  <div className={`h-10 w-10 rounded-full flex items-center justify-center transition-all duration-500 ${isMobileActive ? 'bg-brand-red text-white rotate-180' : 'bg-white/10 text-white'}`}>
+                    <ChevronRight size={20} className={isMobileActive ? 'rotate-90' : ''} />
+                  </div>
                 </div>
 
-                <button className="mt-10 flex items-center justify-center gap-3 w-full bg-navy text-white py-4 rounded-full text-xs font-black uppercase tracking-widest hover:bg-brand-red transition-colors shadow-lg shadow-navy/20">
-                  Learn More <ArrowUpRight size={16} />
-                </button>
-              </div>
-            </motion.div>
-          ))}
+                {/* Collapsible Content */}
+                <AnimatePresence>
+                  {isMobileActive && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: 'auto', opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-8 pb-10 flex flex-col">
+                        {/* Image Section */}
+                        <div className="relative h-56 sm:h-72 w-full overflow-hidden rounded-2xl mb-8">
+                          <img
+                            src={service.image}
+                            alt={service.title}
+                            className="w-full h-full object-cover"
+                          />
+                          <div className="absolute inset-0 bg-navy/5" />
+                        </div>
+
+                        {/* Text Content */}
+                        <div className="border-l-4 border-brand-red pl-6 mb-6">
+                          <p className="text-navy text-base font-bold leading-snug italic tracking-tight">
+                            "{service.description[0]}"
+                          </p>
+                        </div>
+
+                        <div className="space-y-4 text-navy/60 text-xs sm:text-sm leading-relaxed font-medium mb-8">
+                          <p>{service.description[1]}</p>
+                          <p>{service.description[2]}</p>
+                        </div>
+
+                        <div className="flex flex-wrap gap-3 mb-8">
+                          {service.tags.map((tag, tIndex) => (
+                            <div
+                              key={tIndex}
+                              className="bg-slate-50 border border-navy/5 text-navy px-4 py-2 rounded-xl text-[9px] font-black uppercase tracking-widest"
+                            >
+                              {tag}
+                            </div>
+                          ))}
+                        </div>
+
+                        <button className="flex items-center justify-center gap-3 w-full bg-navy text-white py-4 rounded-full text-xs font-black uppercase tracking-widest hover:bg-brand-red transition-colors shadow-lg shadow-navy/20">
+                          Get a Detailed Quote <ArrowUpRight size={16} />
+                        </button>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
     </section>

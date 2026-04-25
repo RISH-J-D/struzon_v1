@@ -22,10 +22,9 @@ function Services() {
       <section className="relative overflow-hidden pt-24 pb-12 md:pt-48 md:pb-24 lg:pt-56">
         <div className="absolute inset-0 bg-cover bg-center transition-transform hover:scale-105 duration-[30s]" style={{ backgroundImage: "url(https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=1600&q=80)" }} />
         <div className="absolute inset-0" style={{ backgroundColor: 'rgba(43, 65, 95, 0.64)' }} />
-        <div className="relative mx-auto max-w-7xl px-6 w-full flex flex-col items-center text-center">
-          <div className="text-[10px] sm:text-xs uppercase tracking-[0.5em] text-brand-red font-black mb-4 drop-shadow">Struzon Solutions</div>
-          <h1 className="text-white text-[clamp(2.5rem,10vw,8rem)] font-display font-black uppercase tracking-tightest leading-[0.9] drop-shadow-2xl">
-            Our <span className="text-brand-red">Services</span>
+        <div className="relative mx-auto max-w-7xl px-8 w-full flex flex-col items-start text-left">
+          <h1 className="mt-3 text-white text-3xl sm:text-4xl md:text-6xl font-display font-black uppercase tracking-tighter leading-[0.85] drop-shadow-2xl">
+            Our <span className="text-brand-white">Services</span>
           </h1>
         </div>
       </section>

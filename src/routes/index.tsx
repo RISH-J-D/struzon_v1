@@ -63,7 +63,7 @@ function Home() {
               className="text-center lg:text-left z-20"
             >
               <div className="text-xs md:text-sm uppercase tracking-[0.4em] text-brand-red font-black mb-4 drop-shadow">Struzon Technologies Inc.</div>
-              <h1 className="text-white text-[clamp(2.5rem,7vw,5.5rem)] font-display font-black shadow-white uppercase tracking-tightest leading-[0.9] mb-6">
+              <h1 className="text-white text-[clamp(2.2rem,6vw,4.5rem)] font-display font-black shadow-white uppercase tracking-tightest leading-[0.9] mb-6">
                 Structural <br className="hidden sm:block" />
                 Steel <br className="hidden sm:block" />
                 Detailing & <br className="hidden sm:block" />
@@ -131,13 +131,13 @@ function Home() {
       <section className="py-12 md:py-16 bg-white overflow-hidden text-spacing-tight">
         <div className="mx-auto max-w-7xl px-6">
           <div className="text-xs uppercase tracking-[0.4em] text-brand-red font-black mb-4">Struzon Technologies Inc.</div>
-          <h2 className="text-3xl md:text-6xl font-display font-black text-navy uppercase tracking-tightest leading-none mb-12">
+          <h2 className="text-3xl md:text-5xl font-display font-black text-navy uppercase tracking-tightest leading-none mb-12">
             Who <span className="text-brand-red">We Are</span>
           </h2>
 
           <div className="space-y-12">
             {/* Massive Lead Text */}
-            <p className="text-navy text-2xl md:text-5xl font-display font-black uppercase leading-[1.1] italic max-w-5xl">
+            <p className="text-navy text-2xl md:text-4xl font-display font-black uppercase leading-[1.1] italic max-w-5xl">
               Struzon, a trusted structural steel detailing/engineering service partner to the construction industry — market pioneers of engineering, design, and research.
             </p>
 
@@ -211,7 +211,7 @@ function Home() {
         <div className="absolute inset-0 opacity-10 grayscale" style={{ backgroundImage: `url(${imgP4})` }} />
         <div className="relative mx-auto max-w-4xl px-6 text-center">
           <div className="text-xs uppercase tracking-[0.4em] text-brand-red font-black mb-6">Ready to Build?</div>
-          <h2 className="text-white text-2xl sm:text-3xl md:text-5xl font-display font-black uppercase leading-[1.1] md:leading-[0.9] tracking-tighter mb-8">Seeking a better <br /> detailing solution?</h2>
+          <h2 className="text-white text-2xl sm:text-3xl md:text-4xl font-display font-black uppercase leading-[1.1] md:leading-[0.9] tracking-tighter mb-8">Seeking a better <br /> detailing solution?</h2>
           <p className="mt-4 text-sm md:text-lg text-white/70 max-w-xl mx-auto font-medium">
             Contact the experts at Struzon to explore how we can help you deliver your next project on schedule, with quality and absolute efficiency.
           </p>

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "@tanstack/react-router";
 import logo from "@/assets/struzon-logo.png";
 import icon1 from "@/assets/icons/accurate-designs.png";
 import icon2 from "@/assets/icons/engineered-accuracy.png";
@@ -17,25 +18,40 @@ const INTRO_ICONS = [
 export function Preloader() {
   const [phase, setPhase] = useState(-2); // -2: Star, -1: Merge, 0: ST Center, 1: Slided, 2: Slogan, 3: Exit
   const [isVisible, setIsVisible] = useState(true);
+  const [radius, setRadius] = useState(220);
+  const navigate = useNavigate();
 
   useEffect(() => {
+    // Handle responsive radius
+    const updateRadius = () => {
+      setRadius(window.innerWidth < 640 ? 125 : 220);
+    };
+    updateRadius();
+    window.addEventListener('resize', updateRadius);
+
     const timers = [
       setTimeout(() => setPhase(-1), 2500),  // Start merging icons
       setTimeout(() => setPhase(0), 3200),   // ST Logo Center
       setTimeout(() => setPhase(1), 3800),   // Slide & Reveal
       setTimeout(() => setPhase(2), 4400),   // Slogan
       setTimeout(() => setPhase(3), 5000),   // Exit
-      setTimeout(() => setIsVisible(false), 5500), // Unmount
+      setTimeout(() => {
+        navigate({ to: '/' });
+        setIsVisible(false);
+      }, 5500), // Redirect and Unmount
     ];
 
-    return () => timers.forEach(clearTimeout);
-  }, []);
+    return () => {
+      timers.forEach(clearTimeout);
+      window.removeEventListener('resize', updateRadius);
+    };
+  }, [navigate]);
 
   if (!isVisible) return null;
 
   return (
     <div
-      className={`fixed inset-0 z-[100] flex items-center justify-center preloader-bg transition-opacity duration-500 ${phase === 3 ? "opacity-0 pointer-events-none" : "opacity-100"
+      className={`fixed inset-0 z-[2000] flex items-center justify-center preloader-bg transition-opacity duration-500 ${phase === 3 ? "opacity-0 pointer-events-none" : "opacity-100"
         }`}
     >
       <div className="relative flex flex-col items-center">
@@ -48,7 +64,6 @@ export function Preloader() {
           >
             {INTRO_ICONS.map((icon, idx) => {
               const angle = (idx * 360) / INTRO_ICONS.length - 90; // Upward star
-              const radius = 220; // Distance from center
               return (
                 <div
                   key={icon.label}
@@ -63,13 +78,13 @@ export function Preloader() {
                 >
                   {/* The dynamic rotation-reversal must be on a child to combine with dial-in */}
                   <div
-                    className="flex flex-col items-center gap-2"
+                    className="flex flex-col items-center gap-1 sm:gap-2"
                     style={{ animation: "star-rotation-reverse 15s linear infinite" }}
                   >
-                    <div className="w-20 h-20 bg-white rounded-full p-3 shadow-lg border border-navy/10 flex items-center justify-center">
+                    <div className="w-12 h-12 sm:w-20 sm:h-20 bg-white rounded-full p-2 sm:p-3 shadow-lg border border-navy/10 flex items-center justify-center">
                       <img src={icon.img} alt={icon.label} className="w-full h-full object-contain" />
                     </div>
-                    <span className="text-navy font-display text-xs uppercase tracking-wider font-semibold whitespace-nowrap bg-white/80 px-2 py-1 rounded-md">
+                    <span className="text-navy font-display text-[9px] sm:text-xs uppercase tracking-wider font-semibold whitespace-nowrap bg-white/80 px-1.5 py-0.5 sm:px-2 sm:py-1 rounded-md">
                       {icon.label}
                     </span>
                   </div>

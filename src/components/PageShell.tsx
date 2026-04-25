@@ -36,7 +36,7 @@ export function PageHero({ eyebrow, title, subtitle }: { eyebrow?: string; title
 
       <div className="relative mx-auto max-w-7xl px-6 pt-32 pb-20 md:pt-48 md:pb-28 w-full h-full flex flex-col justify-start">
         {eyebrow && <div className="text-xs sm:text-sm uppercase tracking-[0.3em] text-brand-red font-bold drop-shadow">{eyebrow}</div>}
-        <h1 className="mt-3 text-white text-3xl sm:text-4xl md:text-6xl uppercase font-display font-bold leading-tight drop-shadow-xl">{title}</h1>
+        <h1 className="mt-3 text-white text-3xl sm:text-4xl md:text-6xl uppercase font-display font-black tracking-tighter leading-tight drop-shadow-xl">{title}</h1>
         {subtitle && <p className="mt-5 max-w-2xl text-base sm:text-lg text-white/90 leading-relaxed font-medium drop-shadow">{subtitle}</p>}
       </div>
 

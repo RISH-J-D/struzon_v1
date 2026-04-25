@@ -49,7 +49,7 @@ function SuccessTimeline() {
         <motion.div
           animate={{ boxShadow: ["0 0 0px rgba(255,255,255,0)", "0 0 20px rgba(255,255,255,0.4)", "0 0 0px rgba(255,255,255,0)"] }}
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-          className="relative w-28 h-8 bg-[#1e1b4b] rounded-lg flex items-center justify-center text-white font-black text-lg shadow-2xl z-50 mb-1"
+          className="relative w-28 h-8 bg-[#1e1b4b] rounded-lg flex items-center justify-center text-white font-black text-lg shadow-2xl z-50 mb-1 -ml-16 md:ml-0"
         >
           2026
         </motion.div>
@@ -91,9 +91,9 @@ function SuccessTimeline() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: i * 0.05 }}
-              className={`flex items-center w-full min-h-[120px] ${isLeft ? 'flex-row-reverse' : 'flex-row'} pl-12 md:pl-0`}
+              className={`flex items-center w-full min-h-[120px] pl-16 md:pl-0 ${isLeft ? 'md:flex-row-reverse flex-row' : 'flex-row'}`}
             >
-              <div className={`w-full md:w-1/2 flex items-center ${isLeft ? 'justify-start' : 'justify-end md:justify-end'}`}>
+              <div className={`w-full md:w-1/2 flex items-center ${isLeft ? 'md:justify-start justify-start' : 'justify-start md:justify-end'}`}>
                 {/* Highlight Loop Container */}
                 <motion.div
                   animate={{
@@ -106,7 +106,7 @@ function SuccessTimeline() {
                     repeatDelay: 6,
                     delay: i * 0.6 // Sequence the highlight through the items
                   }}
-                  className={`flex items-center px-1 ${isLeft ? 'flex-row' : 'flex-row-reverse'}`}
+                  className={`flex items-center px-1 ${isLeft ? 'md:flex-row flex-row' : 'flex-row-reverse md:flex-row-reverse'}`}
                 >
                   <div
                     className="w-4 h-6 -mx-0.5"
@@ -123,10 +123,10 @@ function SuccessTimeline() {
                     <span className="text-white font-black text-xl tracking-tighter">{item.year}</span>
                   </div>
 
-                  <div className={`px-2 max-w-[140px] md:max-w-[180px] ${isLeft ? 'text-right' : 'text-left'}`}>
+                  <div className={`px-2 max-w-[160px] md:max-w-[180px] ${isLeft ? 'md:text-right text-left' : 'text-left'}`}>
                     <h4 className="font-black text-navy uppercase text-[10px] md:text-xs leading-tight mb-1">{item.title}</h4>
                     {item.desc && (
-                      <p className="text-[8px] font-bold text-brand-red opacity-80 leading-none truncate md:whitespace-normal">
+                      <p className="text-[8px] font-bold text-brand-red opacity-80 leading-tight">
                         {item.desc}
                       </p>
                     )}

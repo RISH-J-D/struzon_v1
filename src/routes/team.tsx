@@ -173,6 +173,7 @@ function TeamPage() {
                 <div
                   ref={(el) => { cardRefs.current[idx] = el; }}
                   onMouseEnter={() => window.innerWidth >= 1024 && handleInteraction(idx)}
+                  onClick={() => window.innerWidth < 1024 && handleInteraction(activeIndex === idx ? null : idx)}
                   className={`flex flex-col bg-white border border-border/50 shadow-sm transition-all duration-300 overflow-hidden group cursor-pointer h-full ${activeIndex === idx ? 'shadow-xl border-brand-red/30 -translate-y-1' : 'hover:shadow-lg hover:-translate-y-1'}`}
                 >
                   <div className="relative aspect-[4/5] overflow-hidden bg-muted">

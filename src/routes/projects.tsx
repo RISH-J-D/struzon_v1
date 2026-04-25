@@ -244,7 +244,7 @@ function ProjectsPage() {
       {/* CTA Section */}
       <section className="bg-navy text-white py-16 md:py-24 relative overflow-hidden">
         <div className="mx-auto max-w-4xl px-6 text-center relative z-10">
-          <h2 className="text-2xl md:text-4xl font-display font-bold uppercase tracking-tight">Ready to Detail Your Vision?</h2>
+          <h2 className="text-2xl md:text-4xl text-white font-display font-bold uppercase tracking-tight">Ready to Detail Your Vision?</h2>
           <p className="mt-4 text-sm md:text-base text-white/60 px-4">Partner with our engineers for high-precision 3D structural detailing and engineering services.</p>
           <Link to="/contact" className="mt-8 inline-flex items-center gap-2 bg-brand-red px-8 md:px-10 py-3 md:py-4 font-display uppercase tracking-widest text-[10px] md:text-xs font-bold hover:bg-brand-red-dark transition-all shadow-xl">
             Start a Project <Layers className="h-4 w-4" />
