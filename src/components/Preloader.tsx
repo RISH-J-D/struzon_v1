@@ -1,19 +1,15 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "@tanstack/react-router";
-import logo from "../assets/struzon-logo.png";
-import icon1 from "../assets/icons/accurate-designs.png";
-import icon2 from "../assets/icons/engineered-accuracy.png";
-import icon3 from "../assets/icons/fabrication-ready.png";
-import icon4 from "../assets/icons/smart-detailing.png";
-import icon5 from "../assets/icons/steel-excellence.png";
-
 const INTRO_ICONS = [
-  { img: icon1, label: "Accurate Designs" },
-  { img: icon2, label: "Engineered Accuracy" },
-  { img: icon3, label: "Fabrication Ready" },
-  { img: icon4, label: "Smart Detailing" },
-  { img: icon5, label: "Steel Excellence" },
+  { img: "/assets/icons/accurate-designs.png", label: "Accurate Designs" },
+  { img: "/assets/icons/engineered-accuracy.png", label: "Engineered Accuracy" },
+  { img: "/assets/icons/fabrication-ready.png", label: "Fabrication Ready" },
+  { img: "/assets/icons/smart-detailing.png", label: "Smart Detailing" },
+  { img: "/assets/icons/steel-excellence.png", label: "Steel Excellence" },
 ];
+
+const logo = "/assets/struzon-logo.png";
+
 
 export function Preloader() {
   const [phase, setPhase] = useState(-2); // -2: Star, -1: Merge, 0: ST Center, 1: Slided, 2: Slogan, 3: Exit

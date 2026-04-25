@@ -4,10 +4,10 @@ import { createPortal } from "react-dom";
 import { Menu, X, Phone, Mail } from "lucide-react";
 import { FaFacebookF, FaLinkedinIn, FaInstagram, FaYoutube } from "react-icons/fa6";
 import { motion, AnimatePresence } from "framer-motion";
-import logo from "../assets/struzon-logo.png";
-import badge1 from "../assets/icons/badge1.png";
-import badge2 from "../assets/icons/badge2.png";
-import badge3 from "../assets/icons/badge3.png";
+const logo = "/assets/struzon-logo.png";
+const badge1 = "/assets/icons/badge1.png";
+const badge2 = "/assets/icons/badge2.png";
+const badge3 = "/assets/icons/badge3.png";
 
 const links = [
   { to: "/", label: "Home" },
