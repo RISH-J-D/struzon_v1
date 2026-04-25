@@ -1,14 +1,23 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "@tanstack/react-router";
+
+// Import assets to ensure Vite processes them correctly for production
+import iconAccurate from "@/assets/icons/accurate-designs.png";
+import iconEngineered from "@/assets/icons/engineered-accuracy.png";
+import iconFabrication from "@/assets/icons/fabrication-ready.png";
+import iconSmart from "@/assets/icons/smart-detailing.png";
+import iconSteel from "@/assets/icons/steel-excellence.png";
+import logoImg from "@/assets/struzon-logo.png";
+
 const INTRO_ICONS = [
-  { img: "/assets/icons/accurate-designs.png", label: "Accurate Designs" },
-  { img: "/assets/icons/engineered-accuracy.png", label: "Engineered Accuracy" },
-  { img: "/assets/icons/fabrication-ready.png", label: "Fabrication Ready" },
-  { img: "/assets/icons/smart-detailing.png", label: "Smart Detailing" },
-  { img: "/assets/icons/steel-excellence.png", label: "Steel Excellence" },
+  { img: iconAccurate, label: "Accurate Designs" },
+  { img: iconEngineered, label: "Engineered Accuracy" },
+  { img: iconFabrication, label: "Fabrication Ready" },
+  { img: iconSmart, label: "Smart Detailing" },
+  { img: iconSteel, label: "Steel Excellence" },
 ];
 
-const logo = "/assets/struzon-logo.png";
+const logo = logoImg;
 
 
 export function Preloader() {

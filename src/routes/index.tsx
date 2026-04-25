@@ -7,14 +7,23 @@ import LicensedPartners from "@/components/LicensedPartners";
 import CyberMap from "@/components/CyberMap";
 
 // ASSETS
-const imgHero = "/assets/hero-structure.png";
-const vdoHome = "/assets/home-vdo.mp4";
-const imgP1 = "/assets/project-1.jpg";
-const imgP2 = "/assets/project-2.jpg";
-const imgP3 = "/assets/project-3.jpg";
-const imgP4 = "/assets/project-4.jpg";
-const imgP5 = "/assets/hero-steel.jpg";
-const imgP6 = "/assets/blueprint.jpg";
+import heroImg from "@/assets/hero-structure.png";
+import homeVdo from "@/assets/home-vdo.mp4";
+import p1Img from "@/assets/project-1.jpg";
+import p2Img from "@/assets/project-2.jpg";
+import p3Img from "@/assets/project-3.jpg";
+import p4Img from "@/assets/project-4.jpg";
+import p5Img from "@/assets/hero-steel.jpg";
+import p6Img from "@/assets/blueprint.jpg";
+
+const imgHero = heroImg;
+const vdoHome = homeVdo;
+const imgP1 = p1Img;
+const imgP2 = p2Img;
+const imgP3 = p3Img;
+const imgP4 = p4Img;
+const imgP5 = p5Img;
+const imgP6 = p6Img;
 
 export const Route = createFileRoute("/")({
   head: () => ({
