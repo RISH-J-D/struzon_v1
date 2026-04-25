@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { useNavigate } from "@tanstack/react-router";
 
 // Import assets to ensure Vite processes them correctly for production
 import iconAccurate from "@/assets/icons/accurate-designs.png";
@@ -24,9 +23,10 @@ export function Preloader() {
   const [phase, setPhase] = useState(-2); // -2: Star, -1: Merge, 0: ST Center, 1: Slided, 2: Slogan, 3: Exit
   const [isVisible, setIsVisible] = useState(true);
   const [radius, setRadius] = useState(220);
-  const navigate = useNavigate();
 
   useEffect(() => {
+    console.log("Preloader mounted, starting sequence...");
+
     // Handle responsive radius
     const updateRadius = () => {
       setRadius(window.innerWidth < 640 ? 125 : 220);
@@ -34,23 +34,33 @@ export function Preloader() {
     updateRadius();
     window.addEventListener('resize', updateRadius);
 
-    const timers = [
-      setTimeout(() => setPhase(-1), 2500),  // Start merging icons
-      setTimeout(() => setPhase(0), 3200),   // ST Logo Center
-      setTimeout(() => setPhase(1), 3800),   // Slide & Reveal
-      setTimeout(() => setPhase(2), 4400),   // Slogan
-      setTimeout(() => setPhase(3), 5000),   // Exit
-      setTimeout(() => {
-        navigate({ to: '/' });
-        setIsVisible(false);
-      }, 5500), // Redirect and Unmount
-    ];
+    // Hard emergency timeout to ensure page is ALWAYS shown
+    const emergencyTimeout = setTimeout(() => {
+      console.log("Preloader emergency timeout reached!");
+      setIsVisible(false);
+    }, 8000);
+
+    const t1 = setTimeout(() => setPhase(-1), 2000);
+    const t2 = setTimeout(() => setPhase(0), 2800);
+    const t3 = setTimeout(() => setPhase(1), 3400);
+    const t4 = setTimeout(() => setPhase(2), 4000);
+    const t5 = setTimeout(() => setPhase(3), 4600);
+    const t6 = setTimeout(() => {
+      console.log("Preloader sequence complete.");
+      setIsVisible(false);
+    }, 5200);
 
     return () => {
-      timers.forEach(clearTimeout);
+      clearTimeout(emergencyTimeout);
+      clearTimeout(t1);
+      clearTimeout(t2);
+      clearTimeout(t3);
+      clearTimeout(t4);
+      clearTimeout(t5);
+      clearTimeout(t6);
       window.removeEventListener('resize', updateRadius);
     };
-  }, [navigate]);
+  }, []);
 
   if (!isVisible) return null;
 
@@ -59,6 +69,13 @@ export function Preloader() {
       className={`fixed inset-0 z-[2000] flex items-center justify-center preloader-bg transition-opacity duration-500 ${phase === 3 ? "opacity-0 pointer-events-none" : "opacity-100"
         }`}
     >
+      <button 
+        onClick={() => setIsVisible(false)}
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 text-white/40 hover:text-white text-xs uppercase tracking-widest z-[3000] transition-colors"
+      >
+        Skip Animation
+      </button>
+
       <div className="relative flex flex-col items-center">
         {/* Intro Star Icons */}
         {phase < 0 && (

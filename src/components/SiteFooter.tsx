@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { Phone, Mail, MapPin } from "lucide-react";
 import { FaFacebookF, FaLinkedinIn, FaInstagram, FaYoutube } from "react-icons/fa";
-import logo from "@/assets/struzon-logo.png";
+import logo from "@/assets/struzon-logo.webp";
 
 export function SiteFooter() {
   return (

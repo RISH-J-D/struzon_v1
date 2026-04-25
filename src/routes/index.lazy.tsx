@@ -7,14 +7,14 @@ import LicensedPartners from "@/components/LicensedPartners";
 import CyberMap from "@/components/CyberMap";
 
 // ASSETS
-import heroImg from "@/assets/hero-structure.png";
+import heroImg from "@/assets/hero-structure.webp";
 import homeVdo from "@/assets/home-vdo.mp4";
-import p1Img from "@/assets/project-1.jpg";
-import p2Img from "@/assets/project-2.jpg";
-import p3Img from "@/assets/project-3.jpg";
-import p4Img from "@/assets/project-4.jpg";
-import p5Img from "@/assets/hero-steel.jpg";
-import p6Img from "@/assets/blueprint.jpg";
+import p1Img from "@/assets/project-1.webp";
+import p2Img from "@/assets/project-2.webp";
+import p3Img from "@/assets/project-3.webp";
+import p4Img from "@/assets/project-4.webp";
+import p5Img from "@/assets/hero-steel.webp";
+import p6Img from "@/assets/blueprint.webp";
 
 const imgHero = heroImg;
 const vdoHome = homeVdo;

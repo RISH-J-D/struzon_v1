@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronRight, ChevronLeft, ArrowUpRight } from 'lucide-react';
 
-import imgStructural from "@/assets/services/Structural Steel Detailing.png";
-import imgMisc from "@/assets/services/MISC Steel Detailing.png";
-import imgSpecial from "@/assets/services/Special Metal Detailing.png";
-import imgConnection from "@/assets/services/Connection Design & PE Stamping.png";
-import imgBim from "@/assets/services/BIM & ABM.png";
-import imgTakeoff from "@/assets/services/Material Takeoff & Estimation.png";
-import imgRD from "@/assets/services/R & D.png";
+import imgStructural from "@/assets/services/Structural Steel Detailing.webp";
+import imgMisc from "@/assets/services/MISC Steel Detailing.webp";
+import imgSpecial from "@/assets/services/Special Metal Detailing.webp";
+import imgConnection from "@/assets/services/Connection Design & PE Stamping.webp";
+import imgBim from "@/assets/services/BIM & ABM.webp";
+import imgTakeoff from "@/assets/services/Material Takeoff & Estimation.webp";
+import imgRD from "@/assets/services/R & D.webp";
 
 interface ServiceData {
   title: string;

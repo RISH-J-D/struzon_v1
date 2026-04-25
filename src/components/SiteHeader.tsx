@@ -6,10 +6,10 @@ import { FaFacebookF, FaLinkedinIn, FaInstagram, FaYoutube } from "react-icons/f
 import { motion, AnimatePresence } from "framer-motion";
 
 // Import assets for reliable production URL resolution
-import logoImg from "@/assets/struzon-logo.png";
-import badge1Img from "@/assets/icons/badge1.png";
-import badge2Img from "@/assets/icons/badge2.png";
-import badge3Img from "@/assets/icons/badge3.png";
+import logoImg from "@/assets/struzon-logo.webp";
+import badge1Img from "@/assets/icons/badge1.webp";
+import badge2Img from "@/assets/icons/badge2.webp";
+import badge3Img from "@/assets/icons/badge3.webp";
 
 const logo = logoImg;
 const badge1 = badge1Img;

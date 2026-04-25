@@ -6,13 +6,13 @@ import { FaLinkedinIn } from "react-icons/fa";
 import { useState, useRef, useEffect } from "react";
 
 // ASSETS
-import imgPlaceholder from "@/assets/hero-steel.jpg";
-import imgWorkplace from "@/assets/blueprint.jpg";
-import imgRajadurai from "@/assets/rajadurai.png";
-import imgBalasaravana from "@/assets/balasaravanan.png";
-import imgSaravanan from "@/assets/saravanan.png";
-import imgAnand from "@/assets/anand.png";
-import imgAlan from "@/assets/alan.png";
+import imgPlaceholder from "@/assets/hero-steel.webp";
+import imgWorkplace from "@/assets/blueprint.webp";
+import imgRajadurai from "@/assets/rajadurai.webp";
+import imgBalasaravana from "@/assets/balasaravanan.webp";
+import imgSaravanan from "@/assets/saravanan.webp";
+import imgAnand from "@/assets/anand.webp";
+import imgAlan from "@/assets/alan.webp";
 
 export const Route = createLazyFileRoute("/team")({
   component: TeamPage,

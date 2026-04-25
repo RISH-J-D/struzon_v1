@@ -4,9 +4,9 @@ import { ShieldCheck, Zap, Heart, Target, TrendingUp } from "lucide-react";
 import { motion } from "framer-motion";
 
 // ASSETS
-import imgP1 from "@/assets/project-1.jpg";
-import imgP2 from "@/assets/project-2.jpg";
-import imgP3 from "@/assets/project-3.jpg";
+import imgP1 from "@/assets/project-1.webp";
+import imgP2 from "@/assets/project-2.webp";
+import imgP3 from "@/assets/project-3.webp";
 
 export const Route = createLazyFileRoute("/about")({
   component: About,

@@ -2,10 +2,10 @@ import React, { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
-import imgTekla from '@/assets/icons/tekla.png';
-import imgSDS2 from '@/assets/icons/sds2.png';
-import imgDraftSight from '@/assets/icons/draftsight-logo.png';
-import imgBluebeam from '@/assets/icons/revu.png';
+import imgTekla from '@/assets/icons/tekla.webp';
+import imgSDS2 from '@/assets/icons/sds2.webp';
+import imgDraftSight from '@/assets/icons/draftsight-logo.webp';
+import imgBluebeam from '@/assets/icons/revu.webp';
 
 gsap.registerPlugin(ScrollTrigger);
 
