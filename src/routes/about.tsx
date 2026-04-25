@@ -21,23 +21,23 @@ export const Route = createFileRoute("/about")({
 });
 
 const timelineData = [
-  { year: "2017", title: "Founded in 2017", desc: "Started with a team of 4 seasoned steel detailing engineers with a vision to script the success story of steel structures in North America", color: "#1e1b4b" }, // dark navy/purple
-  { year: "2018", title: "Adapt to survive", desc: "4 members evolved into 4 teams", color: "#1e3a8a" }, // navy
-  { year: "2019", title: "Embrace evolution", desc: "More workstations. More projects. More value for our partners", color: "#1d4ed8" }, // blue
-  { year: "2020", title: "Change is inevitable", desc: "Survived Pandemic, services and quality unaffected", color: "#3b82f6" }, // light blue
-  { year: "2021", title: "Enable Excellence", desc: "Excellence emerged to balance the tight schedules", color: "#60a5fa" }, // lighter blue
-  { year: "2022", title: "Bold Outcomes", desc: "Clients increased, quality uncompromised", color: "#94a3b8" }, // silver/gray
-  { year: "2023", title: "Expertise with Integrity", desc: "Added SDS2 to tailor steel construction requirements", color: "#312e81" }, // indigo
-  { year: "2024", title: "Growth by Quality", desc: "Production Capacity 4000T per month 100+ Engineers", color: "#1e40af" }, // bright navy
-  { year: "2025", title: "Same Service, Own Premises", desc: "Production Capacity 5000T to 8000T per month 150+ Engineers", color: "#2563eb" }, // royal blue
-  { year: "2026", title: "Transforming Visions into Reality", desc: "", color: "#1e1b4b" }, // dark navy
+  { year: "2017", title: "Founded in 2017", desc: "Started with a team of 4 seasoned steel detailing engineers with a vision to script the success story of steel structures in North America", color: "#02224b" }, // Logo Blue
+  { year: "2018", title: "Adapt to survive", desc: "4 members evolved into 4 teams", color: "#182247" },
+  { year: "2019", title: "Embrace evolution", desc: "More workstations. More projects. More value for our partners", color: "#2e2243" },
+  { year: "2020", title: "Change is inevitable", desc: "Survived Pandemic, services and quality unaffected", color: "#44213f" },
+  { year: "2021", title: "Enable Excellence", desc: "Excellence emerged to balance the tight schedules", color: "#5a213b" },
+  { year: "2022", title: "Bold Outcomes", desc: "Clients increased, quality uncompromised", color: "#702137" },
+  { year: "2023", title: "Expertise with Integrity", desc: "Added SDS2 to tailor steel construction requirements", color: "#862133" },
+  { year: "2024", title: "Growth by Quality", desc: "Production Capacity 4000T per month 100+ Engineers", color: "#9c202f" },
+  { year: "2025", title: "Same Service, Own Premises", desc: "Production Capacity 5000T to 8000T per month 150+ Engineers", color: "#b2202a" },
+  { year: "2026", title: "Transforming Visions into Reality", desc: "", color: "#c71f24" }, // Logo Red
 ];
 
 function SuccessTimeline() {
   return (
     <div className="relative w-full max-w-lg mx-auto py-20 font-display">
-      {/* Central Arrow/Spine Architecture — Shifted on mobile */}
-      <div className="absolute left-4 md:left-1/2 md:-translate-x-1/2 top-0 bottom-0 w-8 z-10 flex flex-col items-center">
+      {/* Central Arrow/Spine Architecture — Perfectly Centered */}
+      <div className="absolute left-1/2 -translate-x-1/2 top-0 bottom-0 w-8 z-10 flex flex-col items-center">
         {/* Infinite Pulse Glow Spine */}
         <motion.div
           animate={{ top: ["100%", "-20%"] }}
@@ -47,9 +47,10 @@ function SuccessTimeline() {
 
         {/* 2026 Top Pill */}
         <motion.div
-          animate={{ boxShadow: ["0 0 0px rgba(255,255,255,0)", "0 0 20px rgba(255,255,255,0.4)", "0 0 0px rgba(255,255,255,0)"] }}
+          animate={{ boxShadow: ["0 0 0px rgba(199,31,36,0)", "0 0 20px rgba(199,31,36,0.4)", "0 0 0px rgba(199,31,36,0)"] }}
           transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-          className="relative w-28 h-8 bg-[#1e1b4b] rounded-lg flex items-center justify-center text-white font-black text-lg shadow-2xl z-50 mb-1 -ml-16 md:ml-0"
+          style={{ backgroundColor: "#c71f24" }}
+          className="relative w-28 h-8 rounded-lg flex items-center justify-center text-white font-black text-lg shadow-2xl z-50 mb-0 -ml-1"
         >
           2026
         </motion.div>
@@ -61,20 +62,13 @@ function SuccessTimeline() {
               <div
                 className="w-full flex-1"
                 style={{
-                  background: i % 2 === 0 ? `linear-gradient(to bottom, #1e1b4b, ${item.color})` : `linear-gradient(to bottom, ${timelineData[timelineData.length - 1 - i]?.color || '#1e1b4b'}, ${item.color})`,
+                  background: `linear-gradient(to bottom, ${timelineData[timelineData.length - 1 - i].color}, ${item.color})`,
                   clipPath: 'polygon(0% 0%, 50% 15%, 100% 0%, 100% 85%, 50% 100%, 0% 85%)',
                   marginTop: '-12px'
                 }}
               />
             </div>
           ))}
-          <div
-            className="w-8 h-20 mt-[-12px]"
-            style={{
-              background: timelineData[0].color,
-              clipPath: 'polygon(0% 0%, 50% 15%, 100% 0%, 100% 100%, 50% 90%, 0% 100%)'
-            }}
-          />
         </div>
       </div>
 
@@ -91,9 +85,9 @@ function SuccessTimeline() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.6, delay: i * 0.05 }}
-              className={`flex items-center w-full min-h-[120px] pl-16 md:pl-0 ${isLeft ? 'md:flex-row-reverse flex-row' : 'flex-row'}`}
+              className={`flex items-center w-full min-h-[120px] ${isLeft ? 'flex-row-reverse' : 'flex-row'}`}
             >
-              <div className={`w-full md:w-1/2 flex items-center ${isLeft ? 'md:justify-start justify-start' : 'justify-start md:justify-end'}`}>
+              <div className={`w-1/2 flex items-center ${isLeft ? 'justify-start' : 'justify-end'}`}>
                 {/* Highlight Loop Container */}
                 <motion.div
                   animate={{
@@ -106,7 +100,7 @@ function SuccessTimeline() {
                     repeatDelay: 6,
                     delay: i * 0.6 // Sequence the highlight through the items
                   }}
-                  className={`flex items-center px-1 ${isLeft ? 'md:flex-row flex-row' : 'flex-row-reverse md:flex-row-reverse'}`}
+                  className={`flex items-center px-1 ${isLeft ? 'flex-row' : 'flex-row-reverse'}`}
                 >
                   <div
                     className="w-4 h-6 -mx-0.5"
@@ -133,7 +127,7 @@ function SuccessTimeline() {
                   </div>
                 </motion.div>
               </div>
-              <div className="hidden md:block md:w-1/2" />
+              <div className="w-1/2" />
             </motion.div>
           );
         })}
@@ -216,10 +210,10 @@ function About() {
                 </div>
 
                 <div className="lg:col-span-5 h-full relative">
-                  <div className="sticky top-32">
-                    <div className="absolute top-0 left-0 p-4 -translate-y-full opacity-60">
-                      <p className="text-navy font-black text-xs leading-none uppercase tracking-widest">
-                        Visions into Reality
+                  <div className="sticky top-50">
+                    <div className="absolute top-0 left-0 right-0 p-2 -translate-y-full opacity-60 text-center">
+                      <p className="text-xs font-display font-black uppercase mb-3 tracking-wider text-navy">
+                        Transforming Visions into Reality
                       </p>
                     </div>
                     <SuccessTimeline />
